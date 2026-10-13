@@ -84,3 +84,13 @@ def update_status(incident_id, data, actor):
     record_activity(actor, "INCIDENT_STATUS_CHANGED", f"Changed incident {incident_id} from {incident['status']} to {next_status}",
                     related_service="Incident Management")
     return updated
+
+
+def add_note(incident_id, data, actor):
+    data = validation.investigation_note(data)
+    incident = lock_incident(incident_id)
+    check_incident_access(incident, actor)
+    note = investigation_notes.insert_note(incident_id, actor["user_id"], data["note_content"])
+    record_activity(actor, "INVESTIGATION_NOTE_ADDED", f"Added note {note['note_id']} to incident {incident_id}",
+                    related_service="Incident Management")
+    return note

@@ -1,4 +1,4 @@
-from database.connection import get_db
+from database.connection import get_db, utc_now
 
 
 NOTE_SELECT = """SELECT n.*, u.username AS author_username, u.full_name AS author_name
@@ -19,3 +19,12 @@ def create_table(conn):
 def get_notes(incident_id):
     rows = get_db().execute(NOTE_SELECT + " WHERE n.incident_id = ? ORDER BY n.note_id", (incident_id,)).fetchall()
     return [dict(row) for row in rows]
+
+
+def insert_note(incident_id, author_id, content):
+    cursor = get_db().execute(
+        "INSERT INTO investigation_notes (incident_id, analyst_id, note_content, creation_timestamp) VALUES (?, ?, ?, ?)",
+        (incident_id, author_id, content, utc_now()),
+    )
+    row = get_db().execute(NOTE_SELECT + " WHERE n.note_id = ?", (cursor.lastrowid,)).fetchone()
+    return dict(row)
