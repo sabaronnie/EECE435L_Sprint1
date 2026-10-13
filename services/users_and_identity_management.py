@@ -8,7 +8,7 @@ import click
 from flask import Blueprint, current_app, g, jsonify, request
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from auth import ADMIN, AUDITOR, REGULAR, require_auth, require_roles, token_hash
+from auth import ADMIN, AUDITOR, REGULAR, require_auth, require_owner_or_admin, require_roles, token_hash
 from database import get_db
 from database.connection import utc_now
 from database.logs import record_activity
@@ -52,6 +52,16 @@ class IdentityService:
         return {"token": token, "token_type": "Bearer", "expires_at": expires,
                 "user": public_user(self.users.by_id(user["user_id"]))}
 
+    def update(self, user_id, data, actor):
+        if self.users.by_id(user_id) is None:
+            raise ApiError("User not found", 404)
+        get_db().execute(
+            "UPDATE users SET full_name = ?, email = ?, department_id = ? WHERE user_id = ?",
+            (data["full_name"], data["email"], self.users.department_id(data["department"]), user_id),
+        )
+        record_activity(actor, "USER_UPDATED", f"Updated user {user_id}")
+        return public_user(self.users.by_id(user_id))
+
 
 @users_api.post("/register")
 def register():
@@ -94,6 +104,15 @@ def get_user(username):
     if user is None:
         raise ApiError("User not found", 404)
     return jsonify(status="success", user=public_user(user))
+
+
+@users_api.put("/<int:user_id>")
+@require_auth
+def update_user(user_id):
+    require_owner_or_admin(user_id)
+    data = validation.profile(request.get_json())
+    user = IdentityService().update(user_id, data, g.actor)
+    return jsonify(status="success", message="User updated successfully", user=user)
 
 
 def register_commands(app):

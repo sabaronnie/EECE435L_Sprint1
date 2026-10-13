@@ -67,3 +67,13 @@ def registration(data):
         "department": text(data, "department", 100), "role": role,
     }
 
+
+def profile(data):
+    required = ("full_name", "email", "department")
+    fields(data, required, required)
+    return {
+        "full_name": text(data, "full_name", 120),
+        "email": email(data),
+        "department": text(data, "department", 100),
+    }
+
