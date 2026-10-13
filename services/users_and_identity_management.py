@@ -130,6 +130,14 @@ def login():
                    **IdentityService().login(identifier, password))
 
 
+@users_api.post("/logout")
+@require_auth
+def logout():
+    get_db().execute("DELETE FROM auth_sessions WHERE session_id = ?", (g.session_id,))
+    record_activity(g.actor, "LOGOUT", "User logged out")
+    return jsonify(status="success", message="Logged out successfully")
+
+
 @users_api.get("")
 @require_auth
 def list_users():
