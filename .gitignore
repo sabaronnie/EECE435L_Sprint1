@@ -15,7 +15,7 @@ instance/
 *.db
 *.db-wal
 *.db-shm
-docs/*scope*.md
+docs/
 notes/
 scratch/
 .venv/
@@ -25,3 +25,4 @@ test_*.py
 *_test.py
 .tox/
 .nox/
+postman/

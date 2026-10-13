@@ -39,23 +39,57 @@ def authenticate():
     g.session_id = session["session_id"]
 
 
-def require_auth(view):
+def require_roles(*roles):
+    if getattr(g, "actor", None) is None:
+        raise ApiError("Authentication is required", 401)
+    if roles and g.actor["role"] not in roles:
+        raise ApiError("User does not have permission to perform this operation", 403)
+
+
+def roles_required(*roles):
+    """Authenticate the caller, then check the roles allowed by the endpoint."""
+    def decorator(view):
+        @wraps(view)
+        def wrapped(*args, **kwargs):
+            authenticate()
+            require_roles(*roles)
+            return view(*args, **kwargs)
+        return wrapped
+    return decorator
+
+
+def login_required(view):
+    """Allow any active user with a valid login token."""
+    return roles_required()(view)
+
+
+def admin_required(view):
+    """Allow only an authenticated security administrator."""
+    return roles_required(ADMIN)(view)
+
+
+def registration_allowed(view):
+    """Allow public signup, or signup by a logged-in admin or regular user."""
     @wraps(view)
     def wrapped(*args, **kwargs):
-        if g.actor is None:
-            raise ApiError("Authentication is required", 401)
+        authenticate()
+        if g.actor is not None:
+            require_roles(ADMIN, REGULAR)
         return view(*args, **kwargs)
     return wrapped
 
 
-def require_roles(*roles):
-    if g.actor is None:
-        raise ApiError("Authentication is required", 401)
-    if g.actor["role"] not in roles:
-        raise ApiError("User does not have permission to perform this operation", 403)
-
-
-def require_owner_or_admin(user_id):
-    require_roles(ADMIN, REGULAR)
-    if g.actor["role"] != ADMIN and g.actor["user_id"] != user_id:
-        raise ApiError("You may only update your own profile", 403)
+def own_profile_required(view):
+    """After a role wrapper, restrict regular users to their own profile."""
+    @wraps(view)
+    def wrapped(*args, **kwargs):
+        require_roles(ADMIN, AUDITOR, REGULAR)
+        if g.actor["role"] == REGULAR:
+            user_id = kwargs.get("user_id")
+            username = kwargs.get("username")
+            if user_id is not None and user_id != g.actor["user_id"]:
+                raise ApiError("You may only update your own profile", 403)
+            if username is not None and username.lower() != g.actor["username"].lower():
+                raise ApiError("You may only view your own profile", 403)
+        return view(*args, **kwargs)
+    return wrapped
