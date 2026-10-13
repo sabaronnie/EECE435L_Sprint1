@@ -1,9 +1,14 @@
 """Validate JSON before it reaches the database."""
 
+from ipaddress import ip_address
 import re
 
 from database.roles import ROLES
 from errors import ApiError
+
+ASSET_TYPES = ("Server", "Workstation", "Database", "Application", "Network Device", "Cloud Resource")
+CRITICALITY_LEVELS = ("Low", "Medium", "High", "Critical")
+ASSET_STATUSES = ("Active", "Inactive", "Under Maintenance")
 
 
 def text(data, field, maximum, minimum=1):
@@ -76,4 +81,81 @@ def profile(data):
         "email": email(data),
         "department": text(data, "department", 100),
     }
+
+
+def choice(data, field, allowed):
+    value = text(data, field, 50)
+    if value not in allowed:
+        raise ApiError(f"Invalid {field}", details=list(allowed))
+    return value
+
+
+def owner_id(data):
+    value = data.get("owner_id")
+    if type(value) is not int or value <= 0:
+        raise ApiError("owner_id must be a positive integer")
+    return value
+
+
+def asset_ip(data):
+    value = text(data, "ip_address", 45)
+    try:
+        # Scoped IPv6 addresses depend on a local interface and are not asset addresses.
+        if "%" in value:
+            raise ValueError
+        return str(ip_address(value))
+    except ValueError:
+        raise ApiError("IP address format is invalid") from None
+
+
+def optional_text(data, field, maximum):
+    if data.get(field) is None:
+        return None
+    return text(data, field, maximum)
+
+
+def asset_creation(data):
+    required = ("asset_name", "asset_type", "ip_address", "department", "owner_id", "criticality_level")
+    fields(data, (*required, "operating_system", "location", "status"), required)
+    return {
+        "asset_name": text(data, "asset_name", 120),
+        "asset_type": choice(data, "asset_type", ASSET_TYPES),
+        "ip_address": asset_ip(data),
+        "department": text(data, "department", 100),
+        "owner_id": owner_id(data),
+        "criticality_level": choice(data, "criticality_level", CRITICALITY_LEVELS),
+        "status": choice(data, "status", ASSET_STATUSES) if "status" in data else "Active",
+        "operating_system": optional_text(data, "operating_system", 120),
+        "location": optional_text(data, "location", 200),
+    }
+
+
+def asset_update(data):
+    required = ("asset_name", "owner_id", "department", "criticality_level", "status")
+    fields(data, required, required)
+    return {
+        "asset_name": text(data, "asset_name", 120),
+        "owner_id": owner_id(data),
+        "department": text(data, "department", 100),
+        "criticality_level": choice(data, "criticality_level", CRITICALITY_LEVELS),
+        "status": choice(data, "status", ASSET_STATUSES),
+    }
+
+
+def asset_search(data):
+    allowed = ("asset_name", "asset_type", "ip_address", "department", "criticality_level")
+    fields(data, allowed, ())
+    if not data:
+        raise ApiError("Provide at least one asset search field")
+    result = {}
+    for field in data:
+        if field == "asset_type":
+            result[field] = choice(data, field, ASSET_TYPES)
+        elif field == "criticality_level":
+            result[field] = choice(data, field, CRITICALITY_LEVELS)
+        elif field == "ip_address":
+            result[field] = asset_ip(data)
+        else:
+            result[field] = text(data, field, 120 if field == "asset_name" else 100)
+    return result
 
