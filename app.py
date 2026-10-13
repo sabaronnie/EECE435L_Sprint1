@@ -17,10 +17,11 @@ from auth import (
 from database import close_db, create_db_tables, get_db
 from database.logs import record_activity
 from errors import ApiError
-from services import assets_management, users_management
+from services import assets_management, incidents_management, users_management
 
 USERS_URL = "/api/RonnieSaba/users"
 ASSETS_URL = "/api/RonnieSaba/assets"
+INCIDENTS_URL = "/api/RonnieSaba/incidents"
 
 
 app = Flask(__name__)
@@ -42,9 +43,15 @@ with app.app_context():
 def api_error(error):
     get_db().rollback()
     if error.code == 403:
+        if request.path.startswith(INCIDENTS_URL):
+            service_name = "Incident Management"
+        elif request.path.startswith(ASSETS_URL):
+            service_name = "Asset Management"
+        else:
+            service_name = "Users and Identity Management"
         record_activity(getattr(g, "actor", None), "PERMISSION_DENIED",
                         f"{request.method} {request.path}", "Warning",
-                        related_service="Asset Management" if request.path.startswith(ASSETS_URL) else "Users and Identity Management")
+                        related_service=service_name)
     body = {"status": "error", "message": error.message}
     if error.details is not None:
         body["details"] = error.details
@@ -59,6 +66,8 @@ def database_error(error):
     elif "FOREIGN KEY constraint failed" in str(error):
         if request.path.startswith(ASSETS_URL) and request.method == "DELETE":
             message = "Asset is still linked to incidents or vulnerabilities and cannot be deleted"
+        elif request.path.startswith(INCIDENTS_URL):
+            message = "A referenced user or asset is no longer available"
         else:
             message = "User is still linked to other records and cannot be deleted"
     else:
@@ -188,6 +197,13 @@ def update_asset(asset_id):
 def delete_asset(asset_id):
     assets_management.delete_asset(asset_id, g.actor)
     return jsonify(status="success", message="Asset deleted successfully")
+
+
+@app.route(INCIDENTS_URL, methods=["POST"])
+@roles_required(ADMIN, REGULAR)
+def create_incident():
+    incident = incidents_management.create_incident(request.get_json(), g.actor)
+    return jsonify(status="success", message="Incident created successfully", incident=incident), 201
 
 
 @app.cli.command("init-db")
