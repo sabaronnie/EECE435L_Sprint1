@@ -9,6 +9,8 @@ from errors import ApiError
 ASSET_TYPES = ("Server", "Workstation", "Database", "Application", "Network Device", "Cloud Resource")
 CRITICALITY_LEVELS = ("Low", "Medium", "High", "Critical")
 ASSET_STATUSES = ("Active", "Inactive", "Under Maintenance")
+INCIDENT_SEVERITIES = ("Low", "Medium", "High", "Critical")
+INCIDENT_STATUSES = ("Open", "Under Investigation", "Mitigated", "Resolved", "Closed")
 
 
 def text(data, field, maximum, minimum=1):
@@ -90,11 +92,15 @@ def choice(data, field, allowed):
     return value
 
 
-def owner_id(data):
-    value = data.get("owner_id")
+def positive_id(data, field):
+    value = data.get(field)
     if type(value) is not int or value <= 0:
-        raise ApiError("owner_id must be a positive integer")
+        raise ApiError(f"{field} must be a positive integer")
     return value
+
+
+def owner_id(data):
+    return positive_id(data, "owner_id")
 
 
 def asset_ip(data):
@@ -158,4 +164,32 @@ def asset_search(data):
         else:
             result[field] = text(data, field, 120 if field == "asset_name" else 100)
     return result
+
+
+def incident_creation(data):
+    required = ("title", "description", "category", "severity", "reporter_id", "asset_id")
+    fields(data, required, required)
+    return {
+        "title": text(data, "title", 200),
+        "description": text(data, "description", 8000),
+        "category": text(data, "category", 100),
+        "severity": choice(data, "severity", INCIDENT_SEVERITIES),
+        "reporter_id": positive_id(data, "reporter_id"),
+        "asset_id": positive_id(data, "asset_id"),
+    }
+
+
+def incident_assignment(data):
+    fields(data, ("analyst_id",), ("analyst_id",))
+    return {"analyst_id": positive_id(data, "analyst_id")}
+
+
+def incident_status(data):
+    fields(data, ("status",), ("status",))
+    return {"status": choice(data, "status", INCIDENT_STATUSES)}
+
+
+def investigation_note(data):
+    fields(data, ("note_content",), ("note_content",))
+    return {"note_content": text(data, "note_content", 8000)}
 
