@@ -50,3 +50,7 @@ def update_asset(asset_id, data):
          data["criticality_level"], data["status"], asset_id),
     )
     return get_asset_by_id(asset_id)
+
+
+def delete_asset(asset_id):
+    return get_db().execute("DELETE FROM assets WHERE asset_id = ?", (asset_id,)).rowcount

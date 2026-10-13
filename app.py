@@ -57,7 +57,10 @@ def database_error(error):
     if "UNIQUE constraint failed" in str(error):
         message = "Username or email already exists"
     elif "FOREIGN KEY constraint failed" in str(error):
-        message = "User is still linked to other records and cannot be deleted"
+        if request.path.startswith(ASSETS_URL) and request.method == "DELETE":
+            message = "Asset is still linked to incidents or vulnerabilities and cannot be deleted"
+        else:
+            message = "User is still linked to other records and cannot be deleted"
     else:
         message = "The change conflicts with a database rule"
     return jsonify(status="error", message=message), 409
@@ -158,6 +161,13 @@ def create_asset():
 def update_asset(asset_id):
     asset = assets_management.update_asset(asset_id, request.get_json(), g.actor)
     return jsonify(status="success", message="Asset updated successfully", asset=asset)
+
+
+@app.route(ASSETS_URL + "/<int:asset_id>", methods=["DELETE"])
+@admin_required
+def delete_asset(asset_id):
+    assets_management.delete_asset(asset_id, g.actor)
+    return jsonify(status="success", message="Asset deleted successfully")
 
 
 @app.cli.command("init-db")

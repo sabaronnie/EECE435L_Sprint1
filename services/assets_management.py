@@ -36,3 +36,11 @@ def update_asset(asset_id, data, actor):
     record_activity(actor, "ASSET_UPDATED", f"Updated asset {asset_id}: {asset['asset_name']}",
                     related_service="Asset Management")
     return asset
+
+
+def delete_asset(asset_id, actor):
+    asset = find_asset(asset_id)
+    if not assets.delete_asset(asset_id):
+        raise ApiError("Asset not found", 404)
+    record_activity(actor, "ASSET_DELETED", f"Deleted asset {asset_id}: {asset['asset_name']}",
+                    related_service="Asset Management")
