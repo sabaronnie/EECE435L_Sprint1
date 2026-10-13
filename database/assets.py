@@ -39,3 +39,14 @@ def insert_asset(data):
          data["owner_id"], department_id, data["location"], data["criticality_level"], data["status"]),
     )
     return get_asset_by_id(cursor.lastrowid)
+
+
+def update_asset(asset_id, data):
+    department_id = get_or_create_department(data["department"])
+    get_db().execute(
+        """UPDATE assets SET asset_name = ?, owner_id = ?, department_id = ?,
+           criticality_level = ?, status = ? WHERE asset_id = ?""",
+        (data["asset_name"], data["owner_id"], department_id,
+         data["criticality_level"], data["status"], asset_id),
+    )
+    return get_asset_by_id(asset_id)

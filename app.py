@@ -153,6 +153,13 @@ def create_asset():
     return jsonify(status="success", message="Asset created successfully", asset=asset), 201
 
 
+@app.route(ASSETS_URL + "/<int:asset_id>", methods=["PUT"])
+@admin_required
+def update_asset(asset_id):
+    asset = assets_management.update_asset(asset_id, request.get_json(), g.actor)
+    return jsonify(status="success", message="Asset updated successfully", asset=asset)
+
+
 @app.cli.command("init-db")
 def init_db_command():
     """Create missing tables without deleting existing records."""
