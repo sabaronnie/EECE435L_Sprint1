@@ -8,7 +8,7 @@ import click
 from flask import Blueprint, current_app, g, jsonify, request
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from auth import ADMIN, REGULAR, require_roles, token_hash
+from auth import ADMIN, AUDITOR, REGULAR, require_auth, require_roles, token_hash
 from database import get_db
 from database.connection import utc_now
 from database.logs import record_activity
@@ -74,6 +74,14 @@ def login():
         raise ApiError("Password must be a non-empty string of at most 128 characters")
     return jsonify(status="success", message="Authentication successful",
                    **IdentityService().login(identifier, password))
+
+
+@users_api.get("")
+@require_auth
+def list_users():
+    require_roles(ADMIN, AUDITOR)
+    users = [public_user(user) for user in UserRepository().all()]
+    return jsonify(status="success", users=users)
 
 
 def register_commands(app):
