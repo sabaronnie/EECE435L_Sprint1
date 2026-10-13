@@ -12,6 +12,7 @@ from auth import ADMIN, AUDITOR, REGULAR, require_auth, require_owner_or_admin, 
 from database import get_db
 from database.connection import utc_now
 from database.logs import record_activity
+from database.roles import ROLES
 from database.users import UserRepository, public_user
 from errors import ApiError
 import validation
@@ -87,6 +88,15 @@ class IdentityService:
             actor = {**dict(actor), "user_id": None}
         record_activity(actor, "USER_DELETED", f"Deleted user {user_id}")
 
+    def change_role(self, user_id, role, actor):
+        user = self.lock_user(user_id)
+        if role != ADMIN:
+            self.protect_last_admin(user)
+        get_db().execute("UPDATE users SET role_id = ? WHERE user_id = ?", (self.users.role_id(role), user_id))
+        get_db().execute("DELETE FROM auth_sessions WHERE user_id = ?", (user_id,))
+        record_activity(actor, "USER_ROLE_CHANGED", f"Changed role for user {user_id} to {role}")
+        return public_user(self.users.by_id(user_id))
+
 
 @users_api.post("/register")
 def register():
@@ -146,6 +156,19 @@ def delete_user(user_id):
     require_roles(ADMIN)
     IdentityService().delete(user_id, g.actor)
     return jsonify(status="success", message="User deleted successfully")
+
+
+@users_api.put("/<int:user_id>/role")
+@require_auth
+def change_role(user_id):
+    require_roles(ADMIN)
+    data = request.get_json()
+    validation.fields(data, ("role",), ("role",))
+    role = validation.text(data, "role", 30)
+    if role not in ROLES:
+        raise ApiError("Invalid role", details=list(ROLES))
+    user = IdentityService().change_role(user_id, role, g.actor)
+    return jsonify(status="success", message="User role updated successfully", user=user)
 
 
 def register_commands(app):
