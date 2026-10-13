@@ -5,11 +5,14 @@ from pathlib import Path
 import sqlite3
 
 import click
-from flask import Flask, jsonify
+from flask import Flask, g, jsonify, request
 from flask_cors import CORS
 from werkzeug.exceptions import HTTPException
+from werkzeug.security import generate_password_hash
 
+from auth import authenticate
 from database import close_db, create_db_tables, get_db
+from database.logs import record_activity
 from errors import ApiError
 from services import register_services
 
@@ -19,6 +22,8 @@ def create_app(test_config=None):
     app.config.from_mapping(
         DATABASE=os.environ.get("DATABASE_PATH", str(Path(__file__).parent / "instance" / "database.db")),
         MAX_CONTENT_LENGTH=16 * 1024,
+        TOKEN_TTL_SECONDS=3600,
+        DUMMY_PASSWORD_HASH=generate_password_hash("Dummy-check-only-1!", method="scrypt"),
     )
     if test_config:
         app.config.update(test_config)
@@ -29,9 +34,16 @@ def create_app(test_config=None):
     with app.app_context():
         create_db_tables()
 
+    @app.before_request
+    def load_identity():
+        authenticate()
+
     @app.errorhandler(ApiError)
     def api_error(error):
         get_db().rollback()
+        if error.code == 403:
+            record_activity(getattr(g, "actor", None), "PERMISSION_DENIED",
+                            f"{request.method} {request.path}", "Warning")
         body = {"status": "error", "message": error.message}
         if error.details is not None:
             body["details"] = error.details
