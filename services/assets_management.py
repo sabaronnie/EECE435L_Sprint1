@@ -23,6 +23,11 @@ def list_assets():
     return assets.get_assets()
 
 
+def search_assets(filters):
+    filters = validation.asset_search(filters)
+    return assets.search_assets(filters)
+
+
 def get_asset(asset_id):
     asset = find_asset(asset_id)
     asset.update(assets.get_asset_links(asset_id))

@@ -162,6 +162,13 @@ def create_asset():
     return jsonify(status="success", message="Asset created successfully", asset=asset), 201
 
 
+@app.route(ASSETS_URL + "/search", methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def search_assets():
+    assets = assets_management.search_assets(request.args.to_dict())
+    return jsonify(status="success", assets=assets)
+
+
 @app.route(ASSETS_URL + "/<int:asset_id>", methods=["GET"])
 @roles_required(ADMIN, ANALYST, AUDITOR)
 def get_asset(asset_id):

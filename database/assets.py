@@ -34,6 +34,25 @@ def get_assets():
     return [dict(row) for row in rows]
 
 
+def search_assets(filters):
+    columns = {
+        "asset_name": "a.asset_name", "asset_type": "a.asset_type",
+        "ip_address": "a.ip_address", "department": "d.name",
+        "criticality_level": "a.criticality_level",
+    }
+    conditions = []
+    values = []
+    for field, value in filters.items():
+        column = columns[field]
+        if field in ("asset_name", "department"):
+            conditions.append(f"instr(lower({column}), lower(?)) > 0")
+        else:
+            conditions.append(f"{column} = ?")
+        values.append(value)
+    query = ASSET_SELECT + " WHERE " + " AND ".join(conditions) + " ORDER BY a.asset_id"
+    return [dict(row) for row in get_db().execute(query, values).fetchall()]
+
+
 def get_asset_links(asset_id):
     incident_ids = get_db().execute(
         "SELECT incident_id FROM incidents WHERE asset_id = ? ORDER BY incident_id", (asset_id,),
