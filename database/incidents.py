@@ -35,6 +35,10 @@ def get_incident_by_id(incident_id):
     return dict(row) if row is not None else None
 
 
+def get_incidents():
+    return [dict(row) for row in get_db().execute(INCIDENT_SELECT + " ORDER BY i.incident_id").fetchall()]
+
+
 def insert_incident(data):
     cursor = get_db().execute(
         """INSERT INTO incidents (title, description, category, severity, reporter_id, asset_id, creation_date)

@@ -8,6 +8,10 @@ from errors import ApiError
 import validation
 
 
+def list_incidents():
+    return incidents.get_incidents()
+
+
 def create_incident(data, actor):
     data = validation.incident_creation(data)
     if actor["role"] == REGULAR and data["reporter_id"] != actor["user_id"]:

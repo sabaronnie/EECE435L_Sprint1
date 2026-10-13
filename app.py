@@ -199,6 +199,12 @@ def delete_asset(asset_id):
     return jsonify(status="success", message="Asset deleted successfully")
 
 
+@app.route(INCIDENTS_URL, methods=["GET"])
+@roles_required(ADMIN, AUDITOR)
+def list_incidents():
+    return jsonify(status="success", incidents=incidents_management.list_incidents())
+
+
 @app.route(INCIDENTS_URL, methods=["POST"])
 @roles_required(ADMIN, REGULAR)
 def create_incident():
