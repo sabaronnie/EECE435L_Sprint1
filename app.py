@@ -17,9 +17,10 @@ from auth import (
 from database import close_db, create_db_tables, get_db
 from database.logs import record_activity
 from errors import ApiError
-from services import users_management
+from services import assets_management, users_management
 
 USERS_URL = "/api/RonnieSaba/users"
+ASSETS_URL = "/api/RonnieSaba/assets"
 
 
 app = Flask(__name__)
@@ -42,7 +43,8 @@ def api_error(error):
     get_db().rollback()
     if error.code == 403:
         record_activity(getattr(g, "actor", None), "PERMISSION_DENIED",
-                        f"{request.method} {request.path}", "Warning")
+                        f"{request.method} {request.path}", "Warning",
+                        related_service="Asset Management" if request.path.startswith(ASSETS_URL) else "Users and Identity Management")
     body = {"status": "error", "message": error.message}
     if error.details is not None:
         body["details"] = error.details
@@ -142,6 +144,13 @@ def change_role(user_id):
 def change_status(user_id):
     user = users_management.change_status(user_id, request.get_json(), g.actor)
     return jsonify(status="success", message="Account status updated successfully", user=user)
+
+
+@app.route(ASSETS_URL, methods=["POST"])
+@admin_required
+def create_asset():
+    asset = assets_management.create_asset(request.get_json(), g.actor)
+    return jsonify(status="success", message="Asset created successfully", asset=asset), 201
 
 
 @app.cli.command("init-db")

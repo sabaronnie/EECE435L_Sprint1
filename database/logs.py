@@ -1,4 +1,4 @@
-"""System audit schema and identity event writes. Logs cannot be edited."""
+"""System audit schema and activity writes. Logs cannot be edited."""
 
 from database.connection import get_db, utc_now
 
@@ -31,12 +31,12 @@ def create_table(conn):
         BEGIN SELECT RAISE(ABORT, 'Audit records cannot be changed'); END""")
 
 
-def record_activity(actor, action, description, severity="Information"):
+def record_activity(actor, action, description, severity="Information", related_service="Users and Identity Management"):
     get_db().execute(
         """INSERT INTO logs
            (user_id, actor_username, action_performed, description, timestamp,
             severity_level, related_service) VALUES (?, ?, ?, ?, ?, ?, ?)""",
         (actor["user_id"] if actor else None, actor["username"] if actor else None,
-         action, description, utc_now(), severity, "Users and Identity Management"),
+         action, description, utc_now(), severity, related_service),
     )
     get_db().commit()

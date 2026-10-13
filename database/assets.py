@@ -1,3 +1,13 @@
+from database.connection import get_db
+from database.departments import get_or_create_department
+
+
+ASSET_SELECT = """SELECT a.*, d.name AS department,
+                         u.username AS owner_username, u.full_name AS owner_name
+                  FROM assets a JOIN departments d USING (department_id)
+                  JOIN users u ON a.owner_id = u.user_id"""
+
+
 def create_table(conn):
     conn.execute("""CREATE TABLE IF NOT EXISTS assets (
         asset_id INTEGER PRIMARY KEY,
@@ -12,3 +22,20 @@ def create_table(conn):
         status TEXT NOT NULL DEFAULT 'Active' CHECK (status IN ('Active', 'Inactive', 'Under Maintenance'))
     )""")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_assets_owner ON assets(owner_id)")
+
+
+def get_asset_by_id(asset_id):
+    row = get_db().execute(ASSET_SELECT + " WHERE a.asset_id = ?", (asset_id,)).fetchone()
+    return dict(row) if row is not None else None
+
+
+def insert_asset(data):
+    department_id = get_or_create_department(data["department"])
+    cursor = get_db().execute(
+        """INSERT INTO assets (asset_name, asset_type, ip_address, operating_system,
+           owner_id, department_id, location, criticality_level, status)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        (data["asset_name"], data["asset_type"], data["ip_address"], data["operating_system"],
+         data["owner_id"], department_id, data["location"], data["criticality_level"], data["status"]),
+    )
+    return get_asset_by_id(cursor.lastrowid)
