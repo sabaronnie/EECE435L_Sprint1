@@ -20,3 +20,8 @@ notes/
 scratch/
 .venv/
 venv/
+tests/
+test_*.py
+*_test.py
+.tox/
+.nox/
