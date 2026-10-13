@@ -47,3 +47,8 @@ def insert_incident(data):
          data["reporter_id"], data["asset_id"], utc_now()),
     )
     return get_incident_by_id(cursor.lastrowid)
+
+
+def assign_incident(incident_id, analyst_id):
+    get_db().execute("UPDATE incidents SET assigned_analyst_id = ? WHERE incident_id = ?", (analyst_id, incident_id))
+    return get_incident_by_id(incident_id)

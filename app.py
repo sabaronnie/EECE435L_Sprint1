@@ -220,6 +220,13 @@ def get_incident(incident_id):
     return jsonify(status="success", incident=incident)
 
 
+@app.route(INCIDENTS_URL + "/<int:incident_id>/assign", methods=["PUT"])
+@admin_required
+def assign_incident(incident_id):
+    incident = incidents_management.assign_incident(incident_id, request.get_json(), g.actor)
+    return jsonify(status="success", message="Incident assigned successfully", incident=incident)
+
+
 @app.cli.command("init-db")
 def init_db_command():
     """Create missing tables without deleting existing records."""

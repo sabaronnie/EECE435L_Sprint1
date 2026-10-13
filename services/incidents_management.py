@@ -1,7 +1,7 @@
 """Incident management logic. HTTP routes are defined in app.py."""
 
-from auth import REGULAR
-from database import assets, incidents, investigation_notes
+from auth import ANALYST, REGULAR
+from database import assets, get_db, incidents, investigation_notes
 from database.logs import record_activity
 from database.users import UserRepository
 from errors import ApiError
@@ -13,6 +13,12 @@ def find_incident(incident_id):
     if incident is None:
         raise ApiError("Incident not found", 404)
     return incident
+
+
+def lock_incident(incident_id):
+    # Assignment and workflow changes must see a consistent incident record.
+    get_db().execute("BEGIN IMMEDIATE")
+    return find_incident(incident_id)
 
 
 def get_incident(incident_id):
@@ -37,4 +43,20 @@ def create_incident(data, actor):
     record_activity(actor, "INCIDENT_CREATED", f"Created incident {incident['incident_id']}: {incident['title']}",
                     related_service="Incident Management")
     incident["investigation_notes"] = []
+    return incident
+
+
+def assign_incident(incident_id, data, actor):
+    data = validation.incident_assignment(data)
+    lock_incident(incident_id)
+    analyst = UserRepository().by_id(data["analyst_id"])
+    if analyst is None:
+        raise ApiError("Assigned analyst does not exist")
+    if analyst["role"] != ANALYST:
+        raise ApiError("Assigned user must have the Security Analyst role")
+    if analyst["account_status"] != "Active":
+        raise ApiError("Assigned analyst must have an active account")
+    incident = incidents.assign_incident(incident_id, analyst["user_id"])
+    record_activity(actor, "INCIDENT_ASSIGNED", f"Assigned incident {incident_id} to analyst {analyst['user_id']}",
+                    related_service="Incident Management")
     return incident
