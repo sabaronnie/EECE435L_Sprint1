@@ -52,3 +52,11 @@ def insert_incident(data):
 def assign_incident(incident_id, analyst_id):
     get_db().execute("UPDATE incidents SET assigned_analyst_id = ? WHERE incident_id = ?", (analyst_id, incident_id))
     return get_incident_by_id(incident_id)
+
+
+def update_status(incident_id, status, resolution_date):
+    get_db().execute(
+        "UPDATE incidents SET status = ?, resolution_date = ? WHERE incident_id = ?",
+        (status, resolution_date, incident_id),
+    )
+    return get_incident_by_id(incident_id)

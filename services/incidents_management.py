@@ -1,11 +1,19 @@
 """Incident management logic. HTTP routes are defined in app.py."""
 
-from auth import ANALYST, REGULAR
+from auth import ANALYST, REGULAR, check_incident_access
 from database import assets, get_db, incidents, investigation_notes
+from database.connection import utc_now
 from database.logs import record_activity
 from database.users import UserRepository
 from errors import ApiError
 import validation
+
+NEXT_STATUS = {
+    "Open": "Under Investigation",
+    "Under Investigation": "Mitigated",
+    "Mitigated": "Resolved",
+    "Resolved": "Closed",
+}
 
 
 def find_incident(incident_id):
@@ -60,3 +68,19 @@ def assign_incident(incident_id, data, actor):
     record_activity(actor, "INCIDENT_ASSIGNED", f"Assigned incident {incident_id} to analyst {analyst['user_id']}",
                     related_service="Incident Management")
     return incident
+
+
+def update_status(incident_id, data, actor):
+    data = validation.incident_status(data)
+    incident = lock_incident(incident_id)
+    check_incident_access(incident, actor)
+    next_status = NEXT_STATUS.get(incident["status"])
+    if next_status is None:
+        raise ApiError("Closed incidents cannot change status", 409)
+    if data["status"] != next_status:
+        raise ApiError(f"Incident must move from {incident['status']} to {next_status}", 409)
+    resolution_date = utc_now() if next_status == "Resolved" else incident["resolution_date"]
+    updated = incidents.update_status(incident_id, next_status, resolution_date)
+    record_activity(actor, "INCIDENT_STATUS_CHANGED", f"Changed incident {incident_id} from {incident['status']} to {next_status}",
+                    related_service="Incident Management")
+    return updated
