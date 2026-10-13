@@ -52,7 +52,12 @@ def create_app(test_config=None):
     @app.errorhandler(sqlite3.IntegrityError)
     def database_error(error):
         get_db().rollback()
-        message = "Username or email already exists" if "UNIQUE constraint failed" in str(error) else "The change conflicts with a database rule"
+        if "UNIQUE constraint failed" in str(error):
+            message = "Username or email already exists"
+        elif "FOREIGN KEY constraint failed" in str(error):
+            message = "User is still linked to other records and cannot be deleted"
+        else:
+            message = "The change conflicts with a database rule"
         return jsonify(status="error", message=message), 409
 
     @app.errorhandler(HTTPException)

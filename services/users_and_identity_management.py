@@ -62,6 +62,31 @@ class IdentityService:
         record_activity(actor, "USER_UPDATED", f"Updated user {user_id}")
         return public_user(self.users.by_id(user_id))
 
+    def lock_user(self, user_id):
+        # Keep concurrent admin changes from removing the last active admin.
+        get_db().execute("BEGIN IMMEDIATE")
+        user = self.users.by_id(user_id)
+        if user is None:
+            raise ApiError("User not found", 404)
+        return user
+
+    def protect_last_admin(self, user):
+        if user["role"] == ADMIN and user["account_status"] == "Active":
+            count = get_db().execute(
+                """SELECT COUNT(*) FROM users u JOIN roles r USING (role_id)
+                   WHERE r.name = ? AND u.account_status = 'Active'""", (ADMIN,),
+            ).fetchone()[0]
+            if count <= 1:
+                raise ApiError("The last active administrator must be kept", 409)
+
+    def delete(self, user_id, actor):
+        user = self.lock_user(user_id)
+        self.protect_last_admin(user)
+        get_db().execute("DELETE FROM users WHERE user_id = ?", (user_id,))
+        if actor["user_id"] == user_id:
+            actor = {**dict(actor), "user_id": None}
+        record_activity(actor, "USER_DELETED", f"Deleted user {user_id}")
+
 
 @users_api.post("/register")
 def register():
@@ -113,6 +138,14 @@ def update_user(user_id):
     data = validation.profile(request.get_json())
     user = IdentityService().update(user_id, data, g.actor)
     return jsonify(status="success", message="User updated successfully", user=user)
+
+
+@users_api.delete("/<int:user_id>")
+@require_auth
+def delete_user(user_id):
+    require_roles(ADMIN)
+    IdentityService().delete(user_id, g.actor)
+    return jsonify(status="success", message="User deleted successfully")
 
 
 def register_commands(app):
