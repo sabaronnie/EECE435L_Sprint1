@@ -12,7 +12,7 @@ from werkzeug.security import generate_password_hash
 
 from auth import (
     ADMIN, ANALYST, AUDITOR, REGULAR, admin_required, login_required,
-    own_profile_required, registration_allowed, roles_required,
+    incident_access_required, own_profile_required, registration_allowed, roles_required,
 )
 from database import close_db, create_db_tables, get_db
 from database.logs import record_activity
@@ -210,6 +210,14 @@ def list_incidents():
 def create_incident():
     incident = incidents_management.create_incident(request.get_json(), g.actor)
     return jsonify(status="success", message="Incident created successfully", incident=incident), 201
+
+
+@app.route(INCIDENTS_URL + "/<int:incident_id>", methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR, REGULAR)
+@incident_access_required
+def get_incident(incident_id):
+    incident = incidents_management.get_incident(incident_id)
+    return jsonify(status="success", incident=incident)
 
 
 @app.cli.command("init-db")

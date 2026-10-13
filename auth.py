@@ -7,6 +7,7 @@ from flask import g, request
 
 from database import get_db
 from database.connection import utc_now
+from database.incidents import get_incident_by_id
 from database.users import UserRepository
 from errors import ApiError
 
@@ -92,5 +93,27 @@ def own_profile_required(view):
                 raise ApiError("You may only update your own profile", 403)
             if username is not None and username.lower() != g.actor["username"].lower():
                 raise ApiError("You may only view your own profile", 403)
+        return view(*args, **kwargs)
+    return wrapped
+
+
+def check_incident_access(incident, actor):
+    if actor is None:
+        raise ApiError("Authentication is required", 401)
+    if actor["role"] == REGULAR and incident["reporter_id"] != actor["user_id"]:
+        raise ApiError("You may only view incidents you reported", 403)
+    if actor["role"] == ANALYST and incident["assigned_analyst_id"] != actor["user_id"]:
+        raise ApiError("You may only access incidents assigned to you", 403)
+
+
+def incident_access_required(view):
+    """After a role wrapper, restrict access to reported or assigned incidents."""
+    @wraps(view)
+    def wrapped(*args, **kwargs):
+        require_roles(ADMIN, ANALYST, AUDITOR, REGULAR)
+        incident = get_incident_by_id(kwargs["incident_id"])
+        if incident is None:
+            raise ApiError("Incident not found", 404)
+        check_incident_access(incident, g.actor)
         return view(*args, **kwargs)
     return wrapped

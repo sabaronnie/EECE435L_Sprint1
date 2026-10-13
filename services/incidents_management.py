@@ -1,11 +1,24 @@
 """Incident management logic. HTTP routes are defined in app.py."""
 
 from auth import REGULAR
-from database import assets, incidents
+from database import assets, incidents, investigation_notes
 from database.logs import record_activity
 from database.users import UserRepository
 from errors import ApiError
 import validation
+
+
+def find_incident(incident_id):
+    incident = incidents.get_incident_by_id(incident_id)
+    if incident is None:
+        raise ApiError("Incident not found", 404)
+    return incident
+
+
+def get_incident(incident_id):
+    incident = find_incident(incident_id)
+    incident["investigation_notes"] = investigation_notes.get_notes(incident_id)
+    return incident
 
 
 def list_incidents():
