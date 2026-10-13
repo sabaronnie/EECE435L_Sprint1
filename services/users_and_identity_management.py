@@ -2,7 +2,9 @@
 
 from datetime import datetime, timedelta, timezone
 import secrets
+import sqlite3
 
+import click
 from flask import Blueprint, current_app, g, jsonify, request
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -72,3 +74,23 @@ def login():
         raise ApiError("Password must be a non-empty string of at most 128 characters")
     return jsonify(status="success", message="Authentication successful",
                    **IdentityService().login(identifier, password))
+
+
+def register_commands(app):
+    @app.cli.command("create-admin")
+    @click.option("--full-name", prompt=True)
+    @click.option("--username", prompt=True)
+    @click.option("--email", prompt=True)
+    @click.option("--department", prompt=True)
+    @click.option("--password", prompt=True, hide_input=True, confirmation_prompt=True)
+    def create_admin(full_name, username, email, department, password):
+        """Create the first administrator through a trusted local command."""
+        try:
+            data = validation.registration(dict(full_name=full_name, username=username, email=email,
+                                                department=department, password=password, role=ADMIN))
+            user = IdentityService().register(data)
+        except (ApiError, sqlite3.IntegrityError) as error:
+            get_db().rollback()
+            message = error.message if isinstance(error, ApiError) else "Username or email already exists"
+            raise click.ClickException(message) from error
+        click.echo(f"Administrator {user['username']} created.")
