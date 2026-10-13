@@ -84,6 +84,18 @@ def list_users():
     return jsonify(status="success", users=users)
 
 
+@users_api.get("/<username>")
+@require_auth
+def get_user(username):
+    require_roles(ADMIN, AUDITOR, REGULAR)
+    if g.actor["role"] == REGULAR and username.lower() != g.actor["username"].lower():
+        raise ApiError("You may only view your own profile", 403)
+    user = UserRepository().by_username(username)
+    if user is None:
+        raise ApiError("User not found", 404)
+    return jsonify(status="success", user=public_user(user))
+
+
 def register_commands(app):
     @app.cli.command("create-admin")
     @click.option("--full-name", prompt=True)
