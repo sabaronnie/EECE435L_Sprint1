@@ -2,4 +2,6 @@
 
 
 def register_services(app):
-    """Completed service routes will be registered here."""
+    from services.users_and_identity_management import users_api
+
+    app.register_blueprint(users_api)

@@ -2,12 +2,15 @@
 
 import os
 from pathlib import Path
+import sqlite3
 
 import click
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
+from werkzeug.exceptions import HTTPException
 
-from database import close_db, create_db_tables
+from database import close_db, create_db_tables, get_db
+from errors import ApiError
 from services import register_services
 
 
@@ -25,6 +28,37 @@ def create_app(test_config=None):
     app.teardown_appcontext(close_db)
     with app.app_context():
         create_db_tables()
+
+    @app.errorhandler(ApiError)
+    def api_error(error):
+        get_db().rollback()
+        body = {"status": "error", "message": error.message}
+        if error.details is not None:
+            body["details"] = error.details
+        return jsonify(body), error.code
+
+    @app.errorhandler(sqlite3.IntegrityError)
+    def database_error(error):
+        get_db().rollback()
+        message = "Username or email already exists" if "UNIQUE constraint failed" in str(error) else "The change conflicts with a database rule"
+        return jsonify(status="error", message=message), 409
+
+    @app.errorhandler(HTTPException)
+    def http_error(error):
+        get_db().rollback()
+        return jsonify(status="error", message=error.description), error.code
+
+    @app.errorhandler(Exception)
+    def server_error(error):
+        get_db().rollback()
+        app.logger.exception("Request failed")
+        return jsonify(status="error", message="An unexpected server error occurred"), 500
+
+    @app.after_request
+    def response_headers(response):
+        response.headers["Cache-Control"] = "no-store"
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        return response
 
     @app.cli.command("init-db")
     def init_db_command():
