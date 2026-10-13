@@ -19,6 +19,10 @@ def find_asset(asset_id):
     return asset
 
 
+def list_assets():
+    return assets.get_assets()
+
+
 def create_asset(data, actor):
     data = validation.asset_creation(data)
     check_owner(data["owner_id"])

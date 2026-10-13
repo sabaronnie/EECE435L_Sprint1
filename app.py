@@ -149,6 +149,12 @@ def change_status(user_id):
     return jsonify(status="success", message="Account status updated successfully", user=user)
 
 
+@app.route(ASSETS_URL, methods=["GET"])
+@roles_required(ADMIN, AUDITOR)
+def list_assets():
+    return jsonify(status="success", assets=assets_management.list_assets())
+
+
 @app.route(ASSETS_URL, methods=["POST"])
 @admin_required
 def create_asset():

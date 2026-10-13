@@ -29,6 +29,11 @@ def get_asset_by_id(asset_id):
     return dict(row) if row is not None else None
 
 
+def get_assets():
+    rows = get_db().execute(ASSET_SELECT + " ORDER BY a.asset_id").fetchall()
+    return [dict(row) for row in rows]
+
+
 def insert_asset(data):
     department_id = get_or_create_department(data["department"])
     cursor = get_db().execute(
