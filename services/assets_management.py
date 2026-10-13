@@ -23,6 +23,12 @@ def list_assets():
     return assets.get_assets()
 
 
+def get_asset(asset_id):
+    asset = find_asset(asset_id)
+    asset.update(assets.get_asset_links(asset_id))
+    return asset
+
+
 def create_asset(data, actor):
     data = validation.asset_creation(data)
     check_owner(data["owner_id"])

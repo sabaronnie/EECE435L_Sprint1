@@ -11,7 +11,7 @@ from werkzeug.exceptions import HTTPException
 from werkzeug.security import generate_password_hash
 
 from auth import (
-    ADMIN, AUDITOR, REGULAR, admin_required, login_required,
+    ADMIN, ANALYST, AUDITOR, REGULAR, admin_required, login_required,
     own_profile_required, registration_allowed, roles_required,
 )
 from database import close_db, create_db_tables, get_db
@@ -160,6 +160,13 @@ def list_assets():
 def create_asset():
     asset = assets_management.create_asset(request.get_json(), g.actor)
     return jsonify(status="success", message="Asset created successfully", asset=asset), 201
+
+
+@app.route(ASSETS_URL + "/<int:asset_id>", methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def get_asset(asset_id):
+    asset = assets_management.get_asset(asset_id)
+    return jsonify(status="success", asset=asset)
 
 
 @app.route(ASSETS_URL + "/<int:asset_id>", methods=["PUT"])

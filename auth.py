@@ -11,6 +11,7 @@ from database.users import UserRepository
 from errors import ApiError
 
 ADMIN = "SECURITY_ADMINISTRATOR"
+ANALYST = "SECURITY_ANALYST"
 REGULAR = "REGULAR_USER"
 AUDITOR = "AUDITOR"
 

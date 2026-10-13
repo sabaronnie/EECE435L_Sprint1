@@ -34,6 +34,19 @@ def get_assets():
     return [dict(row) for row in rows]
 
 
+def get_asset_links(asset_id):
+    incident_ids = get_db().execute(
+        "SELECT incident_id FROM incidents WHERE asset_id = ? ORDER BY incident_id", (asset_id,),
+    ).fetchall()
+    vulnerability_ids = get_db().execute(
+        "SELECT vulnerability_id FROM vulnerabilities WHERE affected_asset_id = ? ORDER BY vulnerability_id", (asset_id,),
+    ).fetchall()
+    return {
+        "related_incident_ids": [row[0] for row in incident_ids],
+        "related_vulnerability_ids": [row[0] for row in vulnerability_ids],
+    }
+
+
 def insert_asset(data):
     department_id = get_or_create_department(data["department"])
     cursor = get_db().execute(
