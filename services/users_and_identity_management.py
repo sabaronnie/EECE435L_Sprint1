@@ -97,6 +97,15 @@ class IdentityService:
         record_activity(actor, "USER_ROLE_CHANGED", f"Changed role for user {user_id} to {role}")
         return public_user(self.users.by_id(user_id))
 
+    def change_status(self, user_id, status, actor):
+        user = self.lock_user(user_id)
+        if status != "Active":
+            self.protect_last_admin(user)
+        get_db().execute("UPDATE users SET account_status = ? WHERE user_id = ?", (status, user_id))
+        get_db().execute("DELETE FROM auth_sessions WHERE user_id = ?", (user_id,))
+        record_activity(actor, "USER_STATUS_CHANGED", f"Changed status for user {user_id} to {status}")
+        return public_user(self.users.by_id(user_id))
+
 
 @users_api.post("/register")
 def register():
@@ -169,6 +178,19 @@ def change_role(user_id):
         raise ApiError("Invalid role", details=list(ROLES))
     user = IdentityService().change_role(user_id, role, g.actor)
     return jsonify(status="success", message="User role updated successfully", user=user)
+
+
+@users_api.put("/<int:user_id>/status")
+@require_auth
+def change_status(user_id):
+    require_roles(ADMIN)
+    data = request.get_json()
+    validation.fields(data, ("account_status",), ("account_status",))
+    status = validation.text(data, "account_status", 20)
+    if status not in ("Active", "Inactive", "Suspended"):
+        raise ApiError("Invalid account status")
+    user = IdentityService().change_status(user_id, status, g.actor)
+    return jsonify(status="success", message="Account status updated successfully", user=user)
 
 
 def register_commands(app):
