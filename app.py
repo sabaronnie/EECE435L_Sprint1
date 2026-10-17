@@ -17,13 +17,17 @@ from auth import (
 from database import close_db, create_db_tables, get_db
 from database.logs import record_activity
 from errors import ApiError
-from services import audit_logging, assets_management, incidents_management, threats_management, users_management
+from services import (
+    audit_logging, assets_management, incidents_management, reports_management,
+    threats_management, users_management,
+)
 
 USERS_URL = "/api/RonnieSaba/users"
 ASSETS_URL = "/api/RonnieSaba/assets"
 INCIDENTS_URL = "/api/RonnieSaba/incidents"
 THREATS_URL = "/api/TracyGhosn/threats"
 LOGS_URL = "/api/TracyGhosn/logs"
+REPORTS_URL = "/api/TracyGhosn/reports"
 
 
 app = Flask(__name__)
@@ -289,6 +293,42 @@ def get_log(log_id):
 def delete_log(log_id):
     audit_logging.delete_log(log_id, g.actor)
     return jsonify(status="success", message="Audit log deleted successfully")
+
+
+@app.route(REPORTS_URL + "/summary", methods=["GET"])
+@roles_required(ADMIN, AUDITOR)
+def security_summary_report():
+    return jsonify(status="success", report=reports_management.summary_report())
+
+
+@app.route(REPORTS_URL + "/incidents", methods=["GET"])
+@roles_required(ADMIN, AUDITOR)
+def incident_report():
+    return jsonify(status="success", report=reports_management.incident_report())
+
+
+@app.route(REPORTS_URL + "/assets", methods=["GET"])
+@roles_required(ADMIN, AUDITOR)
+def asset_report():
+    return jsonify(status="success", report=reports_management.asset_report())
+
+
+@app.route(REPORTS_URL + "/threats", methods=["GET"])
+@roles_required(ADMIN, AUDITOR)
+def threat_report():
+    return jsonify(status="success", report=reports_management.threat_report())
+
+
+@app.route(REPORTS_URL + "/vulnerabilities", methods=["GET"])
+@roles_required(ADMIN, AUDITOR)
+def vulnerability_report():
+    return jsonify(status="success", report=reports_management.vulnerability_report())
+
+
+@app.route(REPORTS_URL + "/activity", methods=["GET"])
+@roles_required(ADMIN, AUDITOR)
+def activity_report():
+    return jsonify(status="success", report=reports_management.activity_report())
 
 
 @app.route(INCIDENTS_URL, methods=["POST"])
