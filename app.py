@@ -17,12 +17,13 @@ from auth import (
 from database import close_db, create_db_tables, get_db
 from database.logs import record_activity
 from errors import ApiError
-from services import assets_management, incidents_management, threats_management, users_management
+from services import audit_logging, assets_management, incidents_management, threats_management, users_management
 
 USERS_URL = "/api/RonnieSaba/users"
 ASSETS_URL = "/api/RonnieSaba/assets"
 INCIDENTS_URL = "/api/RonnieSaba/incidents"
 THREATS_URL = "/api/TracyGhosn/threats"
+LOGS_URL = "/api/TracyGhosn/logs"
 
 
 app = Flask(__name__)
@@ -43,17 +44,20 @@ with app.app_context():
 @app.errorhandler(ApiError)
 def api_error(error):
     get_db().rollback()
-    if error.code == 403:
+    if error.code in (401, 403) and not request.path.startswith(USERS_URL + "/login"):
         if request.path.startswith(INCIDENTS_URL):
             service_name = "Incident Management"
         elif request.path.startswith(ASSETS_URL):
             service_name = "Asset Management"
         elif request.path.startswith(THREATS_URL):
             service_name = "Threat Intelligence"
+        elif request.path.startswith(LOGS_URL):
+            service_name = "Security Audit Logging"
         else:
             service_name = "Users and Identity Management"
-        record_activity(getattr(g, "actor", None), "PERMISSION_DENIED",
-                        f"{request.method} {request.path}", "Warning",
+        action = "AUTHENTICATION_FAILED" if error.code == 401 else "PERMISSION_DENIED"
+        record_activity(getattr(g, "actor", None), action,
+                        f"HTTP {error.code}: {request.method} {request.path}", "Warning",
                         related_service=service_name)
     body = {"status": "error", "message": error.message}
     if error.details is not None:
@@ -247,6 +251,44 @@ def update_threat(threat_id):
 def delete_threat(threat_id):
     threats_management.delete_threat(threat_id, g.actor)
     return jsonify(status="success", message="Threat indicator deleted successfully")
+
+
+@app.route(LOGS_URL, methods=["POST"])
+@admin_required
+def create_log():
+    log = audit_logging.create_log(request.get_json())
+    return jsonify(status="success", message="Audit log created successfully", log=log), 201
+
+
+@app.route(LOGS_URL, methods=["GET"])
+@roles_required(ADMIN, AUDITOR)
+def list_logs():
+    return jsonify(status="success", logs=audit_logging.list_logs())
+
+
+@app.route(LOGS_URL + "/search", methods=["GET"])
+@roles_required(ADMIN, AUDITOR, ANALYST)
+def search_logs():
+    return jsonify(status="success", logs=audit_logging.search_logs(request.args.to_dict()))
+
+
+@app.route(LOGS_URL + "/user/<int:user_id>", methods=["GET"])
+@roles_required(ADMIN, AUDITOR)
+def get_logs_for_user(user_id):
+    return jsonify(status="success", logs=audit_logging.logs_for_user(user_id))
+
+
+@app.route(LOGS_URL + "/<int:log_id>", methods=["GET"])
+@roles_required(ADMIN, AUDITOR, ANALYST)
+def get_log(log_id):
+    return jsonify(status="success", log=audit_logging.get_log(log_id))
+
+
+@app.route(LOGS_URL + "/<int:log_id>", methods=["DELETE"])
+@admin_required
+def delete_log(log_id):
+    audit_logging.delete_log(log_id, g.actor)
+    return jsonify(status="success", message="Audit log deleted successfully")
 
 
 @app.route(INCIDENTS_URL, methods=["POST"])
