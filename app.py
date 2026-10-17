@@ -17,11 +17,12 @@ from auth import (
 from database import close_db, create_db_tables, get_db
 from database.logs import record_activity
 from errors import ApiError
-from services import assets_management, incidents_management, users_management
+from services import assets_management, incidents_management, threats_management, users_management
 
 USERS_URL = "/api/RonnieSaba/users"
 ASSETS_URL = "/api/RonnieSaba/assets"
 INCIDENTS_URL = "/api/RonnieSaba/incidents"
+THREATS_URL = "/api/TracyGhosn/threats"
 
 
 app = Flask(__name__)
@@ -47,6 +48,8 @@ def api_error(error):
             service_name = "Incident Management"
         elif request.path.startswith(ASSETS_URL):
             service_name = "Asset Management"
+        elif request.path.startswith(THREATS_URL):
+            service_name = "Threat Intelligence"
         else:
             service_name = "Users and Identity Management"
         record_activity(getattr(g, "actor", None), "PERMISSION_DENIED",
@@ -61,7 +64,9 @@ def api_error(error):
 @app.errorhandler(sqlite3.IntegrityError)
 def database_error(error):
     get_db().rollback()
-    if "UNIQUE constraint failed" in str(error):
+    if "UNIQUE constraint failed: threats.threat_type, threats.threat_value" in str(error):
+        message = "A threat indicator with this type and value already exists"
+    elif "UNIQUE constraint failed" in str(error):
         message = "Username or email already exists"
     elif "FOREIGN KEY constraint failed" in str(error):
         if request.path.startswith(ASSETS_URL) and request.method == "DELETE":
@@ -203,6 +208,45 @@ def delete_asset(asset_id):
 @roles_required(ADMIN, AUDITOR)
 def list_incidents():
     return jsonify(status="success", incidents=incidents_management.list_incidents())
+
+
+@app.route(THREATS_URL, methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def list_threats():
+    return jsonify(status="success", threats=threats_management.list_threats())
+
+
+@app.route(THREATS_URL, methods=["POST"])
+@admin_required
+def create_threat():
+    threat = threats_management.create_threat(request.get_json(), g.actor)
+    return jsonify(status="success", message="Threat indicator added successfully", threat=threat), 201
+
+
+@app.route(THREATS_URL + "/search", methods=["GET"])
+@roles_required(ADMIN, ANALYST)
+def search_threats():
+    return jsonify(status="success", threats=threats_management.search_threats(request.args.to_dict()))
+
+
+@app.route(THREATS_URL + "/<int:threat_id>", methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def get_threat(threat_id):
+    return jsonify(status="success", threat=threats_management.get_threat(threat_id))
+
+
+@app.route(THREATS_URL + "/<int:threat_id>", methods=["PUT"])
+@admin_required
+def update_threat(threat_id):
+    threat = threats_management.update_threat(threat_id, request.get_json(), g.actor)
+    return jsonify(status="success", message="Threat information updated successfully", threat=threat)
+
+
+@app.route(THREATS_URL + "/<int:threat_id>", methods=["DELETE"])
+@admin_required
+def delete_threat(threat_id):
+    threats_management.delete_threat(threat_id, g.actor)
+    return jsonify(status="success", message="Threat indicator deleted successfully")
 
 
 @app.route(INCIDENTS_URL, methods=["POST"])

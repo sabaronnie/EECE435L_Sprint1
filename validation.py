@@ -11,6 +11,8 @@ CRITICALITY_LEVELS = ("Low", "Medium", "High", "Critical")
 ASSET_STATUSES = ("Active", "Inactive", "Under Maintenance")
 INCIDENT_SEVERITIES = ("Low", "Medium", "High", "Critical")
 INCIDENT_STATUSES = ("Open", "Under Investigation", "Mitigated", "Resolved", "Closed")
+THREAT_TYPES = ("IP Address", "Domain", "File Hash", "Malware Signature", "Other Indicators")
+THREAT_SEVERITIES = ("Low", "Medium", "High", "Critical")
 
 
 def text(data, field, maximum, minimum=1):
@@ -192,4 +194,65 @@ def incident_status(data):
 def investigation_note(data):
     fields(data, ("note_content",), ("note_content",))
     return {"note_content": text(data, "note_content", 8000)}
+
+
+def threat_indicator(data):
+    required = ("threat_type", "threat_value", "description", "severity", "source")
+    fields(data, required, required)
+    threat_type = choice(data, "threat_type", THREAT_TYPES)
+    value = text(data, "threat_value", 512)
+    if threat_type == "IP Address":
+        try:
+            if "%" in value:
+                raise ValueError
+            value = str(ip_address(value))
+        except ValueError:
+            raise ApiError("Threat value must be a valid IP address") from None
+    elif threat_type == "Domain":
+        value = value.rstrip(".").lower()
+        labels = value.split(".")
+        if (len(value) > 253 or len(labels) < 2
+                or any(not re.fullmatch(r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?", label) for label in labels)):
+            raise ApiError("Threat value must be a valid domain")
+    elif threat_type == "File Hash":
+        if not re.fullmatch(r"(?:[a-fA-F0-9]{32}|[a-fA-F0-9]{40}|[a-fA-F0-9]{64}|[a-fA-F0-9]{128})", value):
+            raise ApiError("File hash must be a valid MD5, SHA-1, SHA-256, or SHA-512 hash")
+        value = value.lower()
+    return {
+        "threat_type": threat_type,
+        "threat_value": value,
+        "description": text(data, "description", 4000),
+        "severity_level": choice({"severity_level": data["severity"]}, "severity_level", THREAT_SEVERITIES),
+        "source": text(data, "source", 200),
+    }
+
+
+def threat_update(data):
+    fields(data, ("description", "severity", "source"), ())
+    if not data:
+        raise ApiError("Provide at least one threat field to update")
+    result = {}
+    if "description" in data:
+        result["description"] = text(data, "description", 4000)
+    if "severity" in data:
+        result["severity_level"] = choice({"severity_level": data["severity"]}, "severity_level", THREAT_SEVERITIES)
+    if "source" in data:
+        result["source"] = text(data, "source", 200)
+    return result
+
+
+def threat_search(data):
+    fields(data, ("threat_type", "threat_value", "severity", "source"), ())
+    if not data:
+        raise ApiError("Provide at least one threat search field")
+    result = {}
+    if "threat_type" in data:
+        result["threat_type"] = choice(data, "threat_type", THREAT_TYPES)
+    if "threat_value" in data:
+        result["threat_value"] = text(data, "threat_value", 512)
+    if "severity" in data:
+        result["severity_level"] = choice({"severity_level": data["severity"]}, "severity_level", THREAT_SEVERITIES)
+    if "source" in data:
+        result["source"] = text(data, "source", 200)
+    return result
 
