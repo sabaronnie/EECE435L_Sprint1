@@ -121,7 +121,7 @@ def delete_user(user_id, actor):
     protect_last_admin(user)
     get_db().execute("DELETE FROM users WHERE user_id = ?", (user_id,))
     if actor["user_id"] == user_id:
-        actor = {**dict(actor), "user_id": None}
+        actor = {**dict(actor), "actor_user_id": actor["user_id"], "user_id": None}
     record_activity(actor, "USER_DELETED", f"Deleted user {user_id}")
 
 
