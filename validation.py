@@ -1,6 +1,7 @@
 """Validate JSON before it reaches the database."""
 
 from ipaddress import ip_address
+from datetime import date
 import re
 
 from database.roles import ROLES
@@ -13,6 +14,7 @@ INCIDENT_SEVERITIES = ("Low", "Medium", "High", "Critical")
 INCIDENT_STATUSES = ("Open", "Under Investigation", "Mitigated", "Resolved", "Closed")
 THREAT_TYPES = ("IP Address", "Domain", "File Hash", "Malware Signature", "Other Indicators")
 THREAT_SEVERITIES = ("Low", "Medium", "High", "Critical")
+LOG_SEVERITIES = ("Information", "Warning", "Error", "Critical")
 
 
 def text(data, field, maximum, minimum=1):
@@ -254,5 +256,47 @@ def threat_search(data):
         result["severity_level"] = choice({"severity_level": data["severity"]}, "severity_level", THREAT_SEVERITIES)
     if "source" in data:
         result["source"] = text(data, "source", 200)
+    return result
+
+
+def audit_log_creation(data):
+    required = ("user_id", "action", "description", "severity", "related_service")
+    fields(data, required, required)
+    return {
+        "user_id": positive_id(data, "user_id"),
+        "action_performed": text(data, "action", 100),
+        "description": text(data, "description", 4000),
+        "severity_level": choice({"severity_level": data["severity"]}, "severity_level", LOG_SEVERITIES),
+        "related_service": text(data, "related_service", 120),
+    }
+
+
+def audit_log_search(data):
+    allowed = ("user_id", "date", "action", "severity", "related_service")
+    fields(data, allowed, ())
+    if not data:
+        raise ApiError("Provide at least one log search field")
+    result = {}
+    if "user_id" in data:
+        value = data["user_id"]
+        if not isinstance(value, str) or not re.fullmatch(r"[0-9]{1,19}", value):
+            raise ApiError("user_id must be a positive integer")
+        user_id = int(value)
+        if not 0 < user_id <= 9223372036854775807:
+            raise ApiError("user_id must be a positive integer")
+        result["user_id"] = user_id
+    if "date" in data:
+        value = text(data, "date", 10)
+        try:
+            date.fromisoformat(value)
+        except ValueError:
+            raise ApiError("date must use YYYY-MM-DD format") from None
+        result["date"] = value
+    if "action" in data:
+        result["action"] = text(data, "action", 100)
+    if "severity" in data:
+        result["severity"] = choice(data, "severity", LOG_SEVERITIES)
+    if "related_service" in data:
+        result["related_service"] = text(data, "related_service", 120)
     return result
 
