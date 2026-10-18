@@ -38,6 +38,11 @@ class UserRepository:
     def all(self):
         return get_db().execute(self.SELECT + " ORDER BY u.user_id").fetchall()
 
+    def active_by_role(self, role):
+        return get_db().execute(
+            self.SELECT + " WHERE r.name = ? AND u.account_status = 'Active' ORDER BY u.user_id", (role,)
+        ).fetchall()
+
     def department_id(self, name):
         get_db().execute("INSERT OR IGNORE INTO departments (name) VALUES (?)", (name,))
         return get_db().execute(

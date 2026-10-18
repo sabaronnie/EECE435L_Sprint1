@@ -8,6 +8,7 @@ from flask import g, request
 from database import get_db
 from database.connection import utc_now
 from database.incidents import get_incident_by_id
+from database.notifications import get_notification_by_id
 from database.users import UserRepository
 from errors import ApiError
 
@@ -115,5 +116,35 @@ def incident_access_required(view):
         if incident is None:
             raise ApiError("Incident not found", 404)
         check_incident_access(incident, g.actor)
+        return view(*args, **kwargs)
+    return wrapped
+
+
+def check_notification_owner(user_id, actor):
+    if actor is None:
+        raise ApiError("Authentication is required", 401)
+    if actor["role"] in (ANALYST, REGULAR) and user_id != actor["user_id"]:
+        raise ApiError("You may only access your own notifications", 403)
+
+
+def own_notifications_required(view):
+    """After a role wrapper, restrict analysts and regular users to their own notification list."""
+    @wraps(view)
+    def wrapped(*args, **kwargs):
+        require_roles(ADMIN, ANALYST, AUDITOR, REGULAR)
+        check_notification_owner(kwargs["user_id"], g.actor)
+        return view(*args, **kwargs)
+    return wrapped
+
+
+def notification_access_required(view):
+    """After a role wrapper, restrict analysts and regular users to notifications they received."""
+    @wraps(view)
+    def wrapped(*args, **kwargs):
+        require_roles(ADMIN, ANALYST, AUDITOR, REGULAR)
+        notification = get_notification_by_id(kwargs["notification_id"])
+        if notification is None:
+            raise ApiError("Notification not found", 404)
+        check_notification_owner(notification["user_id"], g.actor)
         return view(*args, **kwargs)
     return wrapped

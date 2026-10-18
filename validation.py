@@ -17,6 +17,9 @@ THREAT_SEVERITIES = ("Low", "Medium", "High", "Critical")
 LOG_SEVERITIES = ("Information", "Warning", "Error", "Critical")
 VULNERABILITY_SEVERITIES = ("Low", "Medium", "High", "Critical")
 VULNERABILITY_STATUSES = ("Open", "Under Investigation", "In Progress", "Resolved", "Closed")
+NOTIFICATION_TYPES = ("Incident Assignment", "Security Alert", "System Notification", "Threat Alert", "Vulnerability Alert")
+NOTIFICATION_SEVERITIES = ("Low", "Medium", "High", "Critical")
+NOTIFICATION_STATUSES = ("Unread", "Read")
 
 
 def text(data, field, maximum, minimum=1):
@@ -386,4 +389,32 @@ def vulnerability_search(data):
         result["asset_name"] = text(data, "asset_name", 120)
     if "status" in data:
         result["status"] = choice(data, "status", VULNERABILITY_STATUSES)
+    return result
+
+
+def notification_creation(data):
+    required = ("user_id", "title", "message", "notification_type", "severity")
+    fields(data, required, required)
+    return {
+        "user_id": positive_id(data, "user_id"),
+        "title": text(data, "title", 200),
+        "message": text(data, "message", 4000),
+        "notification_type": choice(data, "notification_type", NOTIFICATION_TYPES),
+        "severity_level": choice({"severity_level": data["severity"]}, "severity_level", NOTIFICATION_SEVERITIES),
+    }
+
+
+def notification_search(data):
+    fields(data, ("user_id", "notification_type", "severity", "status"), ())
+    if not data:
+        raise ApiError("Provide at least one notification search field")
+    result = {}
+    if "user_id" in data:
+        result["user_id"] = query_id(data, "user_id")
+    if "notification_type" in data:
+        result["notification_type"] = choice(data, "notification_type", NOTIFICATION_TYPES)
+    if "severity" in data:
+        result["severity_level"] = choice({"severity_level": data["severity"]}, "severity_level", NOTIFICATION_SEVERITIES)
+    if "status" in data:
+        result["status"] = choice(data, "status", NOTIFICATION_STATUSES)
     return result

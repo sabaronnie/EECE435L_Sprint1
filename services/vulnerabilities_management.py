@@ -1,9 +1,11 @@
 """Vulnerability management logic. HTTP routes are defined in app.py."""
 
+from auth import ANALYST
 from database import assets, get_db, vulnerabilities
 from database.connection import utc_now
 from database.logs import record_activity
 from errors import ApiError
+from services.notifications_management import notify, notify_role
 import validation
 
 NEXT_STATUS = {
@@ -60,9 +62,17 @@ def search_vulnerabilities(filters):
 def create_vulnerability(data, actor):
     data = validation.vulnerability_creation(data)
     check_severity(data["cvss_score"], data["severity_level"])
-    if assets.get_asset_by_id(data["affected_asset_id"]) is None:
+    asset = assets.get_asset_by_id(data["affected_asset_id"])
+    if asset is None:
         raise ApiError("Affected asset does not exist")
     vulnerability = vulnerabilities.insert_vulnerability(data)
+    if vulnerability["severity_level"] in ("High", "Critical"):
+        title = f"{vulnerability['severity_level']} vulnerability on {asset['asset_name']}"
+        message = (f"{vulnerability['cve_identifier']} (CVSS {vulnerability['cvss_score']}) was found on "
+                   f"asset {asset['asset_id']}: {vulnerability['title']}")
+        analysts = notify_role(ANALYST, title, message, "Vulnerability Alert", vulnerability["severity_level"])
+        if asset["owner_id"] not in [notification["user_id"] for notification in analysts]:
+            notify(asset["owner_id"], title, message, "Vulnerability Alert", vulnerability["severity_level"])
     record_activity(actor, "VULNERABILITY_CREATED",
                     f"Added vulnerability {vulnerability['vulnerability_id']} ({vulnerability['cve_identifier']}) "
                     f"on asset {vulnerability['affected_asset_id']}",

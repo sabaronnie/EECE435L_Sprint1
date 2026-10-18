@@ -1,11 +1,12 @@
 """Incident management logic. HTTP routes are defined in app.py."""
 
-from auth import ANALYST, REGULAR, check_incident_access
+from auth import ADMIN, ANALYST, REGULAR, check_incident_access
 from database import assets, get_db, incidents, investigation_notes
 from database.connection import utc_now
 from database.logs import record_activity
 from database.users import UserRepository
 from errors import ApiError
+from services.notifications_management import notify, notify_role
 import validation
 
 NEXT_STATUS = {
@@ -48,6 +49,10 @@ def create_incident(data, actor):
     if assets.get_asset_by_id(data["asset_id"]) is None:
         raise ApiError("Affected asset does not exist")
     incident = incidents.insert_incident(data)
+    if incident["severity"] in ("High", "Critical"):
+        notify_role(ADMIN, f"{incident['severity']} incident reported",
+                    f"Incident {incident['incident_id']} ({incident['title']}) needs an assigned analyst",
+                    "Security Alert", incident["severity"])
     record_activity(actor, "INCIDENT_CREATED", f"Created incident {incident['incident_id']}: {incident['title']}",
                     related_service="Incident Management")
     incident["investigation_notes"] = []
@@ -65,6 +70,9 @@ def assign_incident(incident_id, data, actor):
     if analyst["account_status"] != "Active":
         raise ApiError("Assigned analyst must have an active account")
     incident = incidents.assign_incident(incident_id, analyst["user_id"])
+    notify(analyst["user_id"], "New incident assigned",
+           f"You were assigned incident {incident_id}: {incident['title']}",
+           "Incident Assignment", incident["severity"])
     record_activity(actor, "INCIDENT_ASSIGNED", f"Assigned incident {incident_id} to analyst {analyst['user_id']}",
                     related_service="Incident Management")
     return incident
