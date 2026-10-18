@@ -19,7 +19,7 @@ from database.logs import record_activity
 from errors import ApiError
 from services import (
     audit_logging, assets_management, incidents_management, reports_management,
-    threats_management, users_management,
+    threats_management, users_management, vulnerabilities_management,
 )
 
 USERS_URL = "/api/RonnieSaba/users"
@@ -28,6 +28,7 @@ INCIDENTS_URL = "/api/RonnieSaba/incidents"
 THREATS_URL = "/api/TracyGhosn/threats"
 LOGS_URL = "/api/TracyGhosn/logs"
 REPORTS_URL = "/api/TracyGhosn/reports"
+VULNERABILITIES_URL = "/api/FaridAbiDoumit/vulnerabilities"
 
 
 app = Flask(__name__)
@@ -57,6 +58,10 @@ def api_error(error):
             service_name = "Threat Intelligence"
         elif request.path.startswith(LOGS_URL):
             service_name = "Security Audit Logging"
+        elif request.path.startswith(REPORTS_URL):
+            service_name = "Security Reports"
+        elif request.path.startswith(VULNERABILITIES_URL):
+            service_name = "Vulnerability Management"
         else:
             service_name = "Users and Identity Management"
         action = "AUTHENTICATION_FAILED" if error.code == 401 else "PERMISSION_DENIED"
@@ -79,7 +84,7 @@ def database_error(error):
     elif "FOREIGN KEY constraint failed" in str(error):
         if request.path.startswith(ASSETS_URL) and request.method == "DELETE":
             message = "Asset is still linked to incidents or vulnerabilities and cannot be deleted"
-        elif request.path.startswith(INCIDENTS_URL):
+        elif request.path.startswith((INCIDENTS_URL, VULNERABILITIES_URL)):
             message = "A referenced user or asset is no longer available"
         else:
             message = "User is still linked to other records and cannot be deleted"
@@ -329,6 +334,47 @@ def vulnerability_report():
 @roles_required(ADMIN, AUDITOR)
 def activity_report():
     return jsonify(status="success", report=reports_management.activity_report())
+
+
+@app.route(VULNERABILITIES_URL, methods=["POST"])
+@admin_required
+def create_vulnerability():
+    vulnerability = vulnerabilities_management.create_vulnerability(request.get_json(), g.actor)
+    return jsonify(status="success", message="Vulnerability added successfully", vulnerability=vulnerability), 201
+
+
+@app.route(VULNERABILITIES_URL, methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def list_vulnerabilities():
+    return jsonify(status="success", vulnerabilities=vulnerabilities_management.list_vulnerabilities())
+
+
+@app.route(VULNERABILITIES_URL + "/search", methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def search_vulnerabilities():
+    vulnerabilities = vulnerabilities_management.search_vulnerabilities(request.args.to_dict())
+    return jsonify(status="success", vulnerabilities=vulnerabilities)
+
+
+@app.route(VULNERABILITIES_URL + "/<int:vulnerability_id>", methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def get_vulnerability(vulnerability_id):
+    vulnerability = vulnerabilities_management.get_vulnerability(vulnerability_id)
+    return jsonify(status="success", vulnerability=vulnerability)
+
+
+@app.route(VULNERABILITIES_URL + "/<int:vulnerability_id>", methods=["PUT"])
+@roles_required(ADMIN, ANALYST)
+def update_vulnerability(vulnerability_id):
+    vulnerability = vulnerabilities_management.update_vulnerability(vulnerability_id, request.get_json(), g.actor)
+    return jsonify(status="success", message="Vulnerability updated successfully", vulnerability=vulnerability)
+
+
+@app.route(VULNERABILITIES_URL + "/<int:vulnerability_id>", methods=["DELETE"])
+@admin_required
+def delete_vulnerability(vulnerability_id):
+    vulnerabilities_management.delete_vulnerability(vulnerability_id, g.actor)
+    return jsonify(status="success", message="Vulnerability deleted successfully")
 
 
 @app.route(INCIDENTS_URL, methods=["POST"])

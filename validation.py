@@ -1,7 +1,7 @@
 """Validate JSON before it reaches the database."""
 
 from ipaddress import ip_address
-from datetime import date
+from datetime import date, datetime
 import re
 
 from database.roles import ROLES
@@ -15,6 +15,8 @@ INCIDENT_STATUSES = ("Open", "Under Investigation", "Mitigated", "Resolved", "Cl
 THREAT_TYPES = ("IP Address", "Domain", "File Hash", "Malware Signature", "Other Indicators")
 THREAT_SEVERITIES = ("Low", "Medium", "High", "Critical")
 LOG_SEVERITIES = ("Information", "Warning", "Error", "Critical")
+VULNERABILITY_SEVERITIES = ("Low", "Medium", "High", "Critical")
+VULNERABILITY_STATUSES = ("Open", "Under Investigation", "In Progress", "Resolved", "Closed")
 
 
 def text(data, field, maximum, minimum=1):
@@ -300,3 +302,88 @@ def audit_log_search(data):
         result["related_service"] = text(data, "related_service", 120)
     return result
 
+
+
+def query_id(data, field):
+    value = data.get(field)
+    if not isinstance(value, str) or not re.fullmatch(r"[0-9]{1,19}", value):
+        raise ApiError(f"{field} must be a positive integer")
+    number = int(value)
+    if not 0 < number <= 9223372036854775807:
+        raise ApiError(f"{field} must be a positive integer")
+    return number
+
+
+def timestamp(data, field):
+    value = text(data, field, 32)
+    try:
+        datetime.fromisoformat(value)
+    except ValueError:
+        raise ApiError(f"{field} must use ISO format such as YYYY-MM-DD") from None
+    return value
+
+
+def cve_identifier(data):
+    value = text(data, "cve_identifier", 30).upper()
+    if not re.fullmatch(r"CVE-[0-9]{4}-[0-9]{4,19}", value):
+        raise ApiError("CVE identifier must use the format CVE-YYYY-NNNN")
+    return value
+
+
+def cvss_score(data):
+    value = data.get("cvss_score")
+    if type(value) not in (int, float) or not 0 <= value <= 10:
+        raise ApiError("cvss_score must be a number from 0.0 to 10.0")
+    return round(float(value), 1)
+
+
+def vulnerability_creation(data):
+    required = ("title", "description", "cve_identifier", "cvss_score", "severity",
+                "affected_asset_id", "discovery_source")
+    fields(data, required, required)
+    return {
+        "title": text(data, "title", 200),
+        "description": text(data, "description", 8000),
+        "cve_identifier": cve_identifier(data),
+        "cvss_score": cvss_score(data),
+        "severity_level": choice({"severity_level": data["severity"]}, "severity_level", VULNERABILITY_SEVERITIES),
+        "affected_asset_id": positive_id(data, "affected_asset_id"),
+        "discovery_source": text(data, "discovery_source", 200),
+    }
+
+
+def vulnerability_update(data):
+    fields(data, ("description", "severity", "status", "cvss_score", "resolution_date"), ())
+    if not data:
+        raise ApiError("Provide at least one vulnerability field to update")
+    result = {}
+    if "description" in data:
+        result["description"] = text(data, "description", 8000)
+    if "severity" in data:
+        result["severity_level"] = choice({"severity_level": data["severity"]}, "severity_level", VULNERABILITY_SEVERITIES)
+    if "status" in data:
+        result["status"] = choice(data, "status", VULNERABILITY_STATUSES)
+    if "cvss_score" in data:
+        result["cvss_score"] = cvss_score(data)
+    if "resolution_date" in data:
+        result["resolution_date"] = timestamp(data, "resolution_date")
+    return result
+
+
+def vulnerability_search(data):
+    allowed = ("cve_identifier", "severity", "affected_asset_id", "asset_name", "status")
+    fields(data, allowed, ())
+    if not data:
+        raise ApiError("Provide at least one vulnerability search field")
+    result = {}
+    if "cve_identifier" in data:
+        result["cve_identifier"] = text(data, "cve_identifier", 30)
+    if "severity" in data:
+        result["severity_level"] = choice({"severity_level": data["severity"]}, "severity_level", VULNERABILITY_SEVERITIES)
+    if "affected_asset_id" in data:
+        result["affected_asset_id"] = query_id(data, "affected_asset_id")
+    if "asset_name" in data:
+        result["asset_name"] = text(data, "asset_name", 120)
+    if "status" in data:
+        result["status"] = choice(data, "status", VULNERABILITY_STATUSES)
+    return result
