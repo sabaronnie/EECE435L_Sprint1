@@ -20,7 +20,8 @@ from database.logs import record_activity
 from errors import ApiError
 from services import (
     audit_logging, assets_management, incidents_management, notifications_management,
-    reports_management, threats_management, users_management, vulnerabilities_management,
+    playbooks_management, reports_management, threats_management, users_management,
+    vulnerabilities_management,
 )
 
 USERS_URL = "/api/RonnieSaba/users"
@@ -31,6 +32,8 @@ LOGS_URL = "/api/TracyGhosn/logs"
 REPORTS_URL = "/api/TracyGhosn/reports"
 VULNERABILITIES_URL = "/api/FaridAbiDoumit/vulnerabilities"
 NOTIFICATIONS_URL = "/api/FaridAbiDoumit/notifications"
+PLAYBOOKS_URL = "/api/FaridAbiDoumit/playbooks"
+ACTIONS_URL = "/api/FaridAbiDoumit/actions"
 
 
 app = Flask(__name__)
@@ -66,6 +69,8 @@ def api_error(error):
             service_name = "Vulnerability Management"
         elif request.path.startswith(NOTIFICATIONS_URL):
             service_name = "Notification and Alert Management"
+        elif request.path.startswith((PLAYBOOKS_URL, ACTIONS_URL)):
+            service_name = "Security Playbook and Response Automation"
         else:
             service_name = "Users and Identity Management"
         action = "AUTHENTICATION_FAILED" if error.code == 401 else "PERMISSION_DENIED"
@@ -83,6 +88,8 @@ def database_error(error):
     get_db().rollback()
     if "UNIQUE constraint failed: threats.threat_type, threats.threat_value" in str(error):
         message = "A threat indicator with this type and value already exists"
+    elif "UNIQUE constraint failed: response_actions.playbook_id, response_actions.step_number" in str(error):
+        message = "Playbook already has a response action for this step number"
     elif "UNIQUE constraint failed" in str(error):
         message = "Username or email already exists"
     elif "FOREIGN KEY constraint failed" in str(error):
@@ -90,6 +97,8 @@ def database_error(error):
             message = "Asset is still linked to incidents or vulnerabilities and cannot be deleted"
         elif request.path.startswith((INCIDENTS_URL, VULNERABILITIES_URL)):
             message = "A referenced user or asset is no longer available"
+        elif request.path.startswith((PLAYBOOKS_URL, ACTIONS_URL)):
+            message = "A referenced user or playbook is no longer available"
         else:
             message = "User is still linked to other records and cannot be deleted"
     else:
@@ -424,6 +433,46 @@ def mark_notification_read(notification_id):
 def delete_notification(notification_id):
     notifications_management.delete_notification(notification_id, g.actor)
     return jsonify(status="success", message="Notification deleted successfully")
+
+
+@app.route(PLAYBOOKS_URL, methods=["POST"])
+@admin_required
+def create_playbook():
+    playbook = playbooks_management.create_playbook(request.get_json(), g.actor)
+    return jsonify(status="success", message="Playbook created successfully", playbook=playbook), 201
+
+
+@app.route(PLAYBOOKS_URL, methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def list_playbooks():
+    return jsonify(status="success", playbooks=playbooks_management.list_playbooks())
+
+
+@app.route(PLAYBOOKS_URL + "/<int:playbook_id>", methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def get_playbook(playbook_id):
+    return jsonify(status="success", playbook=playbooks_management.get_playbook(playbook_id))
+
+
+@app.route(PLAYBOOKS_URL + "/<int:playbook_id>/actions", methods=["POST"])
+@roles_required(ADMIN, ANALYST)
+def add_response_action(playbook_id):
+    action = playbooks_management.add_action(playbook_id, request.get_json(), g.actor)
+    return jsonify(status="success", message="Response action added successfully", action=action), 201
+
+
+@app.route(ACTIONS_URL + "/<int:action_id>/status", methods=["PUT"])
+@roles_required(ADMIN, ANALYST)
+def update_response_action_status(action_id):
+    action = playbooks_management.update_action_status(action_id, request.get_json(), g.actor)
+    return jsonify(status="success", message="Response action updated successfully", action=action)
+
+
+@app.route(PLAYBOOKS_URL + "/<int:playbook_id>", methods=["DELETE"])
+@admin_required
+def delete_playbook(playbook_id):
+    playbooks_management.delete_playbook(playbook_id, g.actor)
+    return jsonify(status="success", message="Playbook deleted successfully")
 
 
 @app.route(INCIDENTS_URL, methods=["POST"])
