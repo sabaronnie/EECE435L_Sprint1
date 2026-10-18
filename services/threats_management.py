@@ -1,8 +1,10 @@
 """Threat intelligence service logic. HTTP routes are defined in app.py."""
 
+from auth import ANALYST
 from database import threats
 from database.logs import record_activity
 from errors import ApiError
+from services.notifications_management import notify_role
 import validation
 
 
@@ -28,6 +30,10 @@ def search_threats(filters):
 def create_threat(data, actor):
     data = validation.threat_indicator(data)
     threat = threats.insert_threat(data)
+    if threat["severity_level"] in ("High", "Critical"):
+        notify_role(ANALYST, f"{threat['severity_level']} threat indicator added",
+                    f"{threat['threat_type']} indicator {threat['threat_value']} was added from {threat['source']}",
+                    "Threat Alert", threat["severity_level"])
     record_activity(actor, "THREAT_CREATED", f"Added {threat['threat_type']} threat indicator {threat['threat_id']}",
                     related_service="Threat Intelligence")
     return threat
