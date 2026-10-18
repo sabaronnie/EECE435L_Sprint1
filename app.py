@@ -12,14 +12,15 @@ from werkzeug.security import generate_password_hash
 
 from auth import (
     ADMIN, ANALYST, AUDITOR, REGULAR, admin_required, login_required,
-    incident_access_required, own_profile_required, registration_allowed, roles_required,
+    incident_access_required, notification_access_required, own_notifications_required,
+    own_profile_required, registration_allowed, roles_required,
 )
 from database import close_db, create_db_tables, get_db
 from database.logs import record_activity
 from errors import ApiError
 from services import (
-    audit_logging, assets_management, incidents_management, reports_management,
-    threats_management, users_management, vulnerabilities_management,
+    audit_logging, assets_management, incidents_management, notifications_management,
+    reports_management, threats_management, users_management, vulnerabilities_management,
 )
 
 USERS_URL = "/api/RonnieSaba/users"
@@ -29,6 +30,7 @@ THREATS_URL = "/api/TracyGhosn/threats"
 LOGS_URL = "/api/TracyGhosn/logs"
 REPORTS_URL = "/api/TracyGhosn/reports"
 VULNERABILITIES_URL = "/api/FaridAbiDoumit/vulnerabilities"
+NOTIFICATIONS_URL = "/api/FaridAbiDoumit/notifications"
 
 
 app = Flask(__name__)
@@ -62,6 +64,8 @@ def api_error(error):
             service_name = "Security Reports"
         elif request.path.startswith(VULNERABILITIES_URL):
             service_name = "Vulnerability Management"
+        elif request.path.startswith(NOTIFICATIONS_URL):
+            service_name = "Notification and Alert Management"
         else:
             service_name = "Users and Identity Management"
         action = "AUTHENTICATION_FAILED" if error.code == 401 else "PERMISSION_DENIED"
@@ -375,6 +379,51 @@ def update_vulnerability(vulnerability_id):
 def delete_vulnerability(vulnerability_id):
     vulnerabilities_management.delete_vulnerability(vulnerability_id, g.actor)
     return jsonify(status="success", message="Vulnerability deleted successfully")
+
+
+@app.route(NOTIFICATIONS_URL, methods=["POST"])
+@admin_required
+def create_notification():
+    notification = notifications_management.create_notification(request.get_json(), g.actor)
+    return jsonify(status="success", message="Notification created successfully", notification=notification), 201
+
+
+@app.route(NOTIFICATIONS_URL + "/user/<int:user_id>", methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR, REGULAR)
+@own_notifications_required
+def get_user_notifications(user_id):
+    notifications = notifications_management.user_notifications(user_id)
+    return jsonify(status="success", notifications=notifications)
+
+
+@app.route(NOTIFICATIONS_URL + "/search", methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def search_notifications():
+    notifications = notifications_management.search_notifications(request.args.to_dict(), g.actor)
+    return jsonify(status="success", notifications=notifications)
+
+
+@app.route(NOTIFICATIONS_URL + "/<int:notification_id>", methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR, REGULAR)
+@notification_access_required
+def get_notification(notification_id):
+    notification = notifications_management.get_notification(notification_id)
+    return jsonify(status="success", notification=notification)
+
+
+@app.route(NOTIFICATIONS_URL + "/<int:notification_id>/read", methods=["PUT"])
+@roles_required(ADMIN, ANALYST, REGULAR)
+@notification_access_required
+def mark_notification_read(notification_id):
+    notification = notifications_management.mark_read(notification_id, g.actor)
+    return jsonify(status="success", message="Notification marked as read", notification=notification)
+
+
+@app.route(NOTIFICATIONS_URL + "/<int:notification_id>", methods=["DELETE"])
+@admin_required
+def delete_notification(notification_id):
+    notifications_management.delete_notification(notification_id, g.actor)
+    return jsonify(status="success", message="Notification deleted successfully")
 
 
 @app.route(INCIDENTS_URL, methods=["POST"])
