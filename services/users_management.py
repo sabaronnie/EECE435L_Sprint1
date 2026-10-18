@@ -13,6 +13,7 @@ from database.logs import record_activity
 from database.roles import ROLES
 from database.users import UserRepository, public_user
 from errors import ApiError
+from services.notifications_management import notify
 import validation
 
 
@@ -136,6 +137,8 @@ def change_role(user_id, data, actor):
     users = UserRepository()
     get_db().execute("UPDATE users SET role_id = ? WHERE user_id = ?", (users.role_id(role), user_id))
     get_db().execute("DELETE FROM auth_sessions WHERE user_id = ?", (user_id,))
+    notify(user_id, "Your role was changed", f"Your account role is now {role}. Please log in again.",
+           "System Notification", "Medium")
     record_activity(actor, "USER_ROLE_CHANGED", f"Changed role for user {user_id} to {role}")
     return public_user(users.by_id(user_id))
 
@@ -150,6 +153,8 @@ def change_status(user_id, data, actor):
         protect_last_admin(user)
     get_db().execute("UPDATE users SET account_status = ? WHERE user_id = ?", (status, user_id))
     get_db().execute("DELETE FROM auth_sessions WHERE user_id = ?", (user_id,))
+    notify(user_id, "Your account status was changed", f"Your account status is now {status}.",
+           "System Notification", "Medium" if status == "Active" else "High")
     record_activity(actor, "USER_STATUS_CHANGED", f"Changed status for user {user_id} to {status}")
     return public_user(UserRepository().by_id(user_id))
 
