@@ -20,6 +20,8 @@ VULNERABILITY_STATUSES = ("Open", "Under Investigation", "In Progress", "Resolve
 NOTIFICATION_TYPES = ("Incident Assignment", "Security Alert", "System Notification", "Threat Alert", "Vulnerability Alert")
 NOTIFICATION_SEVERITIES = ("Low", "Medium", "High", "Critical")
 NOTIFICATION_STATUSES = ("Unread", "Read")
+PLAYBOOK_SEVERITIES = ("Low", "Medium", "High", "Critical")
+ACTION_STATUSES = ("Pending", "In Progress", "Completed")
 
 
 def text(data, field, maximum, minimum=1):
@@ -417,4 +419,45 @@ def notification_search(data):
         result["severity_level"] = choice({"severity_level": data["severity"]}, "severity_level", NOTIFICATION_SEVERITIES)
     if "status" in data:
         result["status"] = choice(data, "status", NOTIFICATION_STATUSES)
+    return result
+
+
+def playbook_creation(data):
+    required = ("playbook_name", "description", "incident_category", "severity")
+    fields(data, required, required)
+    return {
+        "playbook_name": text(data, "playbook_name", 150),
+        "description": text(data, "description", 4000),
+        "incident_category": text(data, "incident_category", 100),
+        "severity_level": choice({"severity_level": data["severity"]}, "severity_level", PLAYBOOK_SEVERITIES),
+    }
+
+
+def optional_user_id(data):
+    if data.get("assigned_user_id") is None:
+        return None
+    return positive_id(data, "assigned_user_id")
+
+
+def response_action_creation(data):
+    required = ("action_description", "step_number")
+    fields(data, (*required, "assigned_user_id"), required)
+    return {
+        "action_description": text(data, "action_description", 2000),
+        "step_number": positive_id(data, "step_number"),
+        "assigned_user_id": optional_user_id(data),
+    }
+
+
+def response_action_update(data):
+    fields(data, ("status", "assigned_user_id", "completion_date"), ())
+    if not data:
+        raise ApiError("Provide at least one response action field to update")
+    result = {}
+    if "status" in data:
+        result["status"] = choice(data, "status", ACTION_STATUSES)
+    if "assigned_user_id" in data:
+        result["assigned_user_id"] = optional_user_id(data)
+    if "completion_date" in data:
+        result["completion_date"] = timestamp(data, "completion_date")
     return result
