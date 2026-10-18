@@ -19,7 +19,7 @@ from database.logs import record_activity
 from errors import ApiError
 from services import (
     audit_logging, assets_management, incidents_management, reports_management,
-    threats_management, users_management,
+    threats_management, users_management, vulnerabilities_management,
 )
 
 USERS_URL = "/api/RonnieSaba/users"
@@ -28,6 +28,7 @@ INCIDENTS_URL = "/api/RonnieSaba/incidents"
 THREATS_URL = "/api/TracyGhosn/threats"
 LOGS_URL = "/api/TracyGhosn/logs"
 REPORTS_URL = "/api/TracyGhosn/reports"
+VULNERABILITIES_URL = "/api/FaridAbiDoumit/vulnerabilities"
 
 
 app = Flask(__name__)
@@ -329,6 +330,47 @@ def vulnerability_report():
 @roles_required(ADMIN, AUDITOR)
 def activity_report():
     return jsonify(status="success", report=reports_management.activity_report())
+
+
+@app.route(VULNERABILITIES_URL, methods=["POST"])
+@admin_required
+def create_vulnerability():
+    vulnerability = vulnerabilities_management.create_vulnerability(request.get_json(), g.actor)
+    return jsonify(status="success", message="Vulnerability added successfully", vulnerability=vulnerability), 201
+
+
+@app.route(VULNERABILITIES_URL, methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def list_vulnerabilities():
+    return jsonify(status="success", vulnerabilities=vulnerabilities_management.list_vulnerabilities())
+
+
+@app.route(VULNERABILITIES_URL + "/search", methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def search_vulnerabilities():
+    vulnerabilities = vulnerabilities_management.search_vulnerabilities(request.args.to_dict())
+    return jsonify(status="success", vulnerabilities=vulnerabilities)
+
+
+@app.route(VULNERABILITIES_URL + "/<int:vulnerability_id>", methods=["GET"])
+@roles_required(ADMIN, ANALYST, AUDITOR)
+def get_vulnerability(vulnerability_id):
+    vulnerability = vulnerabilities_management.get_vulnerability(vulnerability_id)
+    return jsonify(status="success", vulnerability=vulnerability)
+
+
+@app.route(VULNERABILITIES_URL + "/<int:vulnerability_id>", methods=["PUT"])
+@roles_required(ADMIN, ANALYST)
+def update_vulnerability(vulnerability_id):
+    vulnerability = vulnerabilities_management.update_vulnerability(vulnerability_id, request.get_json(), g.actor)
+    return jsonify(status="success", message="Vulnerability updated successfully", vulnerability=vulnerability)
+
+
+@app.route(VULNERABILITIES_URL + "/<int:vulnerability_id>", methods=["DELETE"])
+@admin_required
+def delete_vulnerability(vulnerability_id):
+    vulnerabilities_management.delete_vulnerability(vulnerability_id, g.actor)
+    return jsonify(status="success", message="Vulnerability deleted successfully")
 
 
 @app.route(INCIDENTS_URL, methods=["POST"])
