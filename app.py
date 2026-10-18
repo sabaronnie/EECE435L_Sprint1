@@ -58,6 +58,10 @@ def api_error(error):
             service_name = "Threat Intelligence"
         elif request.path.startswith(LOGS_URL):
             service_name = "Security Audit Logging"
+        elif request.path.startswith(REPORTS_URL):
+            service_name = "Security Reports"
+        elif request.path.startswith(VULNERABILITIES_URL):
+            service_name = "Vulnerability Management"
         else:
             service_name = "Users and Identity Management"
         action = "AUTHENTICATION_FAILED" if error.code == 401 else "PERMISSION_DENIED"
@@ -80,7 +84,7 @@ def database_error(error):
     elif "FOREIGN KEY constraint failed" in str(error):
         if request.path.startswith(ASSETS_URL) and request.method == "DELETE":
             message = "Asset is still linked to incidents or vulnerabilities and cannot be deleted"
-        elif request.path.startswith(INCIDENTS_URL):
+        elif request.path.startswith((INCIDENTS_URL, VULNERABILITIES_URL)):
             message = "A referenced user or asset is no longer available"
         else:
             message = "User is still linked to other records and cannot be deleted"
