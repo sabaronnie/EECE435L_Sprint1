@@ -72,12 +72,10 @@ def admin_required(view):
 
 
 def registration_allowed(view):
-    """Allow public signup, or signup by a logged-in admin or regular user."""
+    """Allow public signup; optionally identify any caller for privileged roles."""
     @wraps(view)
     def wrapped(*args, **kwargs):
         authenticate()
-        if g.actor is not None:
-            require_roles(ADMIN, REGULAR)
         return view(*args, **kwargs)
     return wrapped
 
