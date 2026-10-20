@@ -40,7 +40,7 @@ app = Flask(__name__)
 app.config.from_mapping(
     DATABASE=os.environ.get("DATABASE_PATH", str(Path(__file__).parent / "instance" / "database.db")),
     MAX_CONTENT_LENGTH=16 * 1024,
-    TOKEN_TTL_SECONDS=3600,
+    TOKEN_TTL_SECONDS=3 * 24 * 60 * 60,
     DUMMY_PASSWORD_HASH=generate_password_hash("Dummy-check-only-1!", method="scrypt"),
 )
 origins = [origin.strip() for origin in os.environ.get("CORS_ORIGINS", "").split(",") if origin.strip()]
@@ -541,4 +541,4 @@ def create_admin(full_name, username, email, department, password):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5001)
