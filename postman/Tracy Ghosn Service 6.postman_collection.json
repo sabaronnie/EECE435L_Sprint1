@@ -1,0 +1,889 @@
+{
+  "info": {
+    "_postman_id": "988a2e90-5e39-4671-9b74-0299a3d00a63",
+    "name": "Tracy Ghosn Service 6",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58817793",
+    "_collection_link": "https://go.postman.co/collection/58817793-988a2e90-5e39-4671-9b74-0299a3d00a63?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get Summary",
+      "item": [
+        {
+          "name": "Get Summary",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1ifd2rr5WbGj7pUwpF5tmp-wnf-ZYrMvIYkYuWoEjRk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/summary",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "reports",
+                "summary"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Summary",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/summary",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "reports",
+                    "summary"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 22:07:57 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1437"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"report\": {\n        \"assets\": 0,\n        \"critical_threats\": 0,\n        \"open_incidents\": 0,\n        \"recent_security_activities\": [\n            {\n                \"action_performed\": \"LOGIN_SUCCESS\",\n                \"actor_username\": \"tracyy\",\n                \"description\": \"User logged in\",\n                \"log_id\": 30,\n                \"related_service\": \"Users and Identity Management\",\n                \"severity_level\": \"Information\",\n                \"timestamp\": \"2026-10-17T22:07:20.791173+00:00\",\n                \"user_id\": 1\n            },\n            {\n                \"action_performed\": \"AUTHENTICATION_FAILED\",\n                \"actor_username\": null,\n                \"description\": \"HTTP 401: GET /api/TracyGhosn/reports/summary\",\n                \"log_id\": 29,\n                \"related_service\": \"Users and Identity Management\",\n                \"severity_level\": \"Warning\",\n                \"timestamp\": \"2026-10-17T22:06:34.854602+00:00\",\n                \"user_id\": null\n            },\n            {\n                \"action_performed\": \"PERMISSION_DENIED\",\n                \"actor_username\": \"test_regular\",\n                \"description\": \"HTTP 403: GET /api/TracyGhosn/logs\",\n                \"log_id\": 28,\n                \"related_service\": \"Security Audit Logging\",\n                \"severity_level\": \"Warning\",\n                \"timestamp\": \"2026-10-17T19:13:35.791626+00:00\",\n                \"user_id\": 4\n            },\n            {\n                \"action_performed\": \"LOGIN_SUCCESS\",\n                \"actor_username\": \"test_regular\",\n                \"description\": \"User logged in\",\n                \"log_id\": 27,\n                \"related_service\": \"Users and Identity Management\",\n                \"severity_level\": \"Information\",\n                \"timestamp\": \"2026-10-17T19:12:45.515741+00:00\",\n                \"user_id\": 4\n            },\n            {\n                \"action_performed\": \"PERMISSION_DENIED\",\n                \"actor_username\": \"test_analyst\",\n                \"description\": \"HTTP 403: DELETE /api/TracyGhosn/logs/1\",\n                \"log_id\": 26,\n                \"related_service\": \"Security Audit Logging\",\n                \"severity_level\": \"Warning\",\n                \"timestamp\": \"2026-10-17T19:11:11.244394+00:00\",\n                \"user_id\": 2\n            }\n        ],\n        \"users\": 4\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Get Incidents",
+      "item": [
+        {
+          "name": "Get Incidents",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1ifd2rr5WbGj7pUwpF5tmp-wnf-ZYrMvIYkYuWoEjRk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/incidents",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "reports",
+                "incidents"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Incidents",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/incidents",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "reports",
+                    "incidents"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 22:09:52 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "214"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"report\": {\n        \"incidents_by_severity\": {\n            \"Critical\": 0,\n            \"High\": 0,\n            \"Low\": 0,\n            \"Medium\": 0\n        },\n        \"incidents_by_status\": {\n            \"Closed\": 0,\n            \"Mitigated\": 0,\n            \"Open\": 0,\n            \"Resolved\": 0,\n            \"Under Investigation\": 0\n        },\n        \"total_incidents\": 0\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Get Assets",
+      "item": [
+        {
+          "name": "Get Assets",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1ifd2rr5WbGj7pUwpF5tmp-wnf-ZYrMvIYkYuWoEjRk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/assets",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "reports",
+                "assets"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Assets",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/assets",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "reports",
+                    "assets"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 22:11:32 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "89"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"report\": {\n        \"assets_by_type\": {},\n        \"critical_assets\": 0,\n        \"total_assets\": 0\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Get Threats",
+      "item": [
+        {
+          "name": "Get Threats",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1ifd2rr5WbGj7pUwpF5tmp-wnf-ZYrMvIYkYuWoEjRk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/threats",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "reports",
+                "threats"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get threats",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/threats",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "reports",
+                    "threats"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 22:13:55 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "744"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"report\": {\n        \"recent_threats\": [\n            {\n                \"date_added\": \"2026-10-17T12:09:43.710371+00:00\",\n                \"description\": \"Hash associated with a suspicious executable\",\n                \"severity_level\": \"Medium\",\n                \"source\": \"Malware analysis\",\n                \"threat_id\": 3,\n                \"threat_type\": \"File Hash\",\n                \"threat_value\": \"0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\"\n            },\n            {\n                \"date_added\": \"2026-10-17T12:05:37.125899+00:00\",\n                \"description\": \"Suspicious login attempts observed\",\n                \"severity_level\": \"High\",\n                \"source\": \"Internal SOC\",\n                \"threat_id\": 1,\n                \"threat_type\": \"IP Address\",\n                \"threat_value\": \"203.0.113.25\"\n            }\n        ],\n        \"threats_by_severity\": {\n            \"Critical\": 0,\n            \"High\": 1,\n            \"Low\": 0,\n            \"Medium\": 1\n        },\n        \"threats_by_type\": {\n            \"Domain\": 0,\n            \"File Hash\": 1,\n            \"IP Address\": 1,\n            \"Malware Signature\": 0,\n            \"Other Indicators\": 0\n        },\n        \"total_threats\": 2\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Get Vulnerabilities",
+      "item": [
+        {
+          "name": "Get Vulnerabilities",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1ifd2rr5WbGj7pUwpF5tmp-wnf-ZYrMvIYkYuWoEjRk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/vulnerabilities",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "reports",
+                "vulnerabilities"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Vulnerabilities",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/vulnerabilities",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "reports",
+                    "vulnerabilities"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 22:15:28 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "263"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"report\": {\n        \"critical_vulnerabilities\": 0,\n        \"total_vulnerabilities\": 0,\n        \"vulnerabilities_by_severity\": {\n            \"Critical\": 0,\n            \"High\": 0,\n            \"Low\": 0,\n            \"Medium\": 0\n        },\n        \"vulnerabilities_by_status\": {\n            \"Closed\": 0,\n            \"In Progress\": 0,\n            \"Open\": 0,\n            \"Resolved\": 0,\n            \"Under Investigation\": 0\n        }\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Get Acrivity",
+      "item": [
+        {
+          "name": "Get Activity",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": [
+            {
+              "name": "Get Activity",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/activity",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "reports",
+                    "activity"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 22:18:07 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "513"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"report\": {\n        \"failed_login_attempts\": 2,\n        \"login_attempts\": 11,\n        \"most_performed_actions\": [\n            {\n                \"action\": \"LOGIN_SUCCESS\",\n                \"count\": 9\n            },\n            {\n                \"action\": \"PERMISSION_DENIED\",\n                \"count\": 7\n            },\n            {\n                \"action\": \"USER_REGISTERED\",\n                \"count\": 4\n            },\n            {\n                \"action\": \"AUTHENTICATION_FAILED\",\n                \"count\": 3\n            },\n            {\n                \"action\": \"THREAT_CREATED\",\n                \"count\": 3\n            },\n            {\n                \"action\": \"LOGIN_FAILED\",\n                \"count\": 2\n            },\n            {\n                \"action\": \"AUDIT_LOG_DELETED\",\n                \"count\": 1\n            },\n            {\n                \"action\": \"THREAT_DELETED\",\n                \"count\": 1\n            },\n            {\n                \"action\": \"THREAT_UPDATED\",\n                \"count\": 1\n            }\n        ],\n        \"total_activity_records\": 31,\n        \"total_user_activities\": 27\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Role Based",
+      "item": [
+        {
+          "name": "Security Analyst",
+          "item": [
+            {
+              "name": "Forbidden Service Access",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "GDLsx3X6dJBGo_U9oNZXVPxiGrT7pNou6YtmHJdv_Q0",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/vulnerabilities",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "reports",
+                    "vulnerabilities"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Forbidden Service Access",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/vulnerabilities",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "reports",
+                        "vulnerabilities"
+                      ]
+                    }
+                  },
+                  "status": "FORBIDDEN",
+                  "code": 403,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 22:28:01 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "87"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Auditor",
+          "item": [
+            {
+              "name": "Accepted Access",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "6NNHglFguHewJ2xb0fnGRH6ArVWBxYt8w7WtjIWb8zA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/vulnerabilities",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "reports",
+                    "vulnerabilities"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Accepted Access",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/vulnerabilities",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "reports",
+                        "vulnerabilities"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 22:31:26 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "263"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"report\": {\n        \"critical_vulnerabilities\": 0,\n        \"total_vulnerabilities\": 0,\n        \"vulnerabilities_by_severity\": {\n            \"Critical\": 0,\n            \"High\": 0,\n            \"Low\": 0,\n            \"Medium\": 0\n        },\n        \"vulnerabilities_by_status\": {\n            \"Closed\": 0,\n            \"In Progress\": 0,\n            \"Open\": 0,\n            \"Resolved\": 0,\n            \"Under Investigation\": 0\n        }\n    },\n    \"status\": \"success\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Regular User",
+          "item": [
+            {
+              "name": "Forbidden Access",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "xW064HhWeAIYrEdm7LjF1CvRyeYpE4-KjuqzNH5X2sk",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/threats",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "reports",
+                    "threats"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Forbidden Access",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/reports/threats",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "reports",
+                        "threats"
+                      ]
+                    }
+                  },
+                  "status": "FORBIDDEN",
+                  "code": 403,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 22:34:08 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "87"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

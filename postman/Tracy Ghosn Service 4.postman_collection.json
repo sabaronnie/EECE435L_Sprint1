@@ -1,0 +1,2916 @@
+{
+  "info": {
+    "_postman_id": "c1e78b3c-e73b-479f-8a78-c450bab7a5e9",
+    "name": "Tracy Ghosn Service 4",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58817793",
+    "_collection_link": "https://go.postman.co/collection/58817793-c1e78b3c-e73b-479f-8a78-c450bab7a5e9?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifier\": \"tracyy\",\n  \"password\": \"Qwerty.123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "RonnieSaba",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Admin Login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"tracyy\",\n  \"password\": \"Qwerty.123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 11:58:13 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "458"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"expires_at\": \"2026-10-17T12:58:13.142475+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T11:20:19.276880+00:00\",\n        \"department\": \"Admin\",\n        \"email\": \"tracygh05@gmail.com\",\n        \"full_name\": \"Tracy Ghosn\",\n        \"last_login_at\": \"2026-10-17T11:58:13.142394+00:00\",\n        \"role\": \"SECURITY_ADMINISTRATOR\",\n        \"user_id\": 1,\n        \"username\": \"tracyy\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Create Threats",
+      "item": [
+        {
+          "name": "Post Threat 1",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"203.0.113.25\",\n  \"description\": \"Suspicious login attempts observed\",\n  \"severity\": \"High\",\n  \"source\": \"Internal SOC\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Post Threat 1",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"203.0.113.25\",\n  \"description\": \"Suspicious login attempts observed\",\n  \"severity\": \"High\",\n  \"source\": \"Internal SOC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats"
+                  ]
+                }
+              },
+              "status": "CREATED",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:05:37 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "298"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Threat indicator added successfully\",\n    \"status\": \"success\",\n    \"threat\": {\n        \"date_added\": \"2026-10-17T12:05:37.125899+00:00\",\n        \"description\": \"Suspicious login attempts observed\",\n        \"severity_level\": \"High\",\n        \"source\": \"Internal SOC\",\n        \"threat_id\": 1,\n        \"threat_type\": \"IP Address\",\n        \"threat_value\": \"203.0.113.25\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Post Threat 2",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"threat_type\": \"Domain\",\n  \"threat_value\": \"malicious.example\",\n  \"description\": \"Domain associated with phishing activity\",\n  \"severity\": \"Critical\",\n  \"source\": \"Threat feed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Post Threat 2",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threat_type\": \"Domain\",\n  \"threat_value\": \"malicious.example\",\n  \"description\": \"Domain associated with phishing activity\",\n  \"severity\": \"Critical\",\n  \"source\": \"Threat feed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats"
+                  ]
+                }
+              },
+              "status": "CREATED",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:07:46 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "308"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Threat indicator added successfully\",\n    \"status\": \"success\",\n    \"threat\": {\n        \"date_added\": \"2026-10-17T12:07:46.939357+00:00\",\n        \"description\": \"Domain associated with phishing activity\",\n        \"severity_level\": \"Critical\",\n        \"source\": \"Threat feed\",\n        \"threat_id\": 2,\n        \"threat_type\": \"Domain\",\n        \"threat_value\": \"malicious.example\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Post Threat 3",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"threat_type\": \"File Hash\",\n  \"threat_value\": \"0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\",\n  \"description\": \"Hash associated with a suspicious executable\",\n  \"severity\": \"Medium\",\n  \"source\": \"Malware analysis\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Post Threat 3",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threat_type\": \"File Hash\",\n  \"threat_value\": \"0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\",\n  \"description\": \"Hash associated with a suspicious executable\",\n  \"severity\": \"Medium\",\n  \"source\": \"Malware analysis\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats"
+                  ]
+                }
+              },
+              "status": "CREATED",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:09:43 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "365"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Threat indicator added successfully\",\n    \"status\": \"success\",\n    \"threat\": {\n        \"date_added\": \"2026-10-17T12:09:43.710371+00:00\",\n        \"description\": \"Hash associated with a suspicious executable\",\n        \"severity_level\": \"Medium\",\n        \"source\": \"Malware analysis\",\n        \"threat_id\": 3,\n        \"threat_type\": \"File Hash\",\n        \"threat_value\": \"0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Retrieve Threats",
+      "item": [
+        {
+          "name": "Get Threats",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Threats",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:16:19 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "770"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"threats\": [\n        {\n            \"date_added\": \"2026-10-17T12:05:37.125899+00:00\",\n            \"description\": \"Suspicious login attempts observed\",\n            \"severity_level\": \"High\",\n            \"source\": \"Internal SOC\",\n            \"threat_id\": 1,\n            \"threat_type\": \"IP Address\",\n            \"threat_value\": \"203.0.113.25\"\n        },\n        {\n            \"date_added\": \"2026-10-17T12:07:46.939357+00:00\",\n            \"description\": \"Domain associated with phishing activity\",\n            \"severity_level\": \"Critical\",\n            \"source\": \"Threat feed\",\n            \"threat_id\": 2,\n            \"threat_type\": \"Domain\",\n            \"threat_value\": \"malicious.example\"\n        },\n        {\n            \"date_added\": \"2026-10-17T12:09:43.710371+00:00\",\n            \"description\": \"Hash associated with a suspicious executable\",\n            \"severity_level\": \"Medium\",\n            \"source\": \"Malware analysis\",\n            \"threat_id\": 3,\n            \"threat_type\": \"File Hash\",\n            \"threat_value\": \"0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Specific Existent Threat",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Specific Existent Threat",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/1",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:17:43 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "250"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"threat\": {\n        \"date_added\": \"2026-10-17T12:05:37.125899+00:00\",\n        \"description\": \"Suspicious login attempts observed\",\n        \"severity_level\": \"High\",\n        \"source\": \"Internal SOC\",\n        \"threat_id\": 1,\n        \"threat_type\": \"IP Address\",\n        \"threat_value\": \"203.0.113.25\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Specific Missing Threat",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/999",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats",
+                "999"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Specific Missing Threat",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/999",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats",
+                    "999"
+                  ]
+                }
+              },
+              "status": "NOT FOUND",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:18:15 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "58"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Threat indicator not found\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Search Threats",
+      "item": [
+        {
+          "name": "Search by Type",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/search?threat_type=Domain",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "threat_type",
+                  "value": "Domain"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search by Type",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/search?threat_type=Domain",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "threat_type",
+                      "value": "Domain"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:22:30 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "263"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"threats\": [\n        {\n            \"date_added\": \"2026-10-17T12:07:46.939357+00:00\",\n            \"description\": \"Domain associated with phishing activity\",\n            \"severity_level\": \"Critical\",\n            \"source\": \"Threat feed\",\n            \"threat_id\": 2,\n            \"threat_type\": \"Domain\",\n            \"threat_value\": \"malicious.example\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search by Severity",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/search?severity=High",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "severity",
+                  "value": "High"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search by Severity",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/search?severity=High",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "severity",
+                      "value": "High"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:23:11 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "253"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"threats\": [\n        {\n            \"date_added\": \"2026-10-17T12:05:37.125899+00:00\",\n            \"description\": \"Suspicious login attempts observed\",\n            \"severity_level\": \"High\",\n            \"source\": \"Internal SOC\",\n            \"threat_id\": 1,\n            \"threat_type\": \"IP Address\",\n            \"threat_value\": \"203.0.113.25\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search by Source",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/search?source=Threat%20feed",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "source",
+                  "value": "Threat%20feed"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search by Source",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/search?source=Threat%20feed",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "source",
+                      "value": "Threat%20feed"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:24:25 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "263"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"threats\": [\n        {\n            \"date_added\": \"2026-10-17T12:07:46.939357+00:00\",\n            \"description\": \"Domain associated with phishing activity\",\n            \"severity_level\": \"Critical\",\n            \"source\": \"Threat feed\",\n            \"threat_id\": 2,\n            \"threat_type\": \"Domain\",\n            \"threat_value\": \"malicious.example\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search by Partial Value",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/search?threat_value=malicious",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "threat_value",
+                  "value": "malicious"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search by Partial Value",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/search?threat_value=malicious",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "threat_value",
+                      "value": "malicious"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:26:09 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "263"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"threats\": [\n        {\n            \"date_added\": \"2026-10-17T12:07:46.939357+00:00\",\n            \"description\": \"Domain associated with phishing activity\",\n            \"severity_level\": \"Critical\",\n            \"source\": \"Threat feed\",\n            \"threat_id\": 2,\n            \"threat_type\": \"Domain\",\n            \"threat_value\": \"malicious.example\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search through Combined Filters",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/search?threat_type=Domain&severity=Critical",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "threat_type",
+                  "value": "Domain"
+                },
+                {
+                  "key": "severity",
+                  "value": "Critical"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search through Combined Filters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/search?threat_type=Domain&severity=Critical",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "threat_type",
+                      "value": "Domain"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "Critical"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:27:09 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "263"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"threats\": [\n        {\n            \"date_added\": \"2026-10-17T12:07:46.939357+00:00\",\n            \"description\": \"Domain associated with phishing activity\",\n            \"severity_level\": \"Critical\",\n            \"source\": \"Threat feed\",\n            \"threat_id\": 2,\n            \"threat_type\": \"Domain\",\n            \"threat_value\": \"malicious.example\"\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Update and Delete",
+      "item": [
+        {
+          "name": "Update Threat",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Confirmed phishing domain used in a credential theft campaign\",\n  \"severity\": \"Critical\",\n  \"source\": \"Verified threat feed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats",
+                "2"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Threat",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Confirmed phishing domain used in a credential theft campaign\",\n  \"severity\": \"Critical\",\n  \"source\": \"Verified threat feed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/2",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats",
+                    "2"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:32:44 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "342"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Threat information updated successfully\",\n    \"status\": \"success\",\n    \"threat\": {\n        \"date_added\": \"2026-10-17T12:07:46.939357+00:00\",\n        \"description\": \"Confirmed phishing domain used in a credential theft campaign\",\n        \"severity_level\": \"Critical\",\n        \"source\": \"Verified threat feed\",\n        \"threat_id\": 2,\n        \"threat_type\": \"Domain\",\n        \"threat_value\": \"malicious.example\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Threat",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Confirmed phishing domain used in a credential theft campaign\",\n  \"severity\": \"Critical\",\n  \"source\": \"Verified threat feed\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats",
+                "2"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Threat",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Confirmed phishing domain used in a credential theft campaign\",\n  \"severity\": \"Critical\",\n  \"source\": \"Verified threat feed\"\n}"
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/2",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats",
+                    "2"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:33:56 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "71"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Threat indicator deleted successfully\",\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Validation and Duplicates",
+      "item": [
+        {
+          "name": "Invalid",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"not-an-ip\",\n  \"description\": \"Validation check\",\n  \"severity\": \"Low\",\n  \"source\": \"Test\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"not-an-ip\",\n  \"description\": \"Validation check\",\n  \"severity\": \"Low\",\n  \"source\": \"Test\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats"
+                  ]
+                }
+              },
+              "status": "BAD REQUEST",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:36:17 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "71"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Threat value must be a valid IP address\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Duplicate of 1",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"203.0.113.25\",\n  \"description\": \"Suspicious login attempts observed\",\n  \"severity\": \"High\",\n  \"source\": \"Internal SOC\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "threats"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Duplicate of 1",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"203.0.113.25\",\n  \"description\": \"Suspicious login attempts observed\",\n  \"severity\": \"High\",\n  \"source\": \"Internal SOC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats"
+                  ]
+                }
+              },
+              "status": "CONFLICT",
+              "code": 409,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 12:37:50 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "90"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"A threat indicator with this type and value already exists\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Role Permissions",
+      "item": [
+        {
+          "name": "Regular User",
+          "item": [
+            {
+              "name": "Create Regular User",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"full_name\": \"Test Regular User\",\n  \"username\": \"test_regular\",\n  \"email\": \"test_regular@example.com\",\n  \"department\": \"General\",\n  \"password\": \"RegularTest123!\",\n  \"role\": \"REGULAR_USER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/register",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "register"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Create Regular User",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"full_name\": \"Test Regular User\",\n  \"username\": \"test_regular\",\n  \"email\": \"test_regular@example.com\",\n  \"department\": \"General\",\n  \"password\": \"RegularTest123!\",\n  \"role\": \"REGULAR_USER\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/register",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "RonnieSaba",
+                        "users",
+                        "register"
+                      ]
+                    }
+                  },
+                  "status": "CREATED",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 12:51:07 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "316"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"message\": \"User registered successfully\",\n    \"status\": \"success\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:51:07.041071+00:00\",\n        \"department\": \"General\",\n        \"email\": \"test_regular@example.com\",\n        \"full_name\": \"Test Regular User\",\n        \"last_login_at\": null,\n        \"role\": \"REGULAR_USER\",\n        \"user_id\": 4,\n        \"username\": \"test_regular\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "User Login",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"test_regular\",\n  \"password\": \"RegularTest123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "User Login",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"identifier\": \"test_regular\",\n  \"password\": \"RegularTest123!\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "RonnieSaba",
+                        "users",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 12:55:02 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "467"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"expires_at\": \"2026-10-17T13:55:02.920418+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"PzxqdMqvrFVvYlh3JpCPLpKW-3lBRIQqQgSu-PG-XR4\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:51:07.041071+00:00\",\n        \"department\": \"General\",\n        \"email\": \"test_regular@example.com\",\n        \"full_name\": \"Test Regular User\",\n        \"last_login_at\": \"2026-10-17T12:55:02.920369+00:00\",\n        \"role\": \"REGULAR_USER\",\n        \"user_id\": 4,\n        \"username\": \"test_regular\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "User Tries Threat Endpoint",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "PzxqdMqvrFVvYlh3JpCPLpKW-3lBRIQqQgSu-PG-XR4",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"203.0.113.25\",\n  \"description\": \"Suspicious login attempts observed\",\n  \"severity\": \"High\",\n  \"source\": \"Internal SOC\"\n}"
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "User Tries Threat Endpoint",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"203.0.113.25\",\n  \"description\": \"Suspicious login attempts observed\",\n  \"severity\": \"High\",\n  \"source\": \"Internal SOC\"\n}"
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "threats"
+                      ]
+                    }
+                  },
+                  "status": "FORBIDDEN",
+                  "code": 403,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 12:56:36 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "87"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Auditor",
+          "item": [
+            {
+              "name": "Create Auditor",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"full_name\": \"Test Auditor\",\n  \"username\": \"test_auditor\",\n  \"email\": \"test_auditor@example.com\",\n  \"department\": \"Audit\",\n  \"password\": \"AuditorTest123!\",\n  \"role\": \"AUDITOR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/register",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "register"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Create Auditor",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"full_name\": \"Test Auditor\",\n  \"username\": \"test_auditor\",\n  \"email\": \"test_auditor@example.com\",\n  \"department\": \"Audit\",\n  \"password\": \"AuditorTest123!\",\n  \"role\": \"AUDITOR\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/register",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "RonnieSaba",
+                        "users",
+                        "register"
+                      ]
+                    }
+                  },
+                  "status": "CREATED",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 12:50:11 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "304"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"message\": \"User registered successfully\",\n    \"status\": \"success\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:50:11.202751+00:00\",\n        \"department\": \"Audit\",\n        \"email\": \"test_auditor@example.com\",\n        \"full_name\": \"Test Auditor\",\n        \"last_login_at\": null,\n        \"role\": \"AUDITOR\",\n        \"user_id\": 3,\n        \"username\": \"test_auditor\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Login Auditor",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": " {\n \"identifier\": \"test_auditor\",\n  \"password\": \"AuditorTest123!\"\n }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Login Auditor",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": " {\n \"identifier\": \"test_auditor\",\n  \"password\": \"AuditorTest123!\"\n }",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "RonnieSaba",
+                        "users",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 13:04:58 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "455"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"expires_at\": \"2026-10-17T14:04:58.749797+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"Ca0oeAT1YuV0whUCHsf_WmmjFcyqpec1mXiQ1p9fh0A\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:50:11.202751+00:00\",\n        \"department\": \"Audit\",\n        \"email\": \"test_auditor@example.com\",\n        \"full_name\": \"Test Auditor\",\n        \"last_login_at\": \"2026-10-17T13:04:58.749559+00:00\",\n        \"role\": \"AUDITOR\",\n        \"user_id\": 3,\n        \"username\": \"test_auditor\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Can Get",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "Ca0oeAT1YuV0whUCHsf_WmmjFcyqpec1mXiQ1p9fh0A",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Can Get",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "threats"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 13:06:00 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "540"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"success\",\n    \"threats\": [\n        {\n            \"date_added\": \"2026-10-17T12:05:37.125899+00:00\",\n            \"description\": \"Suspicious login attempts observed\",\n            \"severity_level\": \"High\",\n            \"source\": \"Internal SOC\",\n            \"threat_id\": 1,\n            \"threat_type\": \"IP Address\",\n            \"threat_value\": \"203.0.113.25\"\n        },\n        {\n            \"date_added\": \"2026-10-17T12:09:43.710371+00:00\",\n            \"description\": \"Hash associated with a suspicious executable\",\n            \"severity_level\": \"Medium\",\n            \"source\": \"Malware analysis\",\n            \"threat_id\": 3,\n            \"threat_type\": \"File Hash\",\n            \"threat_value\": \"0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\"\n        }\n    ]\n}"
+                }
+              ]
+            },
+            {
+              "name": "Cannot Delete",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "Ca0oeAT1YuV0whUCHsf_WmmjFcyqpec1mXiQ1p9fh0A",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"203.0.113.25\",\n  \"description\": \"Suspicious login attempts observed\",\n  \"severity\": \"High\",\n  \"source\": \"Internal SOC\"\n}"
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/1",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats",
+                    "1"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Cannot Delete",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"203.0.113.25\",\n  \"description\": \"Suspicious login attempts observed\",\n  \"severity\": \"High\",\n  \"source\": \"Internal SOC\"\n}"
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/1",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "threats",
+                        "1"
+                      ]
+                    }
+                  },
+                  "status": "FORBIDDEN",
+                  "code": 403,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 13:07:21 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "87"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Security Analyst",
+          "item": [
+            {
+              "name": "Create Analyst",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "dHyrsX5GqrRshMKg80WZ4zAPCGfOo4rI7KbxnR6aNjM",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"full_name\": \"Test Security Analyst\",\n  \"username\": \"test_analyst\",\n  \"email\": \"test_analyst@example.com\",\n  \"department\": \"Security\",\n  \"password\": \"AnalystTest123!\",\n  \"role\": \"SECURITY_ANALYST\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/register",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "register"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Create Analyst",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"full_name\": \"Test Security Analyst\",\n  \"username\": \"test_analyst\",\n  \"email\": \"test_analyst@example.com\",\n  \"department\": \"Security\",\n  \"password\": \"AnalystTest123!\",\n  \"role\": \"SECURITY_ANALYST\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/register",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "RonnieSaba",
+                        "users",
+                        "register"
+                      ]
+                    }
+                  },
+                  "status": "CREATED",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 12:48:55 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "325"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"message\": \"User registered successfully\",\n    \"status\": \"success\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:48:55.743752+00:00\",\n        \"department\": \"Security\",\n        \"email\": \"test_analyst@example.com\",\n        \"full_name\": \"Test Security Analyst\",\n        \"last_login_at\": null,\n        \"role\": \"SECURITY_ANALYST\",\n        \"user_id\": 2,\n        \"username\": \"test_analyst\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Analyst Login",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"test_analyst\",\n  \"password\": \"AnalystTest123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Analyst Login",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"identifier\": \"test_analyst\",\n  \"password\": \"AnalystTest123!\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "RonnieSaba",
+                        "users",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 12:58:37 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "476"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"expires_at\": \"2026-10-17T13:58:37.237999+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"Q9yI0U3TyvuNM5g4aEfDBRlo2cNvEFGv7kIIe7XsQTw\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:48:55.743752+00:00\",\n        \"department\": \"Security\",\n        \"email\": \"test_analyst@example.com\",\n        \"full_name\": \"Test Security Analyst\",\n        \"last_login_at\": \"2026-10-17T12:58:37.237130+00:00\",\n        \"role\": \"SECURITY_ANALYST\",\n        \"user_id\": 2,\n        \"username\": \"test_analyst\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Can Get",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "Q9yI0U3TyvuNM5g4aEfDBRlo2cNvEFGv7kIIe7XsQTw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"203.0.113.25\",\n  \"description\": \"Suspicious login attempts observed\",\n  \"severity\": \"High\",\n  \"source\": \"Internal SOC\"\n}"
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Can Get",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"203.0.113.25\",\n  \"description\": \"Suspicious login attempts observed\",\n  \"severity\": \"High\",\n  \"source\": \"Internal SOC\"\n}"
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "threats"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 12:59:39 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "540"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"success\",\n    \"threats\": [\n        {\n            \"date_added\": \"2026-10-17T12:05:37.125899+00:00\",\n            \"description\": \"Suspicious login attempts observed\",\n            \"severity_level\": \"High\",\n            \"source\": \"Internal SOC\",\n            \"threat_id\": 1,\n            \"threat_type\": \"IP Address\",\n            \"threat_value\": \"203.0.113.25\"\n        },\n        {\n            \"date_added\": \"2026-10-17T12:09:43.710371+00:00\",\n            \"description\": \"Hash associated with a suspicious executable\",\n            \"severity_level\": \"Medium\",\n            \"source\": \"Malware analysis\",\n            \"threat_id\": 3,\n            \"threat_type\": \"File Hash\",\n            \"threat_value\": \"0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\"\n        }\n    ]\n}"
+                }
+              ]
+            },
+            {
+              "name": "Cannot Delete",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "Q9yI0U3TyvuNM5g4aEfDBRlo2cNvEFGv7kIIe7XsQTw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"203.0.113.25\",\n  \"description\": \"Suspicious login attempts observed\",\n  \"severity\": \"High\",\n  \"source\": \"Internal SOC\"\n}"
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/1",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "threats",
+                    "1"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Cannot Delete",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"threat_type\": \"IP Address\",\n  \"threat_value\": \"203.0.113.25\",\n  \"description\": \"Suspicious login attempts observed\",\n  \"severity\": \"High\",\n  \"source\": \"Internal SOC\"\n}"
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/threats/1",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "threats",
+                        "1"
+                      ]
+                    }
+                  },
+                  "status": "FORBIDDEN",
+                  "code": 403,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 13:01:31 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "87"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

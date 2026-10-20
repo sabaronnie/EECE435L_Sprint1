@@ -1,0 +1,2322 @@
+{
+  "info": {
+    "_postman_id": "9406aded-9273-44dc-a800-5911dbbfe05d",
+    "name": "Service 8 - Notification and Alert Management (Evidence)",
+    "description": "Evidence-focused collection for Service 8. Set baseUrl and role credentials/user IDs to match your database. Run the relevant login request first; tokens are saved automatically.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58817793",
+    "_collection_link": "https://go.postman.co/collection/58817793-9406aded-9273-44dc-a800-5911dbbfe05d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "0 - Authentication",
+      "item": [
+        {
+          "name": "Login as Security Administrator",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) pm.collectionVariables.set('adminToken', pm.response.json().token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifier\": \"tracyy\",\n  \"password\": \"Qwerty.123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "RonnieSaba",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login as Security Administrator",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"tracyy\",\n  \"password\": \"Qwerty.123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:00:30 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "458"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"expires_at\": \"2026-10-19T21:00:30.813674+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"e57JqGk70O3iINAsEsdLrz27WmRzUA_7e5J_maC-xXI\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T11:20:19.276880+00:00\",\n        \"department\": \"Admin\",\n        \"email\": \"tracygh05@gmail.com\",\n        \"full_name\": \"Tracy Ghosn\",\n        \"last_login_at\": \"2026-10-19T20:00:30.813639+00:00\",\n        \"role\": \"SECURITY_ADMINISTRATOR\",\n        \"user_id\": 1,\n        \"username\": \"tracyy\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login as Security Analyst",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) pm.collectionVariables.set('analystToken', pm.response.json().token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifier\": \"test_analyst\",\n  \"password\": \"AnalystTest123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "RonnieSaba",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login as Security Analyst",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"test_analyst\",\n  \"password\": \"AnalystTest123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:00:42 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "476"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"expires_at\": \"2026-10-19T21:00:42.744085+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"pPpSG79YuN-4V6AbZjjYt4o6U8duq6uNEjk_jRkYHsA\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:48:55.743752+00:00\",\n        \"department\": \"Security\",\n        \"email\": \"test_analyst@example.com\",\n        \"full_name\": \"Test Security Analyst\",\n        \"last_login_at\": \"2026-10-19T20:00:42.744052+00:00\",\n        \"role\": \"SECURITY_ANALYST\",\n        \"user_id\": 2,\n        \"username\": \"test_analyst\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login as Auditor",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) pm.collectionVariables.set('auditorToken', pm.response.json().token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifier\": \"test_auditor\",\n  \"password\": \"AuditorTest123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "RonnieSaba",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login as Auditor",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"test_auditor\",\n  \"password\": \"AuditorTest123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:02:39 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "455"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"expires_at\": \"2026-10-19T21:02:39.134443+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"28k6DQGgHwF0Ek7QeQq0D0KQ5tSAuVjKdHIb92Dg958\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:50:11.202751+00:00\",\n        \"department\": \"Audit\",\n        \"email\": \"test_auditor@example.com\",\n        \"full_name\": \"Test Auditor\",\n        \"last_login_at\": \"2026-10-19T20:02:39.134410+00:00\",\n        \"role\": \"AUDITOR\",\n        \"user_id\": 3,\n        \"username\": \"test_auditor\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login as Regular User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) pm.collectionVariables.set('regularToken', pm.response.json().token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifier\": \"test_regular\",\n  \"password\": \"RegularTest123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "RonnieSaba",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login as Regular User",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"test_regular\",\n  \"password\": \"RegularTest123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:03:01 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "467"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"expires_at\": \"2026-10-19T21:03:01.954689+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"nA_i6-U9RS87zmADDTQ6KUG0ptBSwwl7VEs1ePR4JgE\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:51:07.041071+00:00\",\n        \"department\": \"General\",\n        \"email\": \"test_regular@example.com\",\n        \"full_name\": \"Test Regular User\",\n        \"last_login_at\": \"2026-10-19T20:03:01.954652+00:00\",\n        \"role\": \"REGULAR_USER\",\n        \"user_id\": 4,\n        \"username\": \"test_regular\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1 - Create notifications (Admin)",
+      "item": [
+        {
+          "name": "Create notification A - Security Alert",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) pm.collectionVariables.set('notificationId', String(pm.response.json().notification.notification_id));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": {{userId}},\n  \"title\": \"Critical security alert\",\n  \"message\": \"Suspicious sign-in activity was detected. Please review your account.\",\n  \"notification_type\": \"Security Alert\",\n  \"severity\": \"Critical\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications"
+              ]
+            },
+            "description": "Admin only. userId must identify an existing recipient. Stored status starts as Unread."
+          },
+          "response": [
+            {
+              "name": "Create notification A - Security Alert",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": {{userId}},\n  \"title\": \"Critical security alert\",\n  \"message\": \"Suspicious sign-in activity was detected. Please review your account.\",\n  \"notification_type\": \"Security Alert\",\n  \"severity\": \"Critical\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications"
+                  ]
+                }
+              },
+              "status": "CREATED",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:03:32 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "434"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Notification created successfully\",\n    \"notification\": {\n        \"creation_date\": \"2026-10-19T20:03:32.441625+00:00\",\n        \"message\": \"Suspicious sign-in activity was detected. Please review your account.\",\n        \"notification_id\": 3,\n        \"notification_type\": \"Security Alert\",\n        \"read_date\": null,\n        \"severity_level\": \"Critical\",\n        \"status\": \"Unread\",\n        \"title\": \"Critical security alert\",\n        \"user_full_name\": \"Tracy Ghosn\",\n        \"user_id\": 1,\n        \"username\": \"tracyy\"\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create notification B - System Notification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": {{userId}},\n  \"title\": \"Scheduled maintenance notice\",\n  \"message\": \"The security portal will undergo scheduled maintenance tonight.\",\n  \"notification_type\": \"System Notification\",\n  \"severity\": \"Low\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications"
+              ]
+            },
+            "description": "Admin only. Change userId to a different existing user to demonstrate notifications for multiple recipients."
+          },
+          "response": [
+            {
+              "name": "Create notification B - System Notification",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": {{userId}},\n  \"title\": \"Scheduled maintenance notice\",\n  \"message\": \"The security portal will undergo scheduled maintenance tonight.\",\n  \"notification_type\": \"System Notification\",\n  \"severity\": \"Low\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications"
+                  ]
+                }
+              },
+              "status": "CREATED",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:04:58 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "433"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Notification created successfully\",\n    \"notification\": {\n        \"creation_date\": \"2026-10-19T20:04:58.555976+00:00\",\n        \"message\": \"The security portal will undergo scheduled maintenance tonight.\",\n        \"notification_id\": 4,\n        \"notification_type\": \"System Notification\",\n        \"read_date\": null,\n        \"severity_level\": \"Low\",\n        \"status\": \"Unread\",\n        \"title\": \"Scheduled maintenance notice\",\n        \"user_full_name\": \"Tracy Ghosn\",\n        \"user_id\": 1,\n        \"username\": \"tracyy\"\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create notification C - Vulnerability Alert",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": {{userId}},\n  \"title\": \"High severity vulnerability found\",\n  \"message\": \"A high severity vulnerability requires remediation.\",\n  \"notification_type\": \"Vulnerability Alert\",\n  \"severity\": \"High\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications"
+              ]
+            },
+            "description": "Admin only. Notifications are also generated by system events such as incident assignments and high or critical vulnerability findings."
+          },
+          "response": [
+            {
+              "name": "Create notification C - Vulnerability Alert",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": {{userId}},\n  \"title\": \"High severity vulnerability found\",\n  \"message\": \"A high severity vulnerability requires remediation.\",\n  \"notification_type\": \"Vulnerability Alert\",\n  \"severity\": \"High\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications"
+                  ]
+                }
+              },
+              "status": "CREATED",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:06:07 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "427"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Notification created successfully\",\n    \"notification\": {\n        \"creation_date\": \"2026-10-19T20:06:07.906448+00:00\",\n        \"message\": \"A high severity vulnerability requires remediation.\",\n        \"notification_id\": 5,\n        \"notification_type\": \"Vulnerability Alert\",\n        \"read_date\": null,\n        \"severity_level\": \"High\",\n        \"status\": \"Unread\",\n        \"title\": \"High severity vulnerability found\",\n        \"user_full_name\": \"Tracy Ghosn\",\n        \"user_id\": 1,\n        \"username\": \"tracyy\"\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2 - Retrieve user notifications",
+      "item": [
+        {
+          "name": "Get notifications for user (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/user/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "user",
+                "{{userId}}"
+              ]
+            },
+            "description": "Response is {status: success, notifications: [...]} and includes status, creation_date, read_date and recipient details."
+          },
+          "response": [
+            {
+              "name": "Get notifications for user (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/user/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "user",
+                    "{{userId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:07:06 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1478"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"notifications\": [\n        {\n            \"creation_date\": \"2026-10-19T20:06:07.906448+00:00\",\n            \"message\": \"A high severity vulnerability requires remediation.\",\n            \"notification_id\": 5,\n            \"notification_type\": \"Vulnerability Alert\",\n            \"read_date\": null,\n            \"severity_level\": \"High\",\n            \"status\": \"Unread\",\n            \"title\": \"High severity vulnerability found\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        },\n        {\n            \"creation_date\": \"2026-10-19T20:04:58.555976+00:00\",\n            \"message\": \"The security portal will undergo scheduled maintenance tonight.\",\n            \"notification_id\": 4,\n            \"notification_type\": \"System Notification\",\n            \"read_date\": null,\n            \"severity_level\": \"Low\",\n            \"status\": \"Unread\",\n            \"title\": \"Scheduled maintenance notice\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        },\n        {\n            \"creation_date\": \"2026-10-19T20:03:32.441625+00:00\",\n            \"message\": \"Suspicious sign-in activity was detected. Please review your account.\",\n            \"notification_id\": 3,\n            \"notification_type\": \"Security Alert\",\n            \"read_date\": null,\n            \"severity_level\": \"Critical\",\n            \"status\": \"Unread\",\n            \"title\": \"Critical security alert\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        },\n        {\n            \"creation_date\": \"2026-10-19T19:28:29.159364+00:00\",\n            \"message\": \"CVE-2026-12345 (CVSS 9.8) was found on asset 1: Critical server remote code execution\",\n            \"notification_id\": 2,\n            \"notification_type\": \"Vulnerability Alert\",\n            \"read_date\": null,\n            \"severity_level\": \"Critical\",\n            \"status\": \"Unread\",\n            \"title\": \"Critical vulnerability on Demo Web Server\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get own notifications (Regular User)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{regularToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/user/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "user",
+                "{{userId}}"
+              ]
+            },
+            "description": "For regular users, userId must match the logged-in user's ID."
+          },
+          "response": [
+            {
+              "name": "Get own notifications (Regular User)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{regularToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/user/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "user",
+                    "{{userId}}"
+                  ]
+                }
+              },
+              "status": "FORBIDDEN",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:08:19 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "74"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"You may only access your own notifications\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get notifications for user with none (expect empty array)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/user/3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "user",
+                "3"
+              ]
+            },
+            "description": "Set emptyUserId to an existing user ID with no notifications. Expected notifications: []."
+          },
+          "response": [
+            {
+              "name": "Get notifications for user with none (expect empty array)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/user/3",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "user",
+                    "3"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:16:48 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "40"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"notifications\": [],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3 - Retrieve specific notification",
+      "item": [
+        {
+          "name": "Get specific notification",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{notificationId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "{{notificationId}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get specific notification",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{notificationId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "{{notificationId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:18:20 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "388"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"notification\": {\n        \"creation_date\": \"2026-10-19T20:03:32.441625+00:00\",\n        \"message\": \"Suspicious sign-in activity was detected. Please review your account.\",\n        \"notification_id\": 3,\n        \"notification_type\": \"Security Alert\",\n        \"read_date\": null,\n        \"severity_level\": \"Critical\",\n        \"status\": \"Unread\",\n        \"title\": \"Critical security alert\",\n        \"user_full_name\": \"Tracy Ghosn\",\n        \"user_id\": 1,\n        \"username\": \"tracyy\"\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get invalid notification ID (expect 404)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{invalidNotificationId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "{{invalidNotificationId}}"
+              ]
+            },
+            "description": "Expected HTTP 404 and message Notification not found."
+          },
+          "response": [
+            {
+              "name": "Get invalid notification ID (expect 404)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{invalidNotificationId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "{{invalidNotificationId}}"
+                  ]
+                }
+              },
+              "status": "NOT FOUND",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:18:46 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "54"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Notification not found\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4 - Mark as read (before/after)",
+      "item": [
+        {
+          "name": "Before - get notification",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{notificationId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "{{notificationId}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Before - get notification",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{notificationId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "{{notificationId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:19:11 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "388"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"notification\": {\n        \"creation_date\": \"2026-10-19T20:03:32.441625+00:00\",\n        \"message\": \"Suspicious sign-in activity was detected. Please review your account.\",\n        \"notification_id\": 3,\n        \"notification_type\": \"Security Alert\",\n        \"read_date\": null,\n        \"severity_level\": \"Critical\",\n        \"status\": \"Unread\",\n        \"title\": \"Critical security alert\",\n        \"user_full_name\": \"Tracy Ghosn\",\n        \"user_id\": 1,\n        \"username\": \"tracyy\"\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Mark notification as read",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{notificationId}}/read",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "{{notificationId}}",
+                "read"
+              ]
+            },
+            "description": "Sets status to Read and records read_date. Marking an already-read notification leaves it Read."
+          },
+          "response": [
+            {
+              "name": "Mark notification as read",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{notificationId}}/read",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "{{notificationId}}",
+                    "read"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:19:33 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "456"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Notification marked as read\",\n    \"notification\": {\n        \"creation_date\": \"2026-10-19T20:03:32.441625+00:00\",\n        \"message\": \"Suspicious sign-in activity was detected. Please review your account.\",\n        \"notification_id\": 3,\n        \"notification_type\": \"Security Alert\",\n        \"read_date\": \"2026-10-19T20:19:33.329349+00:00\",\n        \"severity_level\": \"Critical\",\n        \"status\": \"Read\",\n        \"title\": \"Critical security alert\",\n        \"user_full_name\": \"Tracy Ghosn\",\n        \"user_id\": 1,\n        \"username\": \"tracyy\"\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "After - get notification",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{notificationId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "{{notificationId}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "After - get notification",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{notificationId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "{{notificationId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:19:55 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "416"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"notification\": {\n        \"creation_date\": \"2026-10-19T20:03:32.441625+00:00\",\n        \"message\": \"Suspicious sign-in activity was detected. Please review your account.\",\n        \"notification_id\": 3,\n        \"notification_type\": \"Security Alert\",\n        \"read_date\": \"2026-10-19T20:19:33.329349+00:00\",\n        \"severity_level\": \"Critical\",\n        \"status\": \"Read\",\n        \"title\": \"Critical security alert\",\n        \"user_full_name\": \"Tracy Ghosn\",\n        \"user_id\": 1,\n        \"username\": \"tracyy\"\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "5 - Search scenarios",
+      "item": [
+        {
+          "name": "Search by user ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auditorToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/search?user_id={{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "user_id",
+                  "value": "{{userId}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search by user ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auditorToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/search?user_id={{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "{{userId}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:20:21 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1506"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"notifications\": [\n        {\n            \"creation_date\": \"2026-10-19T19:28:29.159364+00:00\",\n            \"message\": \"CVE-2026-12345 (CVSS 9.8) was found on asset 1: Critical server remote code execution\",\n            \"notification_id\": 2,\n            \"notification_type\": \"Vulnerability Alert\",\n            \"read_date\": null,\n            \"severity_level\": \"Critical\",\n            \"status\": \"Unread\",\n            \"title\": \"Critical vulnerability on Demo Web Server\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        },\n        {\n            \"creation_date\": \"2026-10-19T20:03:32.441625+00:00\",\n            \"message\": \"Suspicious sign-in activity was detected. Please review your account.\",\n            \"notification_id\": 3,\n            \"notification_type\": \"Security Alert\",\n            \"read_date\": \"2026-10-19T20:19:33.329349+00:00\",\n            \"severity_level\": \"Critical\",\n            \"status\": \"Read\",\n            \"title\": \"Critical security alert\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        },\n        {\n            \"creation_date\": \"2026-10-19T20:04:58.555976+00:00\",\n            \"message\": \"The security portal will undergo scheduled maintenance tonight.\",\n            \"notification_id\": 4,\n            \"notification_type\": \"System Notification\",\n            \"read_date\": null,\n            \"severity_level\": \"Low\",\n            \"status\": \"Unread\",\n            \"title\": \"Scheduled maintenance notice\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        },\n        {\n            \"creation_date\": \"2026-10-19T20:06:07.906448+00:00\",\n            \"message\": \"A high severity vulnerability requires remediation.\",\n            \"notification_id\": 5,\n            \"notification_type\": \"Vulnerability Alert\",\n            \"read_date\": null,\n            \"severity_level\": \"High\",\n            \"status\": \"Unread\",\n            \"title\": \"High severity vulnerability found\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search by notification type",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auditorToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/search?notification_type=Security%20Alert",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "notification_type",
+                  "value": "Security%20Alert"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search by notification type",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auditorToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/search?notification_type=Security%20Alert",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "notification_type",
+                      "value": "Security%20Alert"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:20:47 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "419"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"notifications\": [\n        {\n            \"creation_date\": \"2026-10-19T20:03:32.441625+00:00\",\n            \"message\": \"Suspicious sign-in activity was detected. Please review your account.\",\n            \"notification_id\": 3,\n            \"notification_type\": \"Security Alert\",\n            \"read_date\": \"2026-10-19T20:19:33.329349+00:00\",\n            \"severity_level\": \"Critical\",\n            \"status\": \"Read\",\n            \"title\": \"Critical security alert\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search by severity",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auditorToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/search?severity=Critical",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "severity",
+                  "value": "Critical"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search by severity",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auditorToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/search?severity=Critical",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "severity",
+                      "value": "Critical"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:21:11 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1217"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"notifications\": [\n        {\n            \"creation_date\": \"2026-10-19T19:28:29.159258+00:00\",\n            \"message\": \"CVE-2026-12345 (CVSS 9.8) was found on asset 1: Critical server remote code execution\",\n            \"notification_id\": 1,\n            \"notification_type\": \"Vulnerability Alert\",\n            \"read_date\": null,\n            \"severity_level\": \"Critical\",\n            \"status\": \"Unread\",\n            \"title\": \"Critical vulnerability on Demo Web Server\",\n            \"user_full_name\": \"Test Security Analyst\",\n            \"user_id\": 2,\n            \"username\": \"test_analyst\"\n        },\n        {\n            \"creation_date\": \"2026-10-19T19:28:29.159364+00:00\",\n            \"message\": \"CVE-2026-12345 (CVSS 9.8) was found on asset 1: Critical server remote code execution\",\n            \"notification_id\": 2,\n            \"notification_type\": \"Vulnerability Alert\",\n            \"read_date\": null,\n            \"severity_level\": \"Critical\",\n            \"status\": \"Unread\",\n            \"title\": \"Critical vulnerability on Demo Web Server\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        },\n        {\n            \"creation_date\": \"2026-10-19T20:03:32.441625+00:00\",\n            \"message\": \"Suspicious sign-in activity was detected. Please review your account.\",\n            \"notification_id\": 3,\n            \"notification_type\": \"Security Alert\",\n            \"read_date\": \"2026-10-19T20:19:33.329349+00:00\",\n            \"severity_level\": \"Critical\",\n            \"status\": \"Read\",\n            \"title\": \"Critical security alert\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search by status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auditorToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/search?status=Unread",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Unread"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search by status",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auditorToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/search?status=Unread",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "Unread"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:21:35 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1533"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"notifications\": [\n        {\n            \"creation_date\": \"2026-10-19T19:28:29.159258+00:00\",\n            \"message\": \"CVE-2026-12345 (CVSS 9.8) was found on asset 1: Critical server remote code execution\",\n            \"notification_id\": 1,\n            \"notification_type\": \"Vulnerability Alert\",\n            \"read_date\": null,\n            \"severity_level\": \"Critical\",\n            \"status\": \"Unread\",\n            \"title\": \"Critical vulnerability on Demo Web Server\",\n            \"user_full_name\": \"Test Security Analyst\",\n            \"user_id\": 2,\n            \"username\": \"test_analyst\"\n        },\n        {\n            \"creation_date\": \"2026-10-19T19:28:29.159364+00:00\",\n            \"message\": \"CVE-2026-12345 (CVSS 9.8) was found on asset 1: Critical server remote code execution\",\n            \"notification_id\": 2,\n            \"notification_type\": \"Vulnerability Alert\",\n            \"read_date\": null,\n            \"severity_level\": \"Critical\",\n            \"status\": \"Unread\",\n            \"title\": \"Critical vulnerability on Demo Web Server\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        },\n        {\n            \"creation_date\": \"2026-10-19T20:04:58.555976+00:00\",\n            \"message\": \"The security portal will undergo scheduled maintenance tonight.\",\n            \"notification_id\": 4,\n            \"notification_type\": \"System Notification\",\n            \"read_date\": null,\n            \"severity_level\": \"Low\",\n            \"status\": \"Unread\",\n            \"title\": \"Scheduled maintenance notice\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        },\n        {\n            \"creation_date\": \"2026-10-19T20:06:07.906448+00:00\",\n            \"message\": \"A high severity vulnerability requires remediation.\",\n            \"notification_id\": 5,\n            \"notification_type\": \"Vulnerability Alert\",\n            \"read_date\": null,\n            \"severity_level\": \"High\",\n            \"status\": \"Unread\",\n            \"title\": \"High severity vulnerability found\",\n            \"user_full_name\": \"Tracy Ghosn\",\n            \"user_id\": 1,\n            \"username\": \"tracyy\"\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Analyst search (limited to own notifications)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/search?status=Unread",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Unread"
+                }
+              ]
+            },
+            "description": "Analyst search is restricted to that analyst's own user ID. A supplied different user_id is rejected."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "6 - Authorization and delete",
+      "item": [
+        {
+          "name": "Regular user search denied (expect 403)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{regularToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/search?status=Unread",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Unread"
+                }
+              ]
+            },
+            "description": "Search is unavailable to regular users; expected HTTP 403."
+          },
+          "response": [
+            {
+              "name": "Regular user search denied (expect 403)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{regularToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/search?status=Unread",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "Unread"
+                    }
+                  ]
+                }
+              },
+              "status": "FORBIDDEN",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:22:23 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Analyst delete denied (expect 403)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{notificationId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "{{notificationId}}"
+              ]
+            },
+            "description": "Deletion is admin only; expected HTTP 403. Run before successful admin deletion."
+          },
+          "response": [
+            {
+              "name": "Analyst delete denied (expect 403)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{analystToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{notificationId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "{{notificationId}}"
+                  ]
+                }
+              },
+              "status": "FORBIDDEN",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:22:45 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete notification (Admin only)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{notificationId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "notifications",
+                "{{notificationId}}"
+              ]
+            },
+            "description": "Admin only. Run after taking screenshots that need this notification."
+          },
+          "response": [
+            {
+              "name": "Delete notification (Admin only)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/notifications/{{notificationId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "notifications",
+                    "{{notificationId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 19 Oct 2026 20:23:09 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "67"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Notification deleted successfully\",\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:5000",
+      "type": "string"
+    },
+    {
+      "key": "adminUsername",
+      "value": "admin",
+      "type": "string"
+    },
+    {
+      "key": "adminPassword",
+      "value": "CHANGE_ME",
+      "type": "string"
+    },
+    {
+      "key": "analystUsername",
+      "value": "analyst",
+      "type": "string"
+    },
+    {
+      "key": "analystPassword",
+      "value": "CHANGE_ME",
+      "type": "string"
+    },
+    {
+      "key": "auditorUsername",
+      "value": "auditor",
+      "type": "string"
+    },
+    {
+      "key": "auditorPassword",
+      "value": "CHANGE_ME",
+      "type": "string"
+    },
+    {
+      "key": "regularUsername",
+      "value": "employee",
+      "type": "string"
+    },
+    {
+      "key": "regularPassword",
+      "value": "CHANGE_ME",
+      "type": "string"
+    },
+    {
+      "key": "adminToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "analystToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "auditorToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "regularToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "emptyUserId",
+      "value": "2",
+      "type": "string"
+    },
+    {
+      "key": "notificationId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "invalidNotificationId",
+      "value": "999999",
+      "type": "string"
+    }
+  ]
+}
