@@ -37,24 +37,20 @@ git clone https://github.com/sabaronnie/EECE435L_Sprint1.git Sprint1
 cd Sprint1
 ```
 
-Create a new virtual environment in the project's **parent directory**, keeping it outside the repository:
+Create and activate a new virtual environment inside the checkout, then install the dependencies:
 
 ```bash
-python3 -m venv ../.venv
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
 
-Install the project dependencies into the new environment:
-
-```bash
-../.venv/bin/python -m pip install -r requirements.txt
-```
-
-[requirements.txt](requirements.txt) specifies Flask and Flask-Cors. All following commands use this newly created parent environment directly, so you do not need to activate it.
+[requirements.txt](requirements.txt) specifies Flask and Flask-Cors. Run the remaining commands from the project directory with this environment activated. In each new terminal, activate it again with `source .venv/bin/activate`. The `.venv/` directory is excluded from Git.
 
 ### 2. Initialize the database
 
 ```bash
-../.venv/bin/python -m flask --app app init-db
+python -m flask --app app init-db
 ```
 
 The application also initializes missing tables when imported or started. Repeating initialization or restarting the server preserves existing users and records. The default file is `instance/database.db`; its parent directory is created automatically.
@@ -64,7 +60,7 @@ The application also initializes missing tables when imported or started. Repeat
 Create the first administrator using the trusted local CLI:
 
 ```bash
-../.venv/bin/python -m flask --app app create-admin \
+python -m flask --app app create-admin \
   --full-name "Farid Abi Doumit" \
   --username Farid_Admin \
   --email Farid_Admin@gmail.com \
@@ -76,7 +72,7 @@ The command prompts for a password and confirmation without displaying it. Passw
 ### 4. Run the server
 
 ```bash
-../.venv/bin/python app.py
+python app.py
 ```
 
 The application listens on **http://127.0.0.1:5001**. Keep this terminal running and stop it with `Ctrl+C`. Starting Flask does not log in as the administrator; authenticate through `/api/RonnieSaba/users/login` after startup.
@@ -84,7 +80,7 @@ The application listens on **http://127.0.0.1:5001**. Keep this terminal running
 The equivalent Flask CLI command must specify the port explicitly:
 
 ```bash
-../.venv/bin/python -m flask --app app run --port 5001
+python -m flask --app app run --port 5001
 ```
 
 The CLI's default port is independent of `app.run(port=5001)`. If a port is occupied, choose another CLI port and change Postman's `base_url` to match. These commands use Flask's local development server; see the [Flask development-server documentation](https://flask.palletsprojects.com/en/stable/server/) for its intended use.
@@ -103,9 +99,9 @@ For an alternative database, use the same exported path for every database comma
 
 ```bash
 export DATABASE_PATH="$PWD/instance/demo.db"
-../.venv/bin/python -m flask --app app init-db
-../.venv/bin/python -m flask --app app create-admin
-../.venv/bin/python app.py
+python -m flask --app app init-db
+python -m flask --app app create-admin
+python app.py
 ```
 
 Changing the path selects a different database; it does not copy users from the original file. Environment variables are read at startup. The direct `python app.py` command does not load a `.env` file automatically.
