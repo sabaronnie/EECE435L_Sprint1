@@ -1,0 +1,3079 @@
+{
+  "info": {
+    "_postman_id": "3a3b78a5-a719-4bb5-91c4-6e3f2ba83e5a",
+    "name": "Service 9 - Security Playbook and Response Automation (Evidence)",
+    "description": "Evidence-focused Postman collection. Set baseUrl and role credentials first. Run the role logins to save bearer tokens. Use the created playbookId and action IDs for follow-up requests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58817793",
+    "_collection_link": "https://go.postman.co/collection/58817793-3a3b78a5-a719-4bb5-91c4-6e3f2ba83e5a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "0 - Authentication",
+      "item": [
+        {
+          "name": "Login as Security Administrator",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) pm.collectionVariables.set('adminToken', pm.response.json().token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifier\": \"tracyy\",\n  \"password\": \"Qwerty.123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "RonnieSaba",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login as Security Administrator",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"tracyy\",\n  \"password\": \"Qwerty.123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:07:59 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "458"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"expires_at\": \"2026-10-20T16:07:59.207410+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"NEP7z-X0VNfosgSno0O-1a2mJSweBqn7s5vEDq27f2A\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T11:20:19.276880+00:00\",\n        \"department\": \"Admin\",\n        \"email\": \"tracygh05@gmail.com\",\n        \"full_name\": \"Tracy Ghosn\",\n        \"last_login_at\": \"2026-10-20T15:07:59.207369+00:00\",\n        \"role\": \"SECURITY_ADMINISTRATOR\",\n        \"user_id\": 1,\n        \"username\": \"tracyy\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login as Security Analyst",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) pm.collectionVariables.set('analystToken', pm.response.json().token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifier\": \"test_analyst\",\n  \"password\": \"AnalystTest123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "RonnieSaba",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login as Security Analyst",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"test_analyst\",\n  \"password\": \"AnalystTest123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:08:37 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "476"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"expires_at\": \"2026-10-20T16:08:37.369980+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"LwfGcHsHht3uJogHhTC4gChGTeUATCHi9WwU-EHKvuY\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:48:55.743752+00:00\",\n        \"department\": \"Security\",\n        \"email\": \"test_analyst@example.com\",\n        \"full_name\": \"Test Security Analyst\",\n        \"last_login_at\": \"2026-10-20T15:08:37.369940+00:00\",\n        \"role\": \"SECURITY_ANALYST\",\n        \"user_id\": 2,\n        \"username\": \"test_analyst\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login as Auditor",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) pm.collectionVariables.set('auditorToken', pm.response.json().token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifier\": \"test_auditor\",\n  \"password\": \"AuditorTest123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "RonnieSaba",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login as Auditor",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"test_auditor\",\n  \"password\": \"AuditorTest123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:10:33 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "455"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"expires_at\": \"2026-10-20T16:10:33.466381+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"WaDDaNdxc9quDVDpcHr4HCJ0RHoSL3JJDZeFQx1lOnk\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:50:11.202751+00:00\",\n        \"department\": \"Audit\",\n        \"email\": \"test_auditor@example.com\",\n        \"full_name\": \"Test Auditor\",\n        \"last_login_at\": \"2026-10-20T15:10:33.465709+00:00\",\n        \"role\": \"AUDITOR\",\n        \"user_id\": 3,\n        \"username\": \"test_auditor\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login as Regular User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) pm.collectionVariables.set('regularToken', pm.response.json().token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{regularUsername}}\",\n  \"password\": \"{{regularPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "RonnieSaba",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login as Regular User",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"test_regular\",\n  \"password\": \"RegularTest123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/RonnieSaba/users/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:11:02 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "467"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"expires_at\": \"2026-10-20T16:11:02.938273+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"5jUN76psfRE0wknVOLZlm9-ZJu1hOT2p6Cnnmi2fBaY\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:51:07.041071+00:00\",\n        \"department\": \"General\",\n        \"email\": \"test_regular@example.com\",\n        \"full_name\": \"Test Regular User\",\n        \"last_login_at\": \"2026-10-20T15:11:02.938230+00:00\",\n        \"role\": \"REGULAR_USER\",\n        \"user_id\": 4,\n        \"username\": \"test_regular\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1 - Create playbooks (Admin only)",
+      "item": [
+        {
+          "name": "Create playbook A - Malware Incident",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) pm.collectionVariables.set('playbookId', String(pm.response.json().playbook.playbook_id));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"playbook_name\": \"Malware Incident Response\",\n  \"description\": \"Standard steps for investigating and containing a malware incident.\",\n  \"incident_category\": \"Malware\",\n  \"severity\": \"High\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks"
+              ]
+            },
+            "description": "Admin only. Response returns the new playbook and an empty response_actions array."
+          },
+          "response": [
+            {
+              "name": "Create playbook A - Malware Incident",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"playbook_name\": \"Malware Incident Response\",\n  \"description\": \"Standard steps for investigating and containing a malware incident.\",\n  \"incident_category\": \"Malware\",\n  \"severity\": \"High\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks"
+                  ]
+                }
+              },
+              "status": "CREATED",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:11:24 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "464"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Playbook created successfully\",\n    \"playbook\": {\n        \"action_count\": 0,\n        \"completed_actions\": 0,\n        \"created_by\": 1,\n        \"created_by_name\": \"Tracy Ghosn\",\n        \"created_by_username\": \"tracyy\",\n        \"creation_date\": \"2026-10-20T15:11:24.238609+00:00\",\n        \"description\": \"Standard steps for investigating and containing a malware incident.\",\n        \"incident_category\": \"Malware\",\n        \"playbook_id\": 1,\n        \"playbook_name\": \"Malware Incident Response\",\n        \"response_actions\": [],\n        \"severity_level\": \"High\"\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create playbook B - Phishing Incident",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) pm.collectionVariables.set('secondPlaybookId', String(pm.response.json().playbook.playbook_id));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"playbook_name\": \"Phishing Incident Response\",\n  \"description\": \"Standard steps for investigating a suspected phishing event.\",\n  \"incident_category\": \"Phishing\",\n  \"severity\": \"Medium\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks"
+              ]
+            },
+            "description": "Creates a second example playbook. Change the name if repeating."
+          },
+          "response": [
+            {
+              "name": "Create playbook B - Phishing Incident",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"playbook_name\": \"Phishing Incident Response\",\n  \"description\": \"Standard steps for investigating a suspected phishing event.\",\n  \"incident_category\": \"Phishing\",\n  \"severity\": \"Medium\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks"
+                  ]
+                }
+              },
+              "status": "CREATED",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:13:04 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "461"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Playbook created successfully\",\n    \"playbook\": {\n        \"action_count\": 0,\n        \"completed_actions\": 0,\n        \"created_by\": 1,\n        \"created_by_name\": \"Tracy Ghosn\",\n        \"created_by_username\": \"tracyy\",\n        \"creation_date\": \"2026-10-20T15:13:04.759389+00:00\",\n        \"description\": \"Standard steps for investigating a suspected phishing event.\",\n        \"incident_category\": \"Phishing\",\n        \"playbook_id\": 2,\n        \"playbook_name\": \"Phishing Incident Response\",\n        \"response_actions\": [],\n        \"severity_level\": \"Medium\"\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Analyst cannot create playbook (expect 403)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"playbook_name\": \"Denied analyst create test\",\n  \"description\": \"This request should be denied.\",\n  \"incident_category\": \"Test\",\n  \"severity\": \"Low\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks"
+              ]
+            },
+            "description": "Expected HTTP 403: only Security Administrators can create playbooks."
+          },
+          "response": [
+            {
+              "name": "Analyst cannot create playbook (expect 403)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{analystToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"playbook_name\": \"Denied analyst create test\",\n  \"description\": \"This request should be denied.\",\n  \"incident_category\": \"Test\",\n  \"severity\": \"Low\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks"
+                  ]
+                }
+              },
+              "status": "FORBIDDEN",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:13:41 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2 - Retrieve playbooks",
+      "item": [
+        {
+          "name": "Get all playbooks (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get all playbooks (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:14:17 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "768"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"playbooks\": [\n        {\n            \"action_count\": 0,\n            \"completed_actions\": 0,\n            \"created_by\": 1,\n            \"created_by_name\": \"Tracy Ghosn\",\n            \"created_by_username\": \"tracyy\",\n            \"creation_date\": \"2026-10-20T15:11:24.238609+00:00\",\n            \"description\": \"Standard steps for investigating and containing a malware incident.\",\n            \"incident_category\": \"Malware\",\n            \"playbook_id\": 1,\n            \"playbook_name\": \"Malware Incident Response\",\n            \"severity_level\": \"High\"\n        },\n        {\n            \"action_count\": 0,\n            \"completed_actions\": 0,\n            \"created_by\": 1,\n            \"created_by_name\": \"Tracy Ghosn\",\n            \"created_by_username\": \"tracyy\",\n            \"creation_date\": \"2026-10-20T15:13:04.759389+00:00\",\n            \"description\": \"Standard steps for investigating a suspected phishing event.\",\n            \"incident_category\": \"Phishing\",\n            \"playbook_id\": 2,\n            \"playbook_name\": \"Phishing Incident Response\",\n            \"severity_level\": \"Medium\"\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get all playbooks (Analyst)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get all playbooks (Analyst)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{analystToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:15:00 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "768"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"playbooks\": [\n        {\n            \"action_count\": 0,\n            \"completed_actions\": 0,\n            \"created_by\": 1,\n            \"created_by_name\": \"Tracy Ghosn\",\n            \"created_by_username\": \"tracyy\",\n            \"creation_date\": \"2026-10-20T15:11:24.238609+00:00\",\n            \"description\": \"Standard steps for investigating and containing a malware incident.\",\n            \"incident_category\": \"Malware\",\n            \"playbook_id\": 1,\n            \"playbook_name\": \"Malware Incident Response\",\n            \"severity_level\": \"High\"\n        },\n        {\n            \"action_count\": 0,\n            \"completed_actions\": 0,\n            \"created_by\": 1,\n            \"created_by_name\": \"Tracy Ghosn\",\n            \"created_by_username\": \"tracyy\",\n            \"creation_date\": \"2026-10-20T15:13:04.759389+00:00\",\n            \"description\": \"Standard steps for investigating a suspected phishing event.\",\n            \"incident_category\": \"Phishing\",\n            \"playbook_id\": 2,\n            \"playbook_name\": \"Phishing Incident Response\",\n            \"severity_level\": \"Medium\"\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get all playbooks (Auditor)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auditorToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get all playbooks (Auditor)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auditorToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:15:38 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "768"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"playbooks\": [\n        {\n            \"action_count\": 0,\n            \"completed_actions\": 0,\n            \"created_by\": 1,\n            \"created_by_name\": \"Tracy Ghosn\",\n            \"created_by_username\": \"tracyy\",\n            \"creation_date\": \"2026-10-20T15:11:24.238609+00:00\",\n            \"description\": \"Standard steps for investigating and containing a malware incident.\",\n            \"incident_category\": \"Malware\",\n            \"playbook_id\": 1,\n            \"playbook_name\": \"Malware Incident Response\",\n            \"severity_level\": \"High\"\n        },\n        {\n            \"action_count\": 0,\n            \"completed_actions\": 0,\n            \"created_by\": 1,\n            \"created_by_name\": \"Tracy Ghosn\",\n            \"created_by_username\": \"tracyy\",\n            \"creation_date\": \"2026-10-20T15:13:04.759389+00:00\",\n            \"description\": \"Standard steps for investigating a suspected phishing event.\",\n            \"incident_category\": \"Phishing\",\n            \"playbook_id\": 2,\n            \"playbook_name\": \"Phishing Incident Response\",\n            \"severity_level\": \"Medium\"\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Regular user cannot list playbooks (expect 403)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{regularToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks"
+              ]
+            },
+            "description": "Expected HTTP 403: regular users have no playbook API access."
+          },
+          "response": [
+            {
+              "name": "Regular user cannot list playbooks (expect 403)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{regularToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks"
+                  ]
+                }
+              },
+              "status": "FORBIDDEN",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:16:12 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get specific playbook with ordered actions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{playbookId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks",
+                "{{playbookId}}"
+              ]
+            },
+            "description": "Response includes response_actions ordered by step_number."
+          },
+          "response": [
+            {
+              "name": "Get specific playbook with ordered actions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{analystToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{playbookId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks",
+                    "{{playbookId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:16:40 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "422"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"playbook\": {\n        \"action_count\": 0,\n        \"completed_actions\": 0,\n        \"created_by\": 1,\n        \"created_by_name\": \"Tracy Ghosn\",\n        \"created_by_username\": \"tracyy\",\n        \"creation_date\": \"2026-10-20T15:11:24.238609+00:00\",\n        \"description\": \"Standard steps for investigating and containing a malware incident.\",\n        \"incident_category\": \"Malware\",\n        \"playbook_id\": 1,\n        \"playbook_name\": \"Malware Incident Response\",\n        \"response_actions\": [],\n        \"severity_level\": \"High\"\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get invalid playbook ID (expect 404)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auditorToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{invalidPlaybookId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks",
+                "{{invalidPlaybookId}}"
+              ]
+            },
+            "description": "Expected HTTP 404 and message Playbook not found."
+          },
+          "response": [
+            {
+              "name": "Get invalid playbook ID (expect 404)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auditorToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{invalidPlaybookId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks",
+                    "{{invalidPlaybookId}}"
+                  ]
+                }
+              },
+              "status": "NOT FOUND",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:17:10 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "50"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Playbook not found\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3 - Add response actions (Admin or Analyst)",
+      "item": [
+        {
+          "name": "Add step 1 - Contain affected host",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) pm.collectionVariables.set('firstActionId', String(pm.response.json().action.action_id));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action_description\": \"Isolate the affected host from the network.\",\n  \"step_number\": 1,\n  \"assigned_user_id\": {{assignedUserId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{playbookId}}/actions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks",
+                "{{playbookId}}",
+                "actions"
+              ]
+            },
+            "description": "Admin or Analyst. Assignment is optional. If omitted, the analyst is automatically assigned when starting the action. Step numbers must be unique within a playbook."
+          },
+          "response": [
+            {
+              "name": "Add step 1 - Contain affected host",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{analystToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action_description\": \"Isolate the affected host from the network.\",\n  \"step_number\": 1,\n  \"assigned_user_id\": {{assignedUserId}}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{playbookId}}/actions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks",
+                    "{{playbookId}}",
+                    "actions"
+                  ]
+                }
+              },
+              "status": "CREATED",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:21:10 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "319"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"action\": {\n        \"action_description\": \"Isolate the affected host from the network.\",\n        \"action_id\": 1,\n        \"assigned_user_id\": 1,\n        \"assigned_user_name\": \"Tracy Ghosn\",\n        \"assigned_username\": \"tracyy\",\n        \"completion_date\": null,\n        \"playbook_id\": 1,\n        \"status\": \"Pending\",\n        \"step_number\": 1\n    },\n    \"message\": \"Response action added successfully\",\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add step 2 - Collect forensic evidence",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) pm.collectionVariables.set('secondActionId', String(pm.response.json().action.action_id));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action_description\": \"Collect forensic evidence and preserve relevant logs.\",\n  \"step_number\": 2,\n  \"assigned_user_id\": {{assignedUserId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{playbookId}}/actions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks",
+                "{{playbookId}}",
+                "actions"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Add step 2 - Collect forensic evidence",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{analystToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action_description\": \"Collect forensic evidence and preserve relevant logs.\",\n  \"step_number\": 2,\n  \"assigned_user_id\": {{assignedUserId}}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{playbookId}}/actions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks",
+                    "{{playbookId}}",
+                    "actions"
+                  ]
+                }
+              },
+              "status": "CREATED",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:21:51 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "329"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"action\": {\n        \"action_description\": \"Collect forensic evidence and preserve relevant logs.\",\n        \"action_id\": 2,\n        \"assigned_user_id\": 1,\n        \"assigned_user_name\": \"Tracy Ghosn\",\n        \"assigned_username\": \"tracyy\",\n        \"completion_date\": null,\n        \"playbook_id\": 1,\n        \"status\": \"Pending\",\n        \"step_number\": 2\n    },\n    \"message\": \"Response action added successfully\",\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Auditor cannot add action (expect 403)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auditorToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action_description\": \"This action should be denied.\",\n  \"step_number\": 3\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{playbookId}}/actions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks",
+                "{{playbookId}}",
+                "actions"
+              ]
+            },
+            "description": "Expected HTTP 403: auditors are read-only for playbooks."
+          },
+          "response": [
+            {
+              "name": "Auditor cannot add action (expect 403)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auditorToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action_description\": \"This action should be denied.\",\n  \"step_number\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{playbookId}}/actions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks",
+                    "{{playbookId}}",
+                    "actions"
+                  ]
+                }
+              },
+              "status": "FORBIDDEN",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:22:24 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Regular user cannot add action (expect 403)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{regularToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action_description\": \"This action should be denied.\",\n  \"step_number\": 3\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{playbookId}}/actions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks",
+                "{{playbookId}}",
+                "actions"
+              ]
+            },
+            "description": "Expected HTTP 403."
+          },
+          "response": [
+            {
+              "name": "Regular user cannot add action (expect 403)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{regularToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action_description\": \"This action should be denied.\",\n  \"step_number\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{playbookId}}/actions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks",
+                    "{{playbookId}}",
+                    "actions"
+                  ]
+                }
+              },
+              "status": "FORBIDDEN",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:22:56 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4 - Update action status (Admin or Analyst)",
+      "item": [
+        {
+          "name": "Try step 2 early (expect 409)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"In Progress\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{secondActionId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "actions",
+                "{{secondActionId}}",
+                "status"
+              ]
+            },
+            "description": "Expected HTTP 409 while step 1 is unfinished: Earlier response steps must be completed first."
+          },
+          "response": [
+            {
+              "name": "Try step 2 early (expect 409)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{analystToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"In Progress\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{secondActionId}}/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "actions",
+                    "{{secondActionId}}",
+                    "status"
+                  ]
+                }
+              },
+              "status": "CONFLICT",
+              "code": 409,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:26:52 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "113"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"details\": {\n        \"unfinished_steps\": [\n            1\n        ]\n    },\n    \"message\": \"Earlier response steps must be completed first\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Start step 1",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"In Progress\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{firstActionId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "actions",
+                "{{firstActionId}}",
+                "status"
+              ]
+            },
+            "description": "Pending → In Progress. Since no assignment is supplied, the service assigns the action to the logged-in analyst."
+          },
+          "response": [
+            {
+              "name": "Start step 1",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{analystToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"In Progress\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{firstActionId}}/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "actions",
+                    "{{firstActionId}}",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:28:35 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "325"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"action\": {\n        \"action_description\": \"Isolate the affected host from the network.\",\n        \"action_id\": 1,\n        \"assigned_user_id\": 1,\n        \"assigned_user_name\": \"Tracy Ghosn\",\n        \"assigned_username\": \"tracyy\",\n        \"completion_date\": null,\n        \"playbook_id\": 1,\n        \"status\": \"In Progress\",\n        \"step_number\": 1\n    },\n    \"message\": \"Response action updated successfully\",\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Complete step 1",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"Completed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{firstActionId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "actions",
+                "{{firstActionId}}",
+                "status"
+              ]
+            },
+            "description": "In Progress → Completed. The service records completion_date automatically."
+          },
+          "response": [
+            {
+              "name": "Complete step 1",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{analystToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"Completed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{firstActionId}}/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "actions",
+                    "{{firstActionId}}",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:29:14 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "353"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"action\": {\n        \"action_description\": \"Isolate the affected host from the network.\",\n        \"action_id\": 1,\n        \"assigned_user_id\": 1,\n        \"assigned_user_name\": \"Tracy Ghosn\",\n        \"assigned_username\": \"tracyy\",\n        \"completion_date\": \"2026-10-20T15:29:14.621225+00:00\",\n        \"playbook_id\": 1,\n        \"status\": \"Completed\",\n        \"step_number\": 1\n    },\n    \"message\": \"Response action updated successfully\",\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Start step 2",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"In Progress\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{secondActionId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "actions",
+                "{{secondActionId}}",
+                "status"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Start step 2",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{analystToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"In Progress\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{secondActionId}}/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "actions",
+                    "{{secondActionId}}",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:29:43 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "335"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"action\": {\n        \"action_description\": \"Collect forensic evidence and preserve relevant logs.\",\n        \"action_id\": 2,\n        \"assigned_user_id\": 1,\n        \"assigned_user_name\": \"Tracy Ghosn\",\n        \"assigned_username\": \"tracyy\",\n        \"completion_date\": null,\n        \"playbook_id\": 1,\n        \"status\": \"In Progress\",\n        \"step_number\": 2\n    },\n    \"message\": \"Response action updated successfully\",\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Auditor cannot update action (expect 403)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auditorToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"Completed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{secondActionId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "actions",
+                "{{secondActionId}}",
+                "status"
+              ]
+            },
+            "description": "Expected HTTP 403: auditors can read but cannot update action status."
+          },
+          "response": [
+            {
+              "name": "Auditor cannot update action (expect 403)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auditorToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"Completed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{secondActionId}}/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "actions",
+                    "{{secondActionId}}",
+                    "status"
+                  ]
+                }
+              },
+              "status": "FORBIDDEN",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:31:10 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Regular user cannot update action (expect 403)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{regularToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"Completed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{secondActionId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "actions",
+                "{{secondActionId}}",
+                "status"
+              ]
+            },
+            "description": "Expected HTTP 403."
+          },
+          "response": [
+            {
+              "name": "Regular user cannot update action (expect 403)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{regularToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"Completed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{secondActionId}}/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "actions",
+                    "{{secondActionId}}",
+                    "status"
+                  ]
+                }
+              },
+              "status": "FORBIDDEN",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:31:46 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Invalid action ID (expect 404)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"In Progress\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{invalidActionId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "actions",
+                "{{invalidActionId}}",
+                "status"
+              ]
+            },
+            "description": "Expected HTTP 404 and message Response action not found."
+          },
+          "response": [
+            {
+              "name": "Invalid action ID (expect 404)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{analystToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"In Progress\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/actions/{{invalidActionId}}/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "actions",
+                    "{{invalidActionId}}",
+                    "status"
+                  ]
+                }
+              },
+              "status": "NOT FOUND",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:32:26 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "57"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Response action not found\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "5 - Delete playbook (Admin only)",
+      "item": [
+        {
+          "name": "Analyst cannot delete playbook (expect 403)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{secondPlaybookId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks",
+                "{{secondPlaybookId}}"
+              ]
+            },
+            "description": "Expected HTTP 403. Uses the second playbook so the main playbook and its actions remain available."
+          },
+          "response": [
+            {
+              "name": "Analyst cannot delete playbook (expect 403)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{analystToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{secondPlaybookId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks",
+                    "{{secondPlaybookId}}"
+                  ]
+                }
+              },
+              "status": "FORBIDDEN",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:33:24 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Auditor cannot delete playbook (expect 403)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auditorToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{secondPlaybookId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks",
+                "{{secondPlaybookId}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Auditor cannot delete playbook (expect 403)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auditorToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{secondPlaybookId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks",
+                    "{{secondPlaybookId}}"
+                  ]
+                }
+              },
+              "status": "FORBIDDEN",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:35:12 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Regular user cannot delete playbook (expect 403)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{regularToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{secondPlaybookId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks",
+                "{{secondPlaybookId}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Regular user cannot delete playbook (expect 403)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{regularToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{secondPlaybookId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks",
+                    "{{secondPlaybookId}}"
+                  ]
+                }
+              },
+              "status": "FORBIDDEN",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:35:44 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "87"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete playbook (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{secondPlaybookId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "FaridAbiDoumit",
+                "playbooks",
+                "{{secondPlaybookId}}"
+              ]
+            },
+            "description": "Successful admin deletion. Run after taking screenshots of the second playbook."
+          },
+          "response": [
+            {
+              "name": "Delete playbook (Admin)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/FaridAbiDoumit/playbooks/{{secondPlaybookId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "FaridAbiDoumit",
+                    "playbooks",
+                    "{{secondPlaybookId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 20 Oct 2026 15:36:26 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "63"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Playbook deleted successfully\",\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:5000",
+      "type": "string"
+    },
+    {
+      "key": "adminUsername",
+      "value": "admin",
+      "type": "string"
+    },
+    {
+      "key": "adminPassword",
+      "value": "CHANGE_ME",
+      "type": "string"
+    },
+    {
+      "key": "analystUsername",
+      "value": "analyst",
+      "type": "string"
+    },
+    {
+      "key": "analystPassword",
+      "value": "CHANGE_ME",
+      "type": "string"
+    },
+    {
+      "key": "auditorUsername",
+      "value": "auditor",
+      "type": "string"
+    },
+    {
+      "key": "auditorPassword",
+      "value": "CHANGE_ME",
+      "type": "string"
+    },
+    {
+      "key": "regularUsername",
+      "value": "employee",
+      "type": "string"
+    },
+    {
+      "key": "regularPassword",
+      "value": "CHANGE_ME",
+      "type": "string"
+    },
+    {
+      "key": "adminToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "analystToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "auditorToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "regularToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "assignedUserId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "playbookId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "secondPlaybookId",
+      "value": "2",
+      "type": "string"
+    },
+    {
+      "key": "firstActionId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "secondActionId",
+      "value": "2",
+      "type": "string"
+    },
+    {
+      "key": "invalidPlaybookId",
+      "value": "999999",
+      "type": "string"
+    },
+    {
+      "key": "invalidActionId",
+      "value": "999999",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,2082 @@
+{
+  "info": {
+    "_postman_id": "e51a34d3-1e09-45f6-9a9c-15836203d76a",
+    "name": "Tracy Ghosn Service 5",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58817793",
+    "_collection_link": "https://go.postman.co/collection/58817793-e51a34d3-1e09-45f6-9a9c-15836203d76a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Create Log",
+      "item": [
+        {
+          "name": "Admin Login",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifier\": \"tracyy\",\n  \"password\": \"Qwerty.123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "RonnieSaba",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Admin Login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"tracyy\",\n  \"password\": \"Qwerty.123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 18:20:11 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "458"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"expires_at\": \"2026-10-17T19:20:11.317995+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"LRZkoWj6jet7YFbNJZ7PMcZRAdUx2lEw9QZxwI1Z0C4\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T11:20:19.276880+00:00\",\n        \"department\": \"Admin\",\n        \"email\": \"tracygh05@gmail.com\",\n        \"full_name\": \"Tracy Ghosn\",\n        \"last_login_at\": \"2026-10-17T18:20:11.316831+00:00\",\n        \"role\": \"SECURITY_ADMINISTRATOR\",\n        \"user_id\": 1,\n        \"username\": \"tracyy\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "LRZkoWj6jet7YFbNJZ7PMcZRAdUx2lEw9QZxwI1Z0C4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 1,\n  \"action\": \"POSTMAN_TEST\",\n  \"description\": \"Testing the audit log create endpoint\",\n  \"severity\": \"Information\",\n  \"related_service\": \"Security Audit Logging\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "logs"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "New Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": 1,\n  \"action\": \"POSTMAN_TEST\",\n  \"description\": \"Testing the audit log create endpoint\",\n  \"severity\": \"Information\",\n  \"related_service\": \"Security Audit Logging\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs"
+                  ]
+                }
+              },
+              "status": "CREATED",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 18:21:56 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "349"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"log\": {\n        \"action_performed\": \"POSTMAN_TEST\",\n        \"actor_user_id\": 1,\n        \"actor_username\": \"tracyy\",\n        \"description\": \"Testing the audit log create endpoint\",\n        \"log_id\": 22,\n        \"related_service\": \"Security Audit Logging\",\n        \"severity_level\": \"Information\",\n        \"timestamp\": \"2026-10-17T18:21:56.368069+00:00\",\n        \"user_id\": 1\n    },\n    \"message\": \"Audit log created successfully\",\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Retrieve Logs",
+      "item": [
+        {
+          "name": "Retrieve All Logs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "LRZkoWj6jet7YFbNJZ7PMcZRAdUx2lEw9QZxwI1Z0C4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "logs"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Retrieve All Logs",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 18:26:39 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "6025"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"logs\": [\n        {\n            \"action_performed\": \"USER_REGISTERED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Created user 1\",\n            \"log_id\": 1,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T11:20:19.277937+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"User logged in\",\n            \"log_id\": 2,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T11:58:13.144520+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_CREATED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Added IP Address threat indicator 1\",\n            \"log_id\": 3,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:05:37.127277+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_CREATED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Added Domain threat indicator 2\",\n            \"log_id\": 4,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:07:46.940420+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_CREATED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Added File Hash threat indicator 3\",\n            \"log_id\": 5,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:09:43.710698+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_UPDATED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Updated threat indicator 2\",\n            \"log_id\": 6,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:32:44.842027+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_DELETED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Deleted threat indicator 2\",\n            \"log_id\": 7,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:33:56.398338+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"USER_REGISTERED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Created user 2\",\n            \"log_id\": 8,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:48:55.743857+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"USER_REGISTERED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Created user 3\",\n            \"log_id\": 9,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:50:11.202855+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"USER_REGISTERED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Created user 4\",\n            \"log_id\": 10,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:51:07.041192+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"LOGIN_FAILED\",\n            \"actor_user_id\": null,\n            \"actor_username\": null,\n            \"description\": \"Invalid credentials or inactive account\",\n            \"log_id\": 11,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T12:53:38.250674+00:00\",\n            \"user_id\": null\n        },\n        {\n            \"action_performed\": \"LOGIN_FAILED\",\n            \"actor_user_id\": 4,\n            \"actor_username\": \"test_regular\",\n            \"description\": \"Invalid credentials or inactive account\",\n            \"log_id\": 12,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T12:54:30.966943+00:00\",\n            \"user_id\": 4\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 4,\n            \"actor_username\": \"test_regular\",\n            \"description\": \"User logged in\",\n            \"log_id\": 13,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:55:02.923051+00:00\",\n            \"user_id\": 4\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 4,\n            \"actor_username\": \"test_regular\",\n            \"description\": \"GET /api/TracyGhosn/threats\",\n            \"log_id\": 14,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T12:56:36.002783+00:00\",\n            \"user_id\": 4\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"User logged in\",\n            \"log_id\": 15,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:58:37.238948+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"DELETE /api/TracyGhosn/threats/1\",\n            \"log_id\": 16,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T13:00:37.388524+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"DELETE /api/TracyGhosn/threats/1\",\n            \"log_id\": 17,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T13:01:31.993170+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 3,\n            \"actor_username\": \"test_auditor\",\n            \"description\": \"User logged in\",\n            \"log_id\": 18,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T13:04:58.751812+00:00\",\n            \"user_id\": 3\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 3,\n            \"actor_username\": \"test_auditor\",\n            \"description\": \"DELETE /api/TracyGhosn/threats/1\",\n            \"log_id\": 19,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T13:07:21.730747+00:00\",\n            \"user_id\": 3\n        },\n        {\n            \"action_performed\": \"AUTHENTICATION_FAILED\",\n            \"actor_user_id\": null,\n            \"actor_username\": null,\n            \"description\": \"HTTP 401: GET /api/TracyGhosn/logs\",\n            \"log_id\": 20,\n            \"related_service\": \"Security Audit Logging\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T18:13:25.297680+00:00\",\n            \"user_id\": null\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"User logged in\",\n            \"log_id\": 21,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T18:20:11.318476+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"POSTMAN_TEST\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Testing the audit log create endpoint\",\n            \"log_id\": 22,\n            \"related_service\": \"Security Audit Logging\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T18:21:56.368069+00:00\",\n            \"user_id\": 1\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Retrieve specific log",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "LRZkoWj6jet7YFbNJZ7PMcZRAdUx2lEw9QZxwI1Z0C4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 1,\n  \"action\": \"POSTMAN_TEST\",\n  \"description\": \"Testing the audit log create endpoint\",\n  \"severity\": \"Information\",\n  \"related_service\": \"Security Audit Logging\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/19",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "logs",
+                "19"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Retrieve specific log",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": 1,\n  \"action\": \"POSTMAN_TEST\",\n  \"description\": \"Testing the audit log create endpoint\",\n  \"severity\": \"Information\",\n  \"related_service\": \"Security Audit Logging\"\n}"
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/19",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs",
+                    "19"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 18:29:16 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "305"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"log\": {\n        \"action_performed\": \"PERMISSION_DENIED\",\n        \"actor_user_id\": 3,\n        \"actor_username\": \"test_auditor\",\n        \"description\": \"DELETE /api/TracyGhosn/threats/1\",\n        \"log_id\": 19,\n        \"related_service\": \"Threat Intelligence\",\n        \"severity_level\": \"Warning\",\n        \"timestamp\": \"2026-10-17T13:07:21.730747+00:00\",\n        \"user_id\": 3\n    },\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Retrieve Invalid Log",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "LRZkoWj6jet7YFbNJZ7PMcZRAdUx2lEw9QZxwI1Z0C4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 1,\n  \"action\": \"POSTMAN_TEST\",\n  \"description\": \"Testing the audit log create endpoint\",\n  \"severity\": \"Information\",\n  \"related_service\": \"Security Audit Logging\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/9999",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "logs",
+                "9999"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Retrieve Invalid Log",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": 1,\n  \"action\": \"POSTMAN_TEST\",\n  \"description\": \"Testing the audit log create endpoint\",\n  \"severity\": \"Information\",\n  \"related_service\": \"Security Audit Logging\"\n}"
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/9999",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs",
+                    "9999"
+                  ]
+                }
+              },
+              "status": "NOT FOUND",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 18:29:57 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "51"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Audit log not found\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Retrieve Logs By User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "LRZkoWj6jet7YFbNJZ7PMcZRAdUx2lEw9QZxwI1Z0C4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/user/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "logs",
+                "user",
+                "2"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Retrieve Logs By User",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/user/2",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs",
+                    "user",
+                    "2"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 18:35:59 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "856"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"logs\": [\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"User logged in\",\n            \"log_id\": 15,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:58:37.238948+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"DELETE /api/TracyGhosn/threats/1\",\n            \"log_id\": 16,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T13:00:37.388524+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"DELETE /api/TracyGhosn/threats/1\",\n            \"log_id\": 17,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T13:01:31.993170+00:00\",\n            \"user_id\": 2\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Search Logs",
+      "item": [
+        {
+          "name": "Search by Action",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "LRZkoWj6jet7YFbNJZ7PMcZRAdUx2lEw9QZxwI1Z0C4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/search?action=LOGIN_SUCCESS",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "logs",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "LOGIN_SUCCESS"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search by Action",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/search?action=LOGIN_SUCCESS",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "LOGIN_SUCCESS"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 18:41:10 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1367"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"logs\": [\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"User logged in\",\n            \"log_id\": 2,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T11:58:13.144520+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 4,\n            \"actor_username\": \"test_regular\",\n            \"description\": \"User logged in\",\n            \"log_id\": 13,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:55:02.923051+00:00\",\n            \"user_id\": 4\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"User logged in\",\n            \"log_id\": 15,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:58:37.238948+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 3,\n            \"actor_username\": \"test_auditor\",\n            \"description\": \"User logged in\",\n            \"log_id\": 18,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T13:04:58.751812+00:00\",\n            \"user_id\": 3\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"User logged in\",\n            \"log_id\": 21,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T18:20:11.318476+00:00\",\n            \"user_id\": 1\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search by Severity",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "LRZkoWj6jet7YFbNJZ7PMcZRAdUx2lEw9QZxwI1Z0C4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/search?severity=Information",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "logs",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "severity",
+                  "value": "Information"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search by Severity",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/search?severity=Information",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "severity",
+                      "value": "Information"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 18:42:10 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "4059"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"logs\": [\n        {\n            \"action_performed\": \"USER_REGISTERED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Created user 1\",\n            \"log_id\": 1,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T11:20:19.277937+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"User logged in\",\n            \"log_id\": 2,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T11:58:13.144520+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_CREATED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Added IP Address threat indicator 1\",\n            \"log_id\": 3,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:05:37.127277+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_CREATED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Added Domain threat indicator 2\",\n            \"log_id\": 4,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:07:46.940420+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_CREATED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Added File Hash threat indicator 3\",\n            \"log_id\": 5,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:09:43.710698+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_UPDATED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Updated threat indicator 2\",\n            \"log_id\": 6,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:32:44.842027+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_DELETED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Deleted threat indicator 2\",\n            \"log_id\": 7,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:33:56.398338+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"USER_REGISTERED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Created user 2\",\n            \"log_id\": 8,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:48:55.743857+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"USER_REGISTERED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Created user 3\",\n            \"log_id\": 9,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:50:11.202855+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"USER_REGISTERED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Created user 4\",\n            \"log_id\": 10,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:51:07.041192+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 4,\n            \"actor_username\": \"test_regular\",\n            \"description\": \"User logged in\",\n            \"log_id\": 13,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:55:02.923051+00:00\",\n            \"user_id\": 4\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"User logged in\",\n            \"log_id\": 15,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:58:37.238948+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 3,\n            \"actor_username\": \"test_auditor\",\n            \"description\": \"User logged in\",\n            \"log_id\": 18,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T13:04:58.751812+00:00\",\n            \"user_id\": 3\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"User logged in\",\n            \"log_id\": 21,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T18:20:11.318476+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"POSTMAN_TEST\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Testing the audit log create endpoint\",\n            \"log_id\": 22,\n            \"related_service\": \"Security Audit Logging\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T18:21:56.368069+00:00\",\n            \"user_id\": 1\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search by User ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "LRZkoWj6jet7YFbNJZ7PMcZRAdUx2lEw9QZxwI1Z0C4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/search?user_id=2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "logs",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "user_id",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search by User ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/search?user_id=2",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 18:49:58 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "856"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"logs\": [\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"User logged in\",\n            \"log_id\": 15,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:58:37.238948+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"DELETE /api/TracyGhosn/threats/1\",\n            \"log_id\": 16,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T13:00:37.388524+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"DELETE /api/TracyGhosn/threats/1\",\n            \"log_id\": 17,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T13:01:31.993170+00:00\",\n            \"user_id\": 2\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search through Combined Filters",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "LRZkoWj6jet7YFbNJZ7PMcZRAdUx2lEw9QZxwI1Z0C4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/search?action=LOGIN_SUCCESS&severity=Information&user_id=1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "logs",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "LOGIN_SUCCESS"
+                },
+                {
+                  "key": "severity",
+                  "value": "Information"
+                },
+                {
+                  "key": "user_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search through Combined Filters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/search?action=LOGIN_SUCCESS&severity=Information&user_id=1",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "LOGIN_SUCCESS"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "Information"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 18:50:46 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "557"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"logs\": [\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"User logged in\",\n            \"log_id\": 2,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T11:58:13.144520+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"User logged in\",\n            \"log_id\": 21,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T18:20:11.318476+00:00\",\n            \"user_id\": 1\n        }\n    ],\n    \"status\": \"success\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Delete Log",
+      "item": [
+        {
+          "name": "Deleting Log",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "LRZkoWj6jet7YFbNJZ7PMcZRAdUx2lEw9QZxwI1Z0C4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/22",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "logs",
+                "22"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Deleting Log",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/22",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs",
+                    "22"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 18:53:04 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "64"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Audit log deleted successfully\",\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Deleting Invalid Log",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "LRZkoWj6jet7YFbNJZ7PMcZRAdUx2lEw9QZxwI1Z0C4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/2224",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "TracyGhosn",
+                "logs",
+                "2224"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Deleting Invalid Log",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/2224",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs",
+                    "2224"
+                  ]
+                }
+              },
+              "status": "NOT FOUND",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "Werkzeug/3.1.9 Python/3.13.1"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Oct 2026 18:53:54 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "51"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-store"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Audit log not found\",\n    \"status\": \"error\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Role Permission",
+      "item": [
+        {
+          "name": "Security Analyst",
+          "item": [
+            {
+              "name": "Analyst Login",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"test_analyst\",\n  \"password\": \"AnalystTest123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Analyst Login",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"identifier\": \"test_analyst\",\n  \"password\": \"AnalystTest123!\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "RonnieSaba",
+                        "users",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 19:01:37 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "476"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"expires_at\": \"2026-10-17T20:01:37.363454+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"RvafQXKaiba1DgwyR4lR8ddxvM8lRHdwvuRilDCdaak\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:48:55.743752+00:00\",\n        \"department\": \"Security\",\n        \"email\": \"test_analyst@example.com\",\n        \"full_name\": \"Test Security Analyst\",\n        \"last_login_at\": \"2026-10-17T19:01:37.363378+00:00\",\n        \"role\": \"SECURITY_ANALYST\",\n        \"user_id\": 2,\n        \"username\": \"test_analyst\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Get Denied",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "RvafQXKaiba1DgwyR4lR8ddxvM8lRHdwvuRilDCdaak",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Get Denied",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "logs"
+                      ]
+                    }
+                  },
+                  "status": "FORBIDDEN",
+                  "code": 403,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 19:03:51 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "87"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Get Log by ID Accepted",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "RvafQXKaiba1DgwyR4lR8ddxvM8lRHdwvuRilDCdaak",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/1",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs",
+                    "1"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Get Log by ID Accepted",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/1",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "logs",
+                        "1"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 19:06:26 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "292"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"log\": {\n        \"action_performed\": \"USER_REGISTERED\",\n        \"actor_user_id\": 1,\n        \"actor_username\": \"tracyy\",\n        \"description\": \"Created user 1\",\n        \"log_id\": 1,\n        \"related_service\": \"Users and Identity Management\",\n        \"severity_level\": \"Information\",\n        \"timestamp\": \"2026-10-17T11:20:19.277937+00:00\",\n        \"user_id\": 1\n    },\n    \"status\": \"success\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Auditor",
+          "item": [
+            {
+              "name": "Login Auditor",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": " {\n \"identifier\": \"test_auditor\",\n  \"password\": \"AuditorTest123!\"\n }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Login Auditor",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": " {\n \"identifier\": \"test_auditor\",\n  \"password\": \"AuditorTest123!\"\n }",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "RonnieSaba",
+                        "users",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 19:08:33 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "455"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"expires_at\": \"2026-10-17T20:08:33.078432+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"liK9h4kWKxt-dc4FLdKhJcIRsdShQS5YTmWQ6Lfg2Pw\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:50:11.202751+00:00\",\n        \"department\": \"Audit\",\n        \"email\": \"test_auditor@example.com\",\n        \"full_name\": \"Test Auditor\",\n        \"last_login_at\": \"2026-10-17T19:08:33.078210+00:00\",\n        \"role\": \"AUDITOR\",\n        \"user_id\": 3,\n        \"username\": \"test_auditor\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Get Logs Allowed",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "liK9h4kWKxt-dc4FLdKhJcIRsdShQS5YTmWQ6Lfg2Pw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Get Logs Allowed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "logs"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 19:09:57 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "6832"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"logs\": [\n        {\n            \"action_performed\": \"USER_REGISTERED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Created user 1\",\n            \"log_id\": 1,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T11:20:19.277937+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"User logged in\",\n            \"log_id\": 2,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T11:58:13.144520+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_CREATED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Added IP Address threat indicator 1\",\n            \"log_id\": 3,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:05:37.127277+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_CREATED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Added Domain threat indicator 2\",\n            \"log_id\": 4,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:07:46.940420+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_CREATED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Added File Hash threat indicator 3\",\n            \"log_id\": 5,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:09:43.710698+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_UPDATED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Updated threat indicator 2\",\n            \"log_id\": 6,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:32:44.842027+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"THREAT_DELETED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Deleted threat indicator 2\",\n            \"log_id\": 7,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:33:56.398338+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"USER_REGISTERED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Created user 2\",\n            \"log_id\": 8,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:48:55.743857+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"USER_REGISTERED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Created user 3\",\n            \"log_id\": 9,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:50:11.202855+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"USER_REGISTERED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Created user 4\",\n            \"log_id\": 10,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:51:07.041192+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"LOGIN_FAILED\",\n            \"actor_user_id\": null,\n            \"actor_username\": null,\n            \"description\": \"Invalid credentials or inactive account\",\n            \"log_id\": 11,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T12:53:38.250674+00:00\",\n            \"user_id\": null\n        },\n        {\n            \"action_performed\": \"LOGIN_FAILED\",\n            \"actor_user_id\": 4,\n            \"actor_username\": \"test_regular\",\n            \"description\": \"Invalid credentials or inactive account\",\n            \"log_id\": 12,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T12:54:30.966943+00:00\",\n            \"user_id\": 4\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 4,\n            \"actor_username\": \"test_regular\",\n            \"description\": \"User logged in\",\n            \"log_id\": 13,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:55:02.923051+00:00\",\n            \"user_id\": 4\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 4,\n            \"actor_username\": \"test_regular\",\n            \"description\": \"GET /api/TracyGhosn/threats\",\n            \"log_id\": 14,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T12:56:36.002783+00:00\",\n            \"user_id\": 4\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"User logged in\",\n            \"log_id\": 15,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T12:58:37.238948+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"DELETE /api/TracyGhosn/threats/1\",\n            \"log_id\": 16,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T13:00:37.388524+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"DELETE /api/TracyGhosn/threats/1\",\n            \"log_id\": 17,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T13:01:31.993170+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 3,\n            \"actor_username\": \"test_auditor\",\n            \"description\": \"User logged in\",\n            \"log_id\": 18,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T13:04:58.751812+00:00\",\n            \"user_id\": 3\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 3,\n            \"actor_username\": \"test_auditor\",\n            \"description\": \"DELETE /api/TracyGhosn/threats/1\",\n            \"log_id\": 19,\n            \"related_service\": \"Threat Intelligence\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T13:07:21.730747+00:00\",\n            \"user_id\": 3\n        },\n        {\n            \"action_performed\": \"AUTHENTICATION_FAILED\",\n            \"actor_user_id\": null,\n            \"actor_username\": null,\n            \"description\": \"HTTP 401: GET /api/TracyGhosn/logs\",\n            \"log_id\": 20,\n            \"related_service\": \"Security Audit Logging\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T18:13:25.297680+00:00\",\n            \"user_id\": null\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"User logged in\",\n            \"log_id\": 21,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T18:20:11.318476+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"AUDIT_LOG_DELETED\",\n            \"actor_user_id\": 1,\n            \"actor_username\": \"tracyy\",\n            \"description\": \"Deleted audit log 22\",\n            \"log_id\": 22,\n            \"related_service\": \"Security Audit Logging\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T18:53:04.215300+00:00\",\n            \"user_id\": 1\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"User logged in\",\n            \"log_id\": 23,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T19:01:37.365061+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"PERMISSION_DENIED\",\n            \"actor_user_id\": 2,\n            \"actor_username\": \"test_analyst\",\n            \"description\": \"HTTP 403: GET /api/TracyGhosn/logs\",\n            \"log_id\": 24,\n            \"related_service\": \"Security Audit Logging\",\n            \"severity_level\": \"Warning\",\n            \"timestamp\": \"2026-10-17T19:03:51.809269+00:00\",\n            \"user_id\": 2\n        },\n        {\n            \"action_performed\": \"LOGIN_SUCCESS\",\n            \"actor_user_id\": 3,\n            \"actor_username\": \"test_auditor\",\n            \"description\": \"User logged in\",\n            \"log_id\": 25,\n            \"related_service\": \"Users and Identity Management\",\n            \"severity_level\": \"Information\",\n            \"timestamp\": \"2026-10-17T19:08:33.079448+00:00\",\n            \"user_id\": 3\n        }\n    ],\n    \"status\": \"success\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Delete Logs Not Allowed",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "RvafQXKaiba1DgwyR4lR8ddxvM8lRHdwvuRilDCdaak",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/1",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs",
+                    "1"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Delete Logs Not Allowed",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs/1",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "logs",
+                        "1"
+                      ]
+                    }
+                  },
+                  "status": "FORBIDDEN",
+                  "code": 403,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 19:11:11 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "87"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Regular User",
+          "item": [
+            {
+              "name": "User Not Allowed All Log Endpoints",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "HCnbBkoU2HDbF6PFFAEOn9Fwlkdst4L_kU6WQHnwxcA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "TracyGhosn",
+                    "logs"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "User Not Allowed All Log Endpoints",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/TracyGhosn/logs",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "TracyGhosn",
+                        "logs"
+                      ]
+                    }
+                  },
+                  "status": "FORBIDDEN",
+                  "code": 403,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 19:13:35 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "87"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"message\": \"User does not have permission to perform this operation\",\n    \"status\": \"error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "User Login",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identifier\": \"test_regular\",\n  \"password\": \"RegularTest123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "RonnieSaba",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "User Login",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"identifier\": \"test_regular\",\n  \"password\": \"RegularTest123!\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://127.0.0.1:5000/api/RonnieSaba/users/login",
+                      "protocol": "http",
+                      "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                      ],
+                      "port": "5000",
+                      "path": [
+                        "api",
+                        "RonnieSaba",
+                        "users",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "Werkzeug/3.1.9 Python/3.13.1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 17 Oct 2026 19:12:45 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "467"
+                    },
+                    {
+                      "key": "Cache-Control",
+                      "value": "no-store"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "close"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"expires_at\": \"2026-10-17T20:12:45.514442+00:00\",\n    \"message\": \"Authentication successful\",\n    \"status\": \"success\",\n    \"token\": \"HCnbBkoU2HDbF6PFFAEOn9Fwlkdst4L_kU6WQHnwxcA\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"account_status\": \"Active\",\n        \"created_at\": \"2026-10-17T12:51:07.041071+00:00\",\n        \"department\": \"General\",\n        \"email\": \"test_regular@example.com\",\n        \"full_name\": \"Test Regular User\",\n        \"last_login_at\": \"2026-10-17T19:12:45.513718+00:00\",\n        \"role\": \"REGULAR_USER\",\n        \"user_id\": 4,\n        \"username\": \"test_regular\"\n    }\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
