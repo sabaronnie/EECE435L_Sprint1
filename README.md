@@ -148,23 +148,33 @@ The last active administrator cannot be deleted, demoted, suspended, or deactiva
 ## Request pipeline and service interactions
 
 ```mermaid
+---
+config:
+  htmlLabels: false
+  themeVariables:
+    fontFamily: Arial
+    fontSize: 15px
+  flowchart:
+    nodeSpacing: 30
+    rankSpacing: 35
+---
 flowchart TD
-    Client[Postman or API client] --> Routes[Flask routes in app.py]
-    Routes --> Auth[Authentication and role or ownership checks]
-    Auth --> Service[Service functions]
-    Service --> Validation[Request and business-rule validation]
-    Validation --> Data[Database query modules]
-    Data --> DB[(Shared SQLite database)]
-    Service --> Alerts[Notification functions when applicable]
+    Client["API client"] --> Routes["Flask routes"]
+    Routes --> Auth["Access checks"]
+    Auth --> Service["Service logic"]
+    Service --> Validation["Validation"]
+    Validation --> Data["SQL queries"]
+    Data --> DB[("SQLite database")]
+    Service --> Alerts["Notifications"]
     Alerts --> DB
-    Service --> Audit[Activity logging and commit]
+    Service --> Audit["Audit and commit"]
     Audit --> DB
-    DB --> Response[JSON result]
+    DB --> Response["JSON response"]
     Response --> Client
-    Auth --> Errors[Central error handlers]
+    Auth --> Errors["Error handling"]
     Validation --> Errors
     Data --> Errors
-    Errors --> Rollback[Rollback failed changes and return JSON error]
+    Errors --> Rollback["Rollback and error"]
     Rollback --> Client
 ```
 
